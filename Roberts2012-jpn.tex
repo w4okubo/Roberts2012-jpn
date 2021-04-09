@@ -1,0 +1,2811 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 語研論集用テンプレート (pLaTeX2eのみ)
+%%% 2020/11/17
+%%% 野元　裕樹
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{goken}
+%タイトル
+\title{談話における情報構造}
+%副題
+\subtitle{語用論の統合形式理論をめざして}
+%タイトル（英）
+\entitle{Information structure in discourse}
+%副題（英）
+\ensubtitle{Towards an integrated formal theory of pragmatics}
+
+%著者名
+\author{クレイグ・ロバーツ$^1$（大久保 弥$^2$，野元 裕樹$^3$訳）}
+%著者名（ヘッダー用；スペースなし）
+\hauthor{クレイグ・ロバーツ（大久保弥，野元裕樹訳）}
+%著者名（英）
+\enauthor{Craige Roberts (translated by Wataru Okubo, Hiroki Nomoto)}
+\enhauthor{Craige Roberts (translated by Wataru Okubo, Hiroki Nomoto)}
+
+%所属
+\affil{${}^1$オハイオ州立大学言語学科\\
+	Department of Linguistics, Ohio State University\\
+	${}^2$東京外国語大学大学院博士後期課程\\
+	Graduate School, Tokyo University of Foreign Studies\\
+	${}^3$東京外国語大学大学院総合国際学研究院\\
+	School of Language and Culture Studies, Tokyo University of Foreign Studies%
+}
+
+%カテゴリー
+%\category{論文}
+%\category{研究ノート}
+%\category{特集「\LaTeX{}で書く」}%特集名を記入する
+%\category{特集補遺「XXX」}%特集名を記入する
+%\category{書評}
+\category{翻訳}
+
+%執筆者連絡先
+\email{okubo.wataru.m0@tufs.ac.jp, nomoto@tufs.ac.jp}
+
+%原稿受領日
+\received{2020年12月25日}
+
+%発行年
+\date{2020}
+%号
+\jourvolume{25}
+%開始ページ
+\startpage{79}
+%終了ページ
+\endpage{133}
+
+
+%%%% 各自必要なパッケージを以下に追加 %%%%%
+\usepackage{url}
+\renewcommand\UrlFont{\rmfamily}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+%\usepackage{tipa}
+%\usepackage{booktabs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amssymb, amsthm}
+%\parindent=1em %全角1つ分っぽくしている（zwが使えない…）
+%\usepackage{indentfirst}
+%\usepackage{setspace}
+%
+%\usepackage{charter}
+%
+%\usepackage{xltxtra}
+%\usepackage{verbatim}
+%\usepackage{polyglossia}
+%\usepackage{xeCJK}
+
+\newcommand{\term}[2]{\textsf{#1}（#2）}
+
+%\usepackage{lmodern}  % for bold teletype font
+%\usepackage{xcolor}   % for \textcolor
+
+\usepackage{gb4e}
+%以下があると，pLaTeXでコンパイルした時に，本文中の数字と句読点の間に必要以上に大きなスペースが入ってしまう．
+%\makeatletter
+%%https://tex.stackexchange.com/questions/235040/xelatex-gb4e-example-numbering-in-footnotes-interaction-with-polyglossia-pac
+%\pretocmd{\@footnotetext}{
+%    \@noftnotefalse\setcounter{fnx}{0}%
+%    \renewcommand{\thexnumi}{\roman{xnumi}}
+%    }{}{}
+%\apptocmd{\@footnotetext}{
+%    \@noftnotetrue
+%    \renewcommand{\thexnumi}{\arabic{xnumi}}
+%    }{}{}
+
+%%% p.16 D0の処理
+\usepackage{fixltx2e} % \textsubscriptのため
+\newcommand{\disref}[2]{\hyperref[#1]{\texttt{#2}}}
+\newcommand{\disrefsub}[3]{\hyperref[#1]{\texttt{#2\textsubscript{#3}}}}
+
+%\usepackage{apacite} %bibtex, reference
+\usepackage{multicol} %multicolumn
+\usepackage{caption} %caption of table
+
+\usepackage{pxrubrica} %強調すべき箇所圏点を\kenten{}で付ける
+\renewcommand{\thexnumiv}{\arabic{xnumiv}} %xlist環境でnestedなリストの4段目をアラビア数字に設定する cf.例(10)
+
+\usepackage{subfiles}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+\bibpunct[:~]{(}{)}{,}{a}{}{,~}
+
+%\def\ddash{―\kern-.5zw―\kern-.5zw―}
+\def\ddash{－\kern-.5zw－\kern-.5zw－}
+\newcommand{\ori}[1]{\noindent\textcolor[gray]{0.7}{\fontsize{8pt}{8pt}\selectfont{\textsf{(p.~#1)}}} }
+
+%\usepackage{showkeys}
+
+\begin{document}
+
+\maketitle
+
+%要旨
+\begin{abstract}
+	談話をゲームとみなす語用論的分析のための枠組みを提案する．談話のゲームでは，文脈がスコアボードとなり，文脈というスコアボードは対話者たちによって\term{議論下の疑問}{question under discussion}を中心に体系化される．この枠組みは，動的な構成的意味論と連携することを意図している．そのため，発話の文脈は，様々な種類の情報のタプルとしてモデル化され，疑問\ddash{}形式意味論で普通そうするように，命題の\term{代替集合}{alternative set}としてモデル化される\ddash{}が談話の適切な流れに制約を加える．\term{関連性}{Relevance}の要件が発話によって満たされるのは，（主張であれ，疑問であれ，提案であれ）その発話が議論下の疑問に対応するとき，そのときに限る．最後に，発話の韻律的\term{焦点}{focus}は，（少なくとも英語では）典型的には，議論下の疑問を反映する役割を担い，文脈における適切さに追加的な制約をかけるものであると主張する．
+\end{abstract}
+
+%要旨（英）
+\begin{enabstract}
+	A framework for pragmatic analysis is proposed which treats discourse as a game, with context as a scoreboard organized around the \textit{questions under discussion} by the interlocutors. The framework is intended to be coordinated with a dynamic compositional semantics. Accordingly, the context of utterance is modeled as a tuple of different types of information, and the questions therein---modeled, as is usual in formal semantics, as \textit{alternative sets} of propositions---constrain the felicitous flow of discourse. A requirement of \textit{Relevance} is satisfied by an utterance (whether an assertion, a question or a suggestion) \textit{iff} it addresses the question under discussion. Finally, it is argued that the prosodic \textit{focus} of an utterance canonically serves to reflect the question under discussion (at least in English), placing additional constraints on felicity in context.
+\end{enabstract}
+
+%キーワード
+\keyword{談話，語用論，発話の文脈，議論下の疑問，関連性，焦点}%キーワード（5つまで）---原著に6つあるので1つ超過
+%キーワード（英）
+\enkeyword{discourse, pragmatics, context of utterance, question under discussion, relevance, focus}
+
+\paragraph*{原典}
+Roberts, Craige. 2012. Information structure in discourse: Towards an integrated formal theory of pragmatics. \emph{Semantics and Pragmatics}. 5. 1--69. \doi{10.3765/sp.5.6}
+\footnote{%
+この再版は\citet{Roberts1996b}の1998年修正版に基づく．誤植の訂正と小さな修正を除けば，内容は1998年の原稿から本質的に変わっていない．1995年冬春学期の筆者の演習「情報構造と意味解釈」の受講生たち（とりわけ，Louise McNally），Mike Calcagno，Peter Culicover，David Dowty，Andreas Kathol，Svetlana Godjevacには，本稿の以前のバージョンに対するコメントや鋭い質問について感謝したい．Paul Portner，Nirit Kadmonにも，以前の原稿に対して貴重なコメントをいただいたことに感謝したい．短縮バージョンを発表した，1995年10月のColloque de Syntaxe et S\'{e}mantique \`{a} Parisの運営委員・参加者の皆さんにも感謝したい．Nirit Kadmonとは，数年に渡り，ここで論じる問題の多くについて一緒に研究し，Stanley Petersとスタンフォード大学のCSLIにはともに我々の仕事を支援していただき，彼らの多大なご恩を有難く感じている．だが，これらの方々が筆者がここで行う提案に同意するものと想定すべきではない．}
+\\
+（本文中では，原典におけるページ番号を\textcolor[gray]{0.7}{\textsf{灰色}}で示す．また，訳語対照表を第一訳者のgithubページ（\url{https://github.com/w4okubo/Roberts2012-jpn}）にて公開しているので，必要に応じて参照されたい．）
+
+\bigskip
+
+%p. 2 para 1
+\ori{2}プラハ学派の理論家である\citet{Halliday1967}や\citet{Vallduvi1993}をはじめとし，語用論に関心を抱く多くの言語学者にとって，\term{情報構造}{information structure}は，文レベルの構造である．
+情報構造は一般に，文の伝える情報の提示法を調節する，ある種のパラメーターにより異なる文構造の違いであるとされる．調節はその文の情報を先行文脈に関係付けるような形で行われる．
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{0}
+関係付けに関わる要因は，テーマ／レーマ，焦点／背景，トピック／リンク，旧情報／新情報などといった原始的\footnote{訳注：「原始的（primitive）」とは，それ自体をさらに基本的な要素により規定することができないことをいう．}機能役割によって特徴付けられる．
+これらの原始的要素とそれと相関関係にある文の情報構造は，イントネーションによる焦点や個別の統語的焦点構文，主題化や他の転移変形，そしてドイツ語のように比較的自由な語順を許す言語における語順，カタルーニャ語やハンガリー語の際立った構造的位置の機能，スラブ諸語の定性，トルコ語の特定性，日本語の「は」のような特定の接辞\footnote{訳注：日本語の助詞「は」は，接辞ではなく接語と考えるのが一般的である．}の使用などといった，その他の幅広い現象の役割を説明するために用いられる．
+
+\renewcommand{\thefootnote}{\arabic{footnote}~}
+\setcounter{footnote}{1}
+%p. 2 para 2
+焦点，主題などに取り組む研究者のほとんどは，これらの現象と適切性の関係，従って，発話の文脈との関係について語る．
+しかし，ある焦点を含む発話が実際に適切であるような文脈の種類の範囲を詳細に調べるために，文を超えるレベルを見ている者は少ない\footnote{Ellen Princeと彼女の教え子たちは一般にこの批判に対する例外である．}．
+\citet{KadmonRoberts1986}は，方法論として文を超えるレベルを見ることは，解釈における焦点の役割を理解するのに非常に重要であると論じた．
+彼女らは，最大限に抽象的に言えば，焦点の役割は，発話が適切になる\term{文脈の情報構造}{information structure of contexts}と彼女らが呼ぶものを（規約的な前提を通じて）制限することであると主張した．
+この情報構造に対する見方は，根本的には\citet{Carlson1982}の研究に端を発する．ただし，Carlson自身は当該の情報構造に対する見方をテキストの文法で実現している\footnote{本稿に関連する考えをまとめ上げた後，\citet{Ginzburg1996}の論文のコピーを受け取った．彼もまた\citeauthor{Carlson1982}に従い，（自身は情報構造とは呼んでいないものの）本稿に関連する情報構造の捉え方に関する事柄を提案し，多くの点で非常に異なる方向に向かっている．彼が意図する適用対象は，より狭く，談話における適格なやりとりの特性を明らかにするためであるようだ．}．
+ここで展開する捉え方は，情報構造は，情報を提示するために用いられる発話や発話の連続に関する構造ではなく，文字通り情報に関する構造\ddash{}談話において遂行される探求とその探求がもたらす情報に関する構造\ddash{}である，というものだ．
+文レベルで規約的に与えられるのは，発話が生起する談話の情報構造内でのその発話の場所と機能についてのある種の前提のみである．
+
+%p. 3 para 1
+\ori{3}
+まず\ref{sec:1}節では，\citet{Stalnaker1978}の\term{可能世界としての文脈の考え}{possible worlds view of context}を拡張し，ここで意図する\term{談話の情報構造}{information structure of discourse}の概念を定義する．その拡張は，主張に加え疑問も考慮に入れ，適格なやり取りに対して語用論的に動機付けられた構造を持たせるようなものである．
+次に\ref{sec:2}節では，古典的に情報構造の理論で論じられてきた諸現象をこの構造がいかにして説明するかを例証するために，情報構造に非常に直接的に関係する現象\ddash{}英語の発話における韻律的焦点に関連付けられる規約的含意\ddash{}の理論の概要を述べ，この説明がどのような形で既存の研究をよりよいものにするかを示す．
+
+%p. 3 para 2
+情報構造は人間の談話に関して普遍的なものであり，ある言語において情報構造関連の機能を実現するために発達した具体的な統語構造やその他の規約には依存しないと想定する．
+しかし，英語の韻律的焦点に関連付けられた意味の説明は非常に個別言語的なものである．他の言語では，英語の韻律的焦点が担う目的の一部を実現するのに非常に違った方法を用いたり，英語の韻律的焦点に類似する手段を他の種の情報を符号化するのに用いるということが考えられるだろう．
+それぞれ普遍的，個別言語的な二つの説明を一つの議論にまとめることの主眼は，普遍的なものが個別言語の個別の発話の解釈にどのように入ってくるかを示すのに，個別言語的な説明を用いることにある．
+しかし，筆者の念頭にあるような類いの情報構造の概念のよい点の一つは，それが形式語用論の理論に対してより広い波及効果を持ち，それを用いなければかなり多様で互いに無関係であると考えられてしまう現象の説明のために統一的な基盤を提供することである．
+\ref{sec:3}節では，本稿が提示する情報構造のいくつかの応用可能性を示すとともに，本稿での提案と人工知能，言語学，哲学における他の多くの提案との関係についてごく簡潔に記す．
+
+\section{言語ゲームにおける情報構造と疑問}\label{sec:1}
+%p. 3 para 3
+談話は，一連の\term{会話の目標}{conversational goal}と，会話参与者がその目標を達成するために作る計画あるいは\term{方略}{strategy}を中心に組み立てられる．これは，例えば，\citet{Grice1989}，\citet{Lewis1969}，\citet{GroszSidner1986}，人工知能におけるプランニング理論，\citet{SperberWilson1986}や\citet{Thomason1990}がコミュニケーションや意味において意図に中心的役割を認めていることを踏まえれば，驚くべきことではない．しかし，この意図の構造についての統合的な理論とその語用論理論に対する波及効果に関しては，私の知る限り，これまで詳しく論じられてこなかった．
+
+%p. 4 para 1
+\ori{4}
+筆者は\citet{Stalnaker1978}に従い，談話の主要な目標は共同探求であると想定する．共同探求とは，「ものごとの在り方」を発見し，他の対話者と共有する，すなわち，我々の世界についての情報を共有しようとする試みである．
+しかし，この目標を達成するためには，方略を立てなければならず，それらの方略は下位探求を含む．
+ゲームにおいてそうであるように，ある方略は他の方略よりよかったり悪かったりする．これは主として，参与者の合理的行動によるもので，言語能力それ自体によるものではない．
+方略が効果的であるかは，あらゆる探求でそうであるように，さらに運の要素も関与する．
+筆者が念頭に置いていることをよりよく理解するために，ゲームの喩えを進めてみよう\footnote{これに関して，ここでは若干異なる見解を示すものの，筆者は\citet{Carlson1982}に従っている．無論，究極的には談話のゲームによる喩えは\citet{Wittgenstein1953}まで遡り，\cite{Lewis1969}や，もちろん，\citeauthor{Carlson1982}の師である\citet{Hintikka1972, Hintikka1981}をはじめとする他の人々によって取り上げられてきた．（\citet{HintikkaSaarinen1979}も参照．）}．
+
+%p. 4 para 2
+ゲームの主要要素は，\term{目標}{goal}，プレイヤーが守る\term{規則}{rule}，プレイヤーが目標の達成に向けて打つだろう\term{手}{move}，その手を打つ際に取るだろう\term{方略}{strategy}であり，最後のものは一般に初めの三つと，そしてとりわけ合理的考察により制約を受ける．
+言語ゲームの目的あるいは目標は，既に述べたように，世界のものごとの在り方について合意に至ることであると考える．
+\citet{Stalnaker1978}の\term{共通基盤}{common ground}の概念（談話における対話者がそれらの命題すべてが真であるかのように振る舞うような命題の集合；命題は厳密には可能世界の集合により実現される）と，関連する\term{文脈集合}{context set}（共通基盤の共通集合，共通基盤のすべての命題が真であるような世界の集合）を用いると，我々の目標は文脈の集合を単集合，すなわち現実世界になるまで縮小することである．
+規則は二種類あり，いずれも対話者の言語行動に対する制約とみなされる．\term{規約的規則}{conventional rule}（統語的，構成意味論的など）と\term{会話的規則}{conversational rule}（例えば，グライスの格率）である．
+後者は正確には言語的なものではなく，(i) ゲームの目標（例えば，協調の格率は，言語ゲームを行うことがルイス流の調整問題であるということから導かれる．質の格率は真実が究極の目標であるということから，量の格率1は究極の目標に掛り合ったゆえに一手の利得を最大化したいという願望から導かれる）と，(ii) 人間の認知的限界（cf.~この視点からの\citet{SperberWilson1986}の\textbf{関連性}と量の格率2の議論）があっての合理的考慮により得られる\footnote{これ以降，日常英語の用法と区別するために，グライスの\textbf{関連性}（Relevance）と（以下で形式的に定義する）関係する概念を大文字で始める．［訳注：日本語では\textbf{太字}で表記する．］}．
+プレイヤーが打てる手には二種類あり，それらは規則によって定義される容認可能な行動の種類に該当し，ゲームの目標との関係性に基づいて分類される言語行動である\ori{5}（ここでは，命令文という一般的クラスは考慮しない）．二種類の手とはすなわち，\citet{Carlson1982}が\term{布石の手}{setup move}および\term{決め手}{payoff move}と呼ぶものであり，布石の手は\term{疑問}{questions}，決め手は疑問に対する答えとなる\term{主張}{assertion}である．
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{0}
+ここで筆者がとる解釈では，手は発話行為ではなく，発話行為において用いられる意味的構成物であることに注意されたい．発話行為は手を提示する行為である．
+探求の方略\footnote{訳注：改めて整理すると，談話の主要な目標は，対話者たちが「ものごとの在り方」を発見し，共有し合う「共同探求」であり，対話者たちは共同探求という目標の達成のために方略を立てる．}については，以下で改めて論じることにする．
+\renewcommand{\thefootnote}{\arabic{footnote}~}
+\setcounter{footnote}{5}
+
+%p. 5 para 1
+どのような手の解釈にも，二つの側面があると想定する．
+\term{前提内容}{presupposed content}と\term{提示内容}{proffered content}である．
+\term{提示}{proffered}という用語は，主張において主張される事柄および疑問と命令において前提となっていない内容の両方をカバーする用語として用いる．
+\citet{Lewis1979}は，疑問を命令の一種として扱う．
+疑問は受理された場合，対話者に対してその疑問が提示する代替要素の中から選択を行うことを命じるのであるから，これは正しいと思われる\footnote{疑問と命令を異なる種類の発話行為として扱いたくなる理由もある．ここでは命令については取り上げないので，いずれの立場が正しいかについて論じることはしない．}．
+現代の意味分析のほとんどで，疑問はその疑問に対する可能な答え（あるいは，理論によっては正しい答え）である命題の集合を外延とする，あるいは決定するものだとみなされている．
+そのような可能な答えが提示される代替要素となる．
+疑問が対話者によって受理されると，これにより対話者は共通の目標，つまり答えを見つけることに掛り合うことになる．
+プランニング理論における目標への掛り合いのように，これは特に強いタイプの掛り合いであり，目標が達成されるか，あるいは目標が達成不可能であると示されるまで持続するものである．
+受理された疑問は，議論の直近の主題となる．
+筆者はこれを\term{直近の議論下の疑問}{immediate question under discussion}とも呼び，しばしば\term{議論下の疑問}{question under discussion}と短縮する．
+
+%p. 5 para 2
+\citeauthor{Stalnaker1978}のいう談話の目標は，それ自体が疑問であるとみなせる．その疑問とは，\term{ものごとの在り方はどのようになっているか}{What is the way things are?}という大疑問(the Big Question)で，この大疑問に対応する代替要素の集合は，談話の任意の時点における文脈集合内の世界の単集合すべてから成る集合である．
+このことは，疑問によって提示される代替要素の集合に対する別の見方を示唆する．
+疑問は発話時点における文脈集合の分割を行い，分割により生じる各セルはその疑問に対する完全な答え一つが真であるような世界の集合となる（cf.~\citealt{GroenendijkStokhof1984}における答えの集合の説明のための分割の使用）．
+だとすれば，文脈集合それ自体を代替要素の究極的な集合を表すものとして見ることができる．我々の究極の目標は唯一無二の（「現実の」）世界を選択することだからである．
+
+%p. 6 para 1
+\ori{6}
+対話者は疑問を受理すると，その疑問に答えようという意図を抱き，その意図は共通基盤に入り込む\footnote{これは，疑問提示者の知識を増加させることに関係する\citet{Carlson1982}のいう疑問の認識論的要件や，\citet{Ginzburg1994}による関連する考えとは区別されるものである．
+ここでは，「情報を得る」のは話し手ではなく，共通基盤であり，求められるのは知識ではなく，相互信念の行動である．
+これにより，談話における情報のより独我論的な見方にとっては問題となる修辞的疑問やクイズ型疑問などに関して一般化が可能になる．}．
+協調的な対話者は，この意図の存在を承知していれば，それに掛り合う．つまり，自身が疑問に答えようという意図を（表向きには）持つ．
+そして，一貫性を下支えし，ゆえに情報の処理と貯蔵を助ける談話の構成原理である\textbf{関連性}によって，対話者は疑問が尋ねられてからできるだけ早くそれに答えようとする．
+\citeauthor{Grice1989}の量の格率1により，談話の目標を考えれば，部分的な答えより完全な答えの方が望ましいことになる．
+
+%p. 6 para 2
+\citeauthor{Stalnaker1978}がそう考えるように，主張は代替要素の中からの選択である．
+主張は，もし受理されれば，共通基盤に追加され，それにより文脈集合を縮小させる．
+談話が一貫した（\textbf{関連性}に従った）ものになるためには，ある主張がどのような（文脈集合の分割のセルに対応する）代替要素の中から選択を行うのかが明らかでなければならない．
+選択候補となる代替要素は，議論下の疑問あるいは主題により提示されたものである．
+主張が決め手であるというのはそういうことである．
+主張は，布石の手／疑問により提示された代替要素から選択を行い，それによりゲームの目標を推進する．
+形式的誤謬は，議論下の疑問と無関係な主張であり，
+理屈上は情報があるけれども，方略のまずさと談話の直近の目標への掛り合いの欠如，すなわち協調性の欠如が反映されたものである．
+形式的誤謬は利得を最大化することもできない．
+優れた方略家は，それが誘発するであろう関連する推論の数を最適化するように主張を行う．そのような推論は談話の計画構造から生じる談話の分割のために行いやすくなると想定することは妥当であろう（\citet{GroszSidner1986}および\citet{SperberWilson1986}を参照．ただし，後者は\term{談話の分割}{discourse segmentation}という用語は用いていない）．
+
+%p. 6 para 3
+\term{探求方略}{strategy of inquiry}とは，ゲームの制約を守りつつゲームの目標を（少なくとも部分的には）達成するように立案された一連の布石の手，すなわち疑問のことである．
+主たる目標は大疑問に答えることであるから，合理的な方略では，達成しやすく，主たる目標達成の助けになるように論理的に関連し合う下位目標を作り出し，それにより大疑問に答える計画が関与するだろう．
+\citet[16]{GroenendijkStokhof1984}に従い，疑問に対する伴立関係を次のように定義することができる：\ori{7}\textsf{ある疑問文$q_1$が別の疑問文$q_2$を伴立するのは，$q_1$の答えとなる命題すべてが$q_2$の答えにもなるとき，そのときに限る}．
+（これには完全な答えについて話しているという前提がある．
+そうでないと，伴立が実は逆向きに成り立つ可能性があるからだ．）
+例えば，「あなたは何が好きですか？」は「あなたは食べ物は何が好きですか？」を伴立する．
+大疑問「ものごとの在り方はどのようになっているか？」に対する答えは，他に可能なあらゆる疑問を伴立する．
+そのような関係にある$q_1$は，\term{上位疑問}{superquestion}と呼べるだろう．
+そして，上位疑問$q_1$が伴立するような$q_2$はどれも\term{下位疑問}{subquestion}と呼べるだろう．
+他方で，もし我々が十分な数の下位疑問に答えられるならば，我々は上位疑問に対して答えを持っているということになる．
+談話の究極的な目標と参与者の合理性を考慮すれば，このような関係は我々の取る手を構築する中心的要因である．
+
+%p. 7 para 1
+もちろん，談話における疑問は一般に，大疑問よりも具体的なものであり，もっと処理しやすい．
+最も一般的な意味での談話における探求の目標の他に，我々にはたいてい\term{領域内目標}{domain goal}，つまり，実世界における目標，探求とは全く別に達成したい事柄がある．
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{0}
+領域内目標は一般に，会話中で行う探求の型，つまり，ものごとのあり方がどのようになっているかという疑問にアプローチする方法を義務の優先モダリティ\footnote{訳注：優先(priority)モダリティとは，ある状況が他の状況よりも優先されることを表すようなモダリティである．義務(deontic)はその下位分類の一つで，他には目的(teleological)，希望(bouletic)が優先モダリティに含まれる．}の形で管理する．
+我々は，自然と，領域内目標に直接関係する事柄について最初に探求するであろう．
+\renewcommand{\thefootnote}{\arabic{footnote}~}
+\setcounter{footnote}{7}
+
+%p. 7 para 2
+従って，領域内目標は我々がある時点で大疑問の下位疑問のうちどれを取り上げるのかを規定する傾向がある．
+だが，上述のように，ひとたびある疑問に掛り合ったら，つまり，それに答えようとしだしたら，それに答えが与えられるか，もしくはそれが現時点では解答不可能であることが明らかになるまで，そしてそのいずれかでない限り，我々はその疑問を追求する．
+しかしながら，このような追求における対話者の方略としては，下位疑問に対する答えを追求するという決定もあるだろう．
+つまり，関連する疑問の連続がその中で最も一般的で論理的に最も強い疑問に対する答えを得るための方略となるかもしれないのだ．
+従って，探求方略は伴立関係により部分的に順序付けられた疑問の集合という，階層構造を持つだろう．
+事態は実はこれよりも複雑である．というのも，実際の方略における疑問は，特定の文脈的伴立関係があるがゆえに論理的に関連するだけかもしれないからだ．
+だが，これが方略の基本的性質であり，以下では，方略は文脈に相対化された形で，この理想化された論理構造を持つと想定する．
+
+%p. 7 para 3
+もちろん，談話中にはここで仮定する制約された関係に対する反例のように見える疑問の連続が多くある．
+例えば，ある時点で，対話者がある上位疑問に関連する多数の下位疑問を，どれにも答えずに次から次へと投げかけることがあるかもしれない．
+だが，これは単なる列挙であり，上位疑問にどのように取りかかるかについての計画を暗に示しているだけである．
+\ori{8}
+それらの疑問はどれもまだ提示されても受理されてもいない．
+そのような下位疑問に対し，我々は一度に一つずつしか対応できず，一つの疑問に対応しているときには，我々はその疑問から離れない（あるいは，その疑問から離れて「話題を変えた」対話者に文句を言うこともできる）．
+別の事例としては，ある時点において，ちょうど議論されたばかりの情報が今は休眠状態の別の情報と関係することにはっと気づき，後者の情報を持ち出す人がいるかもしれない．
+これは会話を脱線させかねず，我々はその後，自分が追求していた方略により軌道修正しようとするか，さもなければ，その会話を諦め，先に進む．
+だが，これらの事例は，違反によって規則の一般的効力がかえって明白になるような規則違反である．
+\ref{sec:2.1}節での修正的文脈における議論下の疑問に関する簡潔な議論も参照されたい．
+そこでは，これらの事例が談話それ自体についてのメタ疑問の一種であるとしている．
+
+%p. 8 para 1
+\citet{Carlson1982}の中心的洞察の一つは，対話は疑問と答えの関係により機能的に構造化されているということである．ただし，疑問は明示的に発せられず，他の手がかりをもとに推定されるに留まることも多い．
+以下の節では，決して明示的に尋ねられず，暗に意図される議論下の疑問を対話者が引き出すことができる方法を一つ見る．
+筆者は，英語の韻律的焦点は議論下の疑問を前提とすると主張する．
+その前提により聞き手は，いくつかの他の文脈的手がかりを用いて，その疑問およびその疑問と遂行中の方略との関係を再構築することができる．
+これは，プランニング理論において，共通基盤にある他の情報および実際の発話内容から対話者の計画を推論することを可能たらしめる計画推論規則を用いて，より抽象的な形でモデル化される一般的なケースの例の一つに過ぎない．
+同様に，ある文脈において明らかに伴立される答えが，明示的に発話されないにもかかわらず，共通基盤に入り込むことがある．
+このようなケースには，\citet{Lewis1979}のいう\term{調節}{accommodation}が関与し，談話においてはごく自然なことである．
+ある対話者が，まだ共通合意は得られていないものの，他の対話者たちが異議を持たないような疑問または主張$\varphi$を前提としていることが明らかな場合，他の対話者たちは$\varphi$がこれまでずっと共通基盤にあったかのように振舞うのである．
+従って，談話ゲームにおける手という概念は，本質的には意味論的なものである．
+疑問は必ずしも発話行為によって実現されるわけではなく，対話者がその対応に掛り合う関連する代替要素の集合を提示するものという厳密な意味での疑問の外延に過ぎない\footnote{議論下の疑問という概念を意味論的に実現することのよい帰結の一つは，暗に意図された抽象的な疑問は前提，とりわけ実際の疑問の発話行為に付随すると言われることもある存在前提の類いである必要はないということである．それに対し，\citeauthor{Carlson1982}はそのような暗示的な疑問は談話のテキストの実際の一部であるという想定をしている．}．
+疑問は，談話中のその時点で，談話が何「について」であるかを教えてくれ，さらに，その疑問が関与する疑問の方略を見れば，談話がどこに向かっているかを教えてくれる．
+
+%p. 9 para 1
+\ori{9}
+本節の残りの部分では，談話が疑問に基づいて組み立てられるという見方を展開するための準備として，まず\ref{sec:1.1}節で疑問の意味論の概略を述べる．
+次に，\ref{sec:1.2}節で筆者が念頭に置いている情報構造の概念の形式的特徴を考える．
+最後に\ref{sec:1.3}節で，情報構造における役割の自然な帰結として見た，疑問と答えの語用論について考察する．
+
+%p. 9 para 2
+\subsection{疑問の意味論}\label{sec:1.1}
+
+ここで採用する疑問の意味論は，重要な側面でいずれとも異なっているものの，\citet{Hamblin1973}，\citet{GroenendijkStokhof1984}，\citet{vonStechow1991}の初期の研究から様々な要素を援用している．
+\citeauthor{Hamblin1973}の説明と同様に，疑問は代替要素の集合を外延とする．これを疑問の\term{q-代替要素集合}{q-alternative set}と呼ぶことにする．
+\citeauthor{GroenendijkStokhof1984}からは，疑問に対する\term{完全な答え}{complete answer}と\term{部分的な答え}{partial answer}の概念を定義するために，q-代替要素集合が世界の集合に対して築く分割の使用を援用する．
+そして，疑問のq-代替要素はすべて対話者により尋ねられ，このことが共通基盤に影響を与えるという\citeauthor{vonStechow1991}の想定を採用する．ただし筆者は，\citet{vonStechow1991}のようにこれを疑問の意味的な外延の一部とはせず，疑問を受理するとはどういうことかという点に関する語用論の一部とする．
+本稿の説明は，疑問に対して構造化された意味論を考えることはせず，疑問／答えの対を同時に生成したりもしないという点で，\citeauthor{vonStechow1991}や\citeauthor{GroenendijkStokhof1984}の説明とは異なる．
+本稿の説明では，主張とそれが対処する疑問との緊密な関係，そしてそれゆえに（部分的には）主張と答えとの緊密な関係は一般に，主張の韻律的焦点による前提に反映される．
+下の\ref{sec:2}節で，その前提は，談話の情報構造における議論下の疑問に関する主張の役割についての前提であると主張する．
+全体を通して，埋め込まれた疑問をどう分析するかという重要な問いは扱わない．
+埋め込まれた疑問の意味は，主節の疑問の意味とは異なると想定する．ただし，両者はもちろん密接に関係し合っている．関連する議論については，\citet{Jacobson1995}，\citet{Ginzburg1995a, Ginzburg1995b}，\citet{Higginbotham1996}を参照されたい．
+
+%p. 9 para 3
+以下では，任意の構成素$\alpha$について，$|\alpha|$は，通例通り再帰的，構成的な規則によって得られる$\alpha$の通常の外延であるとする．
+疑問の論理的形式は，広い作用域の疑問演算子「?」を含むとされる．
+その作用域内において，疑問における「誰が到着した？」のようなwh節は，「$\text{誰}(\lambda x.x \text{が到着した})$」であると想定され，wh要素が冠頭位置にあり，主節はその痕跡をラムダ抽象したものとして解釈される．%Who arrived? $\text{who}(\lambda x.x \text{ arrived})$
+\ori{10}
+便宜上，考慮するwh要素は，意味タイプが同じであることから，「誰」と「何」に限定する．%who what
+単純なwh疑問文であれば，その疑問の外延であるq-代替要素集合は，wh句をラムダ抽象し，そして次にその結果をモデル内のwh句が外延とするものと同じタイプのすべてのもの（存在物であれ，関数であれ，何であれ）に適用することによって派生され得る命題の集合である．
+これは次のように一般化することができる．
+
+\begin{exe}
+	\ex\label{ex:1}
+	節$\alpha$の発話に対応する\textsf{q-代替要素}
+	\[
+		\text{q-alt}(\alpha) = \left\{p: \exists u^{i-1}, \dots, u^{i-n} \in D \left[p = |\beta|\left(u^{i-1}\right) \dots \left(u^{i-n}\right)\right]\right\}
+	\]
+	ただし，$\alpha$は，$\{\text{wh}_{i-1}, \dots, \text{wh}_{i-n}\}$を$\alpha$中のwh要素の（空の可能性もある）集合とするとき，$\text{wh}_{i-1}, \dots, \text{wh}_{i-n}(\beta)$という論理形式を持ち，
+
+	$D$は当該言語のモデルの領域であり，例えば「誰」ならば人間，「何」ならば非人間というように，種類に応じた制限が適切になされているものとする．
+\end{exe}
+\noindent
+定義(\ref{ex:1})は，いかなる発話に対しても，たとえそれが疑問でなくとも，代替要素の集合を与える\footnote{この集合は\citet{vonStechow1991}が疑問によって定義されるとする代替要素とは異なることに注意されたい．彼の代替集合は疑問文中のwh要素\kenten{および}その疑問文の焦点となっている構成素の両方に関して同時に変化するのに対し，下の\ref{sec:2}節で明らかになるように，筆者はこれら二つの変化を分けている．}．
+発話中のいかなるwh要素についてもラムダ抽象を行い，モデル内の適切な種類の存在物(entity)が自由に抽象の変項になれるようにしている\footnote{ここでwh要素を演算子として扱うことは重要ではない．ここで想定する論理形式では，冠頭のwh要素の役割は主としてその作用域を示すことである．そのようにしないのであれば，wh要素そのものを別個の変項として想定することもあり得ただろう．\citealt{Ginzburg1995a, Ginzburg1995b}にならい，彼のQUANT-CLOSURE演算子のような特別な空演算子が適切なレベルですべての自由なwh変項を無差別に束縛するようにするのである．空演算子を想定する経験的意義と同じく，特に他の種類の演算子の作用域との相対的関係において，wh要素の作用域決定に関する事実はよく分からない．そのため，本稿ではこの問題は論じないことにする．}．
+yes/no疑問はwh要素を有していないため，(\ref{ex:1})によるyes/no疑問$?(\alpha)$のq-代替要素は単集合$\{|\alpha|\}$になるだけである．
+
+%p. 10 para 1
+疑問の意味は，極めて単純である．疑問の外延は，その疑問のq-代替要素集合である\footnote{ここでは議論なしにこの意味を採用する．それが単に，以下で採用する代替意味論による焦点と疑問の説明と一貫性を持つ最も単純な外延であるというだけのことである．情報構造と焦点に関する提案で(\ref{ex:2})が要となるような点はないので，疑問の解釈を別のタイプに置き換えてもいいだろう．}．
+
+\ori{11}
+\begin{exe}
+	\ex\label{ex:2}
+	\textsf{疑問$?(\alpha)$の解釈}
+	\[
+	|?(\alpha)| = \text{q-alt}(\alpha)\]
+\end{exe}
+\noindent
+「メアリーは誰を招待した？」のような疑問について，「誰」がタイプ$e$であるとすると，この疑問が記述するq-代替要素集合は，恐らく適切であろう「誰も（しなかった）」という答えを含まないことになろう．%(Who did Mary invite?)(who)(Nobody)
+そのため，q-代替要素集合は必ずしも疑問に対する\kenten{すべての}可能な答えの集合ではない．
+もちろん，「誰」が例えば一般量化子$\langle\langle e,t \rangle ,t \rangle$のような$e$よりも高階のタイプであるとすれば，「誰も（しなかった）」は対応するラムダ抽象の値として適切なタイプとなる．%(who)(nobody)
+しかし，以下ですぐ見るように，そのような答えを可能にするために「誰」のタイプについて何らかの想定をする必要はない．%(who)
+
+%p. 11 para 1
+疑問に答えるためには，その疑問のq-代替要素集合のすべての要素について，それらの要素を評価し，もし真のものがあるならば，どれが真であるかを見極めなければならない．答えであることは，次のように定義される．
+
+\begin{exe}
+	\ex\label{ex:3}
+	\begin{xlist}
+		\ex\label{ex:3a}
+		疑問$q$に対する\term{部分的答え}{partial answer}とは，$\text{q-alt}(q)$の少なくとも一つの要素についての評価\ddash{}真または偽\ddash{}を文脈的に伴立する命題である．
+		\ex\label{ex:3b}
+		\term{完全な答え}{complete answer}とは，$\text{q-alt}(q)$の各要素についての評価を文脈的に伴立する命題である．
+	\end{xlist}
+\end{exe}
+\noindent
+ある疑問のq-代替要素集合に二つの命題$p$，$p'$のみがあると仮定しよう．
+その疑問に対する完全な答えの集合は，(\ref{ex:4})の集合の要素一つを伴立するものである．
+
+\begin{exe}
+	\ex\label{ex:4}
+	 $\{(p \wedge p'), (p \wedge \neg p'), (\neg p \wedge p'), (\neg p \wedge \neg p')\}$
+\end{exe}
+\noindent
+この集合は，ある発話の文脈集合を含む，あらゆる任意の可能世界の集合に対して，分割を設けることに注意されたい．
+なぜならば，いかなる世界においても，これら四つの可能な式のうち一つだけしか真となり得ず，世界の集合で特異なものにおいては，四つの式のいずれもが真であるような集合があり得るだろうからである．
+完全な答えはそれぞれ分割におけるセル一つに対応し，前節で非形式的に論じたように，ある完全な答えが受理されると，他のすべてのセルが捨てられることになる．
+
+%p. 11 para 2
+例として，(\ref{ex:5})の例文と(\ref{ex:6})に派生を示したその外延を考えよう．
+
+\begin{exe}
+	\ex\label{ex:5}
+	 メアリーは誰を招待した？%Who did Mary invite?
+\end{exe}
+
+\begin{exe}
+	\ex\label{ex:6}
+	$|?(\text{誰}(\lambda x.\text{メアリーは$x$を招待した}))| = \text{q-alt}(\text{誰}(\lambda x.\text{メアリーは$x$を招待した}))$ \ori{12}\\% ?(who($\lambda$x. Maryy invite x)) | = q-alt(who($\lambda$x. Mary invite x))\\
+	$\phantom{|?(\text{誰}(\lambda x.\text{メアリーは$x$を招待した}))| }= \{p: \exists u \in D [p = |\lambda x.\text{メアリーは$x$を招待した}|(u)]\}$\\%\{p: $\exists$u $\in$ D [p= |$\lambda$x. Mary invite x | (u)]\}\\
+	$\phantom{|?(\text{誰}(\lambda x.\text{メアリーは$x$を招待した}))| }=\{\text{メアリーは$u$を招待した}: u \in D\}$% = \{Mary invited u: u $\in$ D\}
+\end{exe}
+\noindent
+対話者は，提示された疑問(\ref{ex:5})を受理したら，その疑問に答えること，すなわち，その疑問が提示するすべての代替要素の評価に掛り合うことになる．
+モデル内には三人しかいないとし，$D = \{\text{メアリー}, \text{アリス}, \text{グレース}\}$であるとしよう．その場合，(\ref{ex:5})の外延は，(\ref{ex:7})の集合になる（「招待する」が外延とする関係は非反射的であると想定し，モデル内の個体の結合は無視している）．%(invite)
+
+\begin{exe}
+	\ex\label{ex:7}
+	\{メアリーはアリスを招待した, メアリーはグレースを招待した\}%\{Mary invited Alice, Mary invited Grace\}
+\end{exe}
+\noindent
+「メアリーはアリスを招待した」を$p$，「メアリーはグレースを招待した」を$p'$とすると，(\ref{ex:5})は(\ref{ex:4})に提案した分割に対応する．%\textit{Mary invited Alice}\textit{Mary invited Grace}
+適度に豊かな文脈集合に対して分割が設けられたならば，完全な答えの集合は，「メアリーはアリスとグレースを招待した」，「メアリーはアリスは招待したが，グレースは招待しなかった」，「メアリーはグレースは招待したが，アリスは招待しなかった」，「メアリーは誰も招待しなかった」を含み，このうち最後のものが$\neg p \wedge \neg p'$という式に対応するセルを選び出す．%\textit{Mary invited Alice and Grace}，\textit{Mary invited Alice but not Grace}，\textit{Mary invited Grace but not Alice}，\textit{Mary invited nobody}
+部分的答えは，その真偽が分割のセルのうち少なくとも一つを除外するような発話となる．
+例えば，「メアリーはグレースを招待しなかった」は$p'$が真である両方のセルを除外するが，メアリーはアリスを招待したのかという疑問は未解決のままである．%\textit{Mary didn't invite Grace}
+すべての完全な答えは部分的答えであるが，その逆は成り立たない．
+
+%p. 12 para 1
+答えであることを(\ref{ex:3})のように定義したことにより，疑問について論じるのに有用な他の用語を定義することができる．
+
+\begin{exe}
+	\ex\label{ex:8}
+	ある疑問$q_1$が別の疑問$q_2$を\textsf{伴立する}のは，$q_1$に答える（つまり，答えを与える）ことが$q_2$への完全な答えを与えるとき，そのときに限る．\citep[cf.][16]{GroenendijkStokhof1984}
+\end{exe}
+
+\begin{exe}
+	\ex\label{ex:9}
+	ある疑問$q_1$が別の疑問$q_2$を\textsf{文脈的に伴立する}のは，共通基盤$C$（命題の集合）を持つ談話の文脈において$q_1$に答えることで，$C \cup \text{Ans}(q_1)$が$q_2$への完全な答えを伴立することになるとき，そのときに限る．
+\end{exe}
+\noindent
+論証することはしないが，
+発話は，部分的答えを直接的に主張するか，部分的答えを文脈的に伴立するか，疑問への部分的答えを文脈的に伴立する事柄を前提または会話の含意とするかのいずれかによって，疑問に部分的に答えられると考える．
+
+この節で示した疑問の意味は，本質的に静的である．これは次節で提示する情報構造を静的に捉える見方にはよいだろう．
+しかし，\ref{sec:1.3}節では，疑問においてどのように前提が投射されるかという問題を考える．その際，疑問および疑問がその中で役割を果たす情報構造の動的な見方が必要となる．
+\ori{13}
+そのため，動的な情報構造における疑問の\term{潜在的文脈変更力}{context change potential}について述べる．
+ただし，q-代替要素の集合に対してアップデート関数を定義することは静的な意味解釈を与えることよりもいささか複雑になるものの，ここで提示した簡潔な意味は，答えであることおよび疑問の伴立関係という概念ととともに，依然として提案の核心となるものである．
+
+%p. 13 para 1
+\subsection{情報構造の形式的理論}\label{sec:1.2}
+
+本節では，談話の\term{情報構造}{information structure}の形式的定義について考察を進める．
+談話の情報構造とは，談話における明示的・暗示的（語用論的に引き出される）な疑問や答えの手の集合およびその集合に含まれる手に対する様々な関数や関係であると考える．後者には疑問を順序付ける方略により生じる構造が含まれる．
+疑問／答えの関係から手の対が得られ，そのような対は疑問についての方略的関係によって部分的に順序付けられる．
+% partially ordered「部分的に順序付けられた」：partial ordered setは「半順序集合」と訳される
+疑問が間接的に「尋ねられる」ことがあるように，答えも実際には一つあるいは複数の主張の連続によって与えられることがあることに注意されたい．
+ここで詳細に検討することはできないが，答えを得るのに，そのような連続を基になされた推論さえもが必要になることもあり，構造は単純な疑問／答えの対話よりも複雑になる．
+
+%p. 13 para 2
+形式的な情報構造の定義には，いくつかの方法が考えられる．そのうちの一つは次のように表される．
+
+\begin{exe}
+	\ex\label{ex:10}
+	談話$\mathcal{D}$の\textsf{情報構造}はタプルである
+	\footnote{%
+		談話を対話者の集団の中で一定時間の間に打たれた明示的な手の集合として定義しようとするものもいるだろう．
+		その場合，対話者が「同意」し得る可能な暗示的・補間的手から成る異なる集合が存在し，結果として情報構造も異なることになるだろう．
+		従って，談話の決まった情報構造（\textit{the} information structure）ではなく，談話の\kenten{ある}情報構造（\textit{an} information stucture）について語ることになる．
+		重要ではないものの，以下，談話は，談話内で打たれる明示的あるいは暗示的なすべての手から構成されると想定する．
+		いずれの場合も，タプルに$M$の部分集合で，談話におけるすべての明示的な手から成る集合$Exp$を加えることもできるだろう．}．
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{0}
+%
+	\[
+		\text{InfoStr}_{\mathcal{D}} = \langle M,\, Q,\, A,\, <,\, Acc,\, \text{CG}, \text{QUD} \rangle\footnotemark \text{，ただし}
+	\]
+%
+	\footnotetext{訳注：各変数名は以下の英語に基づく．$M$: move（手）；$Q$: question（疑問）；$A$: answer（答え）；$Acc$: accepted（受理された）；CG: common ground（共通基盤）；QUD: Question Under Discussion（議論下の疑問）．}
+	\vspace{-\baselineskip}
+\renewcommand{\thefootnote}{\arabic{footnote}~}
+\setcounter{footnote}{12}
+	\begin{xlist}
+		\item $M$は談話における（布石の手と決め手の）手の集合である．
+		\item $Q$は$M$における疑問（布石の手）の集合である．疑問は命題の集合である．
+		\ori{14}\item $A$は$M$における主張（決め手）の集合である．主張は可能世界の集合である．
+		\item $<$は先行関係であり，\textit{M}における全順序である．
+			
+		\smallskip%\begin{center}%\[
+			$m_i < m_k$ が成り立つのは，$\mathcal{D}$において$m_i$が$m_k$より先に打たれる／発せられるとき，そのときに限る
+		\smallskip%\end{center}%\]
+		%m_i < m_k \textit{iff} m_i \text{is made/uttered before} m_k \text{in} D
+			
+		$<$のもとにある任意の二つの要素の順序は，それらの指標の自然な順序に反映される．ただし，すべての$m_i$について，$i \in \mathbb{N}$とする．
+		\item $Acc$は$M$において受理された手の集合である．
+		\item CGは$M$から命題の集合への関数であり，各$m \in M$について，$m$が発話される直前の$\mathcal{D}$の共通基盤を与える．さらに，以下が成り立つ必要がある． \label{ex:10f}
+		\begin{xlist}
+			\item すべての$m_k \in M$について，$\text{CG}(m_k) \supseteq \bigcup_{i<k} (\text{CG}(m_i))$%m_kによりCGに含まれる命題が増える
+			\item すべての$m_k \in M$について，$\text{CG}(m_k) \supseteq \{m_i: i<k \text{かつ} m_i \in Acc\, \textbackslash\, Q\}$
+			\item すべての$m_k,\, m_i \in M,\, i < k$について，
+			\begin{xlist}
+				\item 命題$m_i \in M$は$\text{CG}(m_k)$の要素である．
+				\item もし$m_i \in Q$ならば，命題$m_i \in Q$は$\text{CG}(m_k)$の要素である．
+				\item もし$m_i \in A$ならば，命題$m_i \in A$は$\text{CG}(m_k)$の要素である．
+				\item もし$m_i \in Acc$ならば，命題$m_i \in Acc$は$\text{CG}(m_k)$の要素である．
+				\item すべての命題$p \in \text{CG}(m_i)$について，命題$p \in \text{CG}(m_i)$は$\text{CG}(m_k)$の要素である．
+				\item $\text{QUD}(m_i)$の値が何であれ，それが$\text{QUD}(m_i)$の値であるという命題は$\text{CG}(m_k)$の要素である．
+			\end{xlist}
+		\end{xlist}
+		\item \term{議論下の疑問のスタック}{questions-under-discussion stack}であるQUDは，$M$（談話における手）
+		\footnote{%
+			参与者が却下した主張や疑問であっても，それが生起する談話の情報構造との関係のおいて適切（あるいは不適切）であったと決められることがある．
+			そのため，QUDの領域は受理された手に限定されない．}
+		から，すべての$m \in M$について以下が成り立つような$Q \cap Acc$の順序部分集合への関数である．\label{ex:10g}
+		%ordered subsets: 全順序部分集合?
+		\begin{xlist}
+			\item すべての$q \in Q \cap Acc$について，$q \in \text{QUD}(m)$であるのは以下のとき，そのときに限る．\label{ex:10gi}
+			\begin{xlist}
+				\item $q < m$（つまり，$m$あるいはどんな後続する疑問も含まれない），かつ
+				\item $\text{CG}(m)$は$q$への答えを伴立せず，$q$が事実上答えられないものであると決定されていない．
+			\end{xlist}
+			\item $QUD(m)$は$<$によって（全）順序付けられる．
+			\ori{15}\item すべての$q,\, q' \in \text{QUD}(m)$について，もし$q < q'$であれば，$q'$への完全な答えは$q$への部分的答えを文脈的に伴立する．\label{ex:10giii}
+		\end{xlist}
+		\end{xlist}
+\end{exe}
+
+
+%p. 15 para 1
+\noindent 疑問と主張のみを考慮しているため，$\mathcal{D}$における主張の集合は，$M$において$Q$の補集合であると想定する．
+
+%p. 15 para 2
+談話における手がすべて受理されるとは限らず，$Acc$は一般に集合$M$の真部分集合になることに注意されたい．
+恐らく我々は，どのような疑問と主張が提案されたかを記憶に留めている．たとえそれらの疑問や主張が却下されたとしてもである．そう考えることは，例えば否認や修正を説明する際に非常に重要になる．
+% account
+しかし，\citet{Carlson1982}の談話の見方と異なり，我々が記憶に留める手は意味的存在物，すなわち談話内の発話によって表現される情報であり，談話内の発話の構造的な分析ではない．
+これは，先行する談話に関する構造的情報は極めて急速に失われると示す心理言語学の研究から見て，好ましいことだろう．
+
+%p. 15 para 3
+CGの値に対する制約により，いかなる手もそのCGの値は先行するあらゆる手の共通基盤の上位集合となる．これにより，共通基盤は単調となり，以前に与えられた情報を保持することが保証される．
+もちろん，談話は常にこの意味で単調なわけではないが，ここではこの問題は考えない．
+また，共通基盤は，疑問でないすべての先行する受理された手，すなわち先行する受理された主張を含むことが求められる．これは\citet{Stalnaker1978}の主張を受理するとはどういうことかについての特徴付けに沿った形でなされる．
+% previous
+共通基盤を，先行する共通基盤の，そして受理された主張の集合の，真の上位集合にもなり得るような上位集合とすることで，追加的な情報が受理された決め手／主張によってだけではなく，場合によっては調節された含意，推論，共通の知覚的経験などによって加えられる可能性を残している．
+(\ref{ex:10f})の節(iii)は，どんな手が打たれてきたか，どれが疑問でどれが主張であるか，どれが受理されたか，ある手が打たれた時点で何が共通基盤にあったか，その時点でどんな疑問が議論下にあったかということを含め，談話のどの時点においても，対話者が情報構造自体について完全な情報を持っているということを捉えようとするものである．
+
+%p. 15 para 4
+談話の任意の時点における議論下の疑問の集合は，筆者がQUD，\term{議論下の疑問のスタック}{questions-under-discussion stack}と呼ぶ，プッシュダウンストア（後入れ先出し記憶装置）を用いてモデル化する．
+直感的に言えば，QUDは，$q$が発話される時点で$Q$にある，受理された疑問すべての順序集合を与える．それらの疑問は，まだ答えられていないが答えることが可能な疑問である．
+我々は，疑問を受理すると，それをスタックの一番上に置く．
+その疑問とそれ以前に一番上にあった疑問との関係は，\textbf{関連性}およびスタックの構成のされ方に対する論理的な制約によって保証される．\textbf{関連性}は，以前の疑問に答えることへの掛り合いを伴立する．
+\ori{16}
+もし下位疑問を尋ねることによって受理された疑問の答えを探っていこうと決めたなら，その下位疑問をスタックに加えることができ，スタックは疑問の方略（の一部）を反映することになる．
+疑問が答えを与えられるか，事実上答えられないと決定された時は，その疑問はスタックから取り出され，その下にある疑問が顕になる．
+談話のどの時点においても，スタックの一番上にある疑問が議論下の（直近の）疑問である．
+
+%p. 16 para 1
+以下では，(\ref{ex:10g})のQUDの定義の節(\hyperref[ex:10giii]{iii})の動機について論じる．
+しかし，まず，ここでの議論が完全に抽象的にならないように，とても単純で，かなり過度に明示的な談話によって，QUDスタックがどのように働くかを説明したい．
+この例は，ヒラリーとロビンという二人の個体と，ベーグルと豆腐という二種類の食べ物から成るモデルを前提とする．
+談話($\mathcal{D}_0$)における各疑問が対話者によって受理されていると想定する．
+
+\begin{exe}
+\exi{($\mathcal{D}_0$)} \label{D0}
+	\begin{xlist}
+	\exi{\texttt{1.}} 誰が何を食べた？ \label{D0:1}
+	\begin{xlist}
+		\exi{\texttt{a.}} ヒラリーは何を食べた？ \label{D0:1a}
+		\begin{xlist}
+			\exi{\texttt{i.}} ヒラリーはベーグルを食べた？ \label{D0:1ai}\\
+			Ans(\disrefsub{D0:1ai}{a}{i}) = はい
+			\exi{\texttt{ii.}} ヒラリーは豆腐を食べた？ \label{D0:1aii}\\
+			Ans(\disrefsub{D0:1aii}{a}{ii}) = はい
+		\end{xlist}
+		\exi{\texttt{b.}} ロビンは何を食べた？ \label{D0:1b}
+		\begin{xlist}
+			\exi{\texttt{i.}} ロビンはベーグルを食べた？ \label{D0:1bi}\\
+			Ans(\disrefsub{D0:1bi}{b}{i}) = はい
+			\exi{\texttt{ii.}} ロビンは豆腐を食べた？ \label{D0:1bii}\\
+			Ans(\disrefsub{D0:1bii}{b}{ii}) = はい
+		\end{xlist}
+	\end{xlist}
+\end{xlist}
+\end{exe}
+
+%p.16 para 2
+\noindent
+この談話は全体で，最初の疑問である手\texttt{1}に答えるための方略を実現している．
+ここでは，登場する疑問は単純な伴立関係にある．
+(\hyperref[D0]{$\mathcal{D}_0$})の各疑問について，それが伴立する疑問の集合は\mbox{下のようになる．}
+%
+\begin{align*}
+	\models (\disref{D0:1}{1}) =&\ \{\disref{D0:1a}{a}, \disrefsub{D0:1ai}{a}{i}, \disrefsub{D0:1aii}{a}{ii}, \disref{D0:1b}{b}, \disrefsub{D0:1bi}{b}{i}, \disrefsub{D0:1bii}{b}{ii}\} \\
+	\models (\disref{D0:1a}{a}) =&\ \{\disrefsub{D0:1ai}{a}{i}, \disrefsub{D0:1aii}{a}{ii}\}\\
+	\models (\disref{D0:1b}{b}) =&\ \{\disrefsub{D0:1bi}{b}{i}, \disrefsub{D0:1bii}{b}{ii}\}
+\end{align*}
+
+%p.16 para 3
+\noindent
+（これらの関係性は，談話のレイアウトにおけるインデントの階層によっても反映されている．）
+上述のモデルでは次の事実が成り立つことにも注意されたい．ただし，モデルの領域は \{ヒラリー, ロビン, ベーグル, 豆腐\} である．
+
+\ori{17}
+\begin{exe}
+	\ex \label{ex:11}
+	\begin{xlist}
+		\ex Ans(\disrefsub{D0:1ai}{a}{i}) $\cap$ Ans(\disrefsub{D0:1aii}{a}{ii}) = Ans(\disref{D0:1a}{a})，つまり，\disrefsub{D0:1ai}{a}{i}と \disrefsub{D0:1aii}{a}{ii}に完全な答えを与えることで，\disref{D0:1a}{a}への完全な答えとなる．
+				\disrefsub{D0:1ai}{a}{i}に答えることは，従って，\disref{D0:1a}{a}への部分的答えとなり，\disrefsub{D0:1aii}{a}{ii}についても同様である．
+		\ex Ans(\disrefsub{D0:1bi}{b}{i}) $\cap$ Ans(\disrefsub{D0:1bii}{b}{ii}) = Ans(\disref{D0:1b}{b})，つまり，\disrefsub{D0:1bi}{b}{i}と \disrefsub{D0:1bii}{b}{ii}に完全な答えを与えることで，\disref{D0:1b}{b}への完全な答えとなる．
+				\disrefsub{D0:1bi}{b}{i}に答えることは，従って，\disref{D0:1b}{b}への部分的答えとなり，\disrefsub{D0:1bii}{b}{ii}についても同様である．
+		\ex Ans(\disref{D0:1a}{a}) $\cap$ Ans(\disref{D0:1b}{b}) = Ans(\disref{D0:1}{1})，つまり，\disref{D0:1a}{a}と \disref{D0:1b}{b}に完全な答えを与えることで，\disref{D0:1}{1}への完全な答えとなる．
+				\disref{D0:1a}{a}に答えることは，従って，\disref{D0:1}{1}への部分的答えとなり，\disref{D0:1b}{b}についても同様である．
+		\ex (\ref{ex:10g})の節(\hyperref[ex:10giii]{iii})において，部分的答えであることは推移的であるため，\disrefsub{D0:1ai}{a}{i}, \disrefsub{D0:1aii}{a}{ii}, \disrefsub{D0:1bi}{b}{i}あるいは\disrefsub{D0:1bii}{b}{ii}に答えることは，\disref{D0:1}{1}への部分的答えとなる．
+	\end{xlist}
+\end{exe}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{0}
+% p.17 para 1
+\noindent
+直感的に言えば，(\hyperref[D0]{$\mathcal{D}_{0}$})が(\disref{D0:1}{1})にうまく答えるための方略を実現しているのは，部分的にはこれら四つの事実による．
+(\hyperref[D0]{$\mathcal{D}_0$})の各疑問が尋ねられるに従い，それらの疑問はQUDスタックに加えられていき，(\disref{D0:1}{1})が一番下になる．
+例えば(\disrefsub{D0:1ai}{a}{i})のような下位疑問が答えを得ると，その疑問はスタックから取り出され，その答えは共通基盤に加えられる．
+(\disrefsub{D0:1ai}{a}{i})と(\disrefsub{D0:1aii}{a}{ii})が答えを得た時，(\ref{ex:11})の最初の事実で述べられているように，共通基盤は(\disref{D0:1a}{a})への答えを伴立し，その後，(\disref{D0:1a}{a})も取り出される．
+\disref{D0:1a}{a}と \disref{D0:1b}{b}がこのようにして答えを得た時，(\ref{ex:11})の三番目の事実に反映されているように，共通基盤は\disref{D0:1}{1}\footnote{訳注：原文では\disref{D0:1a}{a}となっているが，これは誤植であると考えられる．}への答えを与える．
+%"the common ground yields the answer for a" > "a"ではなく"1"では？---訳注を付けた [N, 2019/07/16]
+そして，\disref{D0:1}{1}も取り出され，（この談話が文脈のない環境で起こったものである限りにおいて）QUDスタックは空になる．
+
+%p. 17 para 2
+(\hyperref[D0]{$\mathcal{D}_0$})における疑問間の論理的関係もまた，(\hyperref[D0]{$\mathcal{D}_0$})のQUDスタックが(\ref{ex:10g})のQUDの定義における節(\hyperref[ex:10giii]{iii})を満たすことを保証するものである．同節は基本的に，スタック上でより高い位置にある疑問が，スタック上でより低く位置し，以前に受理された疑問の下位疑問であることを要求する．
+$\text{InfoStr}_{\mathcal{D}_0}$の順序付け機能である$<$は，全順序を与える．%<は関数でなく関係なので、ordering functionのfunctionは「機能」
+
+\[\langle\disref{D0:1}{1}, \disref{D0:1a}{a}, \disrefsub{D0:1ai}{a}{i}, \text{Ans(\disrefsub{D0:1ai}{a}{i})}, \disrefsub{D0:1aii}{a}{ii}, \text{Ans(\disrefsub{D0:1aii}{a}{ii})}, \disref{D0:1b}{b}, \disrefsub{D0:1bi}{b}{i}, \text{Ans(\disrefsub{D0:1bi}{b}{i})}, \disrefsub{D0:1bii}{b}{ii}, \text{\disrefsub{D0:1bii}{b}{ii}}\rangle\]
+
+\noindent
+\ori{18}
+そして，QUD関数は以下の通りである．
+%
+\begin{align*}
+	\text{QUD(\disref{D0:1}{1})} =&\ \emptyset \\
+	\text{QUD(\disref{D0:1a}{a})} =&\ \langle \disref{D0:1}{1} \rangle \\
+	\text{QUD(\disrefsub{D0:1ai}{a}{i})} =&\ \langle \disref{D0:1}{1}, \disref{D0:1a}{a} \rangle \\
+	\text{QUD(Ans(\disrefsub{D0:1ai}{a}{i}))} =&\ \langle \disref{D0:1}{1},\disref{D0:1a}{a}, \disrefsub{D0:1ai}{a}{i} \rangle \\
+	\text{QUD(\disrefsub{D0:1aii}{a}{ii})} =&\ \langle \disref{D0:1}{1}, \disref{D0:1a}{a} \rangle \\
+	\text{QUD(Ans(\disrefsub{D0:1aii}{a}{ii}))} =&\ \langle \disref{D0:1}{1},\disref{D0:1a}{a}, \disrefsub{D0:1aii}{a}{ii} \rangle \\
+	\text{QUD(\disref{D0:1b}{b})} =&\ \langle \disref{D0:1}{1} \rangle \\
+	\text{QUD(\disrefsub{D0:1bi}{b}{i})} =&\ \langle \disref{D0:1}{1}, \disref{D0:1b}{b} \rangle \\
+	\text{QUD(Ans(\disrefsub{D0:1bi}{b}{i}))} =&\ \langle \disref{D0:1}{1},\disref{D0:1b}{b}, \disrefsub{D0:1bi}{b}{i} \rangle \\
+	\text{QUD(\disrefsub{D0:1bii}{b}{ii})} =&\ \langle \disref{D0:1}{1}, \disref{D0:1b}{b} \rangle \\
+	\text{QUD(Ans(\disrefsub{D0:1bii}{b}{ii}))} =&\ \langle \disref{D0:1}{1},\disref{D0:1b}{b}, \disrefsub{D0:1bii}{b}{ii} \rangle
+\end{align*}
+
+\noindent
+(\ref{ex:10g})のQUDの定義における節(\hyperref[ex:10giii]{iii})を満たすためには，上に列挙した順序集合の各々において，任意の要素に対する完全な答えがその要素の左側にあるどの要素に対しても部分的答えを伴立するようになっていなければならない．
+そのため，$\langle \disref{D0:1}{1},\disref{D0:1b}{b}, \disrefsub{D0:1bii}{b}{ii} \rangle$を考えると，\disrefsub{D0:1bii}{b}{ii}に答えることは，\disref{D0:1b}{b}および\disref{D0:1}{1}への部分的答えを伴立しなければならず，\disref{D0:1b}{b}に答えることは，\disref{D0:1}{1}への部分的答えを伴立しなければならない，などということになる．
+これはまさに(\ref{ex:11})の事実が示すことである．
+
+%p. 18 para 1
+以上を踏まえ，ある主題あるいは議論下の疑問に対する探求方略の概念をQUD関数を用いて，次のように定義することができる．
+
+\begin{exe}
+	\ex\label{ex:12} $q$に答えようとする\textsf{探求方略}$\text{Strat}(q)$\\
+%
+	$q \in Q \cap Acc$であるあらゆる疑問$q$について，$\text{Strat}(q)$は順序対$\langle q, S \rangle$である．ただし，$S$は以下のような集合とする．
+	\begin{quote}
+		もし$\text{QUD}(q') = \langle \dots q \rangle$を満たす$q' \in Q$が存在しなければ，$S = \emptyset$．\\
+		それ以外の場合，すべての$q' \in Q$について，$\text{Strat}(q') \in S$であるとき，そのときに限り，$\text{QUD}(q') = \langle \dots q \rangle$．
+	\end{quote}
+\end{exe}
+
+\noindent
+ある疑問$q$についてStratが与える順序対$\langle q, S \rangle$は，「$S$における下位探求の集合を実行することにより$q$に答える方略」と読めるだろう．
+\ori{19}
+(\hyperref[D0]{$\mathcal{D}_0$})に対しては，Stratは以下を与える．
+%
+\begin{align*}
+	\text{Strat(\disrefsub{D0:1ai}{a}{i})} =&\ \langle \disrefsub{D0:1ai}{a}{i}, \emptyset \rangle \\
+	\text{Strat(\disrefsub{D0:1aii}{a}{ii})} =&\ \langle \disrefsub{D0:1aii}{a}{ii}, \emptyset \rangle \\
+	\text{Strat(\disref{D0:1a}{a})} =&\ \langle \disref{D0:1a}{a}, \{\langle \disrefsub{D0:1ai}{a}{i}, \emptyset \rangle, \langle \disrefsub{D0:1aii}{a}{ii}, \emptyset \rangle\}\rangle \\
+	\text{Strat(\disrefsub{D0:1bi}{b}{i})} =&\ \langle \disrefsub{D0:1bi}{b}{i}, \emptyset \rangle \\
+	\text{Strat(\disrefsub{D0:1bii}{b}{ii})} =&\ \langle \disrefsub{D0:1bii}{b}{ii}, \emptyset \rangle \\
+	\text{Strat(\disref{D0:1b}{b})} =&\ \langle \disref{D0:1b}{b}, \{\langle \disrefsub{D0:1bi}{b}{i}, \emptyset \rangle, \langle \disrefsub{D0:1bii}{b}{ii}, \emptyset \rangle\}\rangle \\
+	\text{Strat(\disref{D0:1}{1})} =&\ \langle \disref{D0:1}{1}, \{\langle \disref{D0:1a}{a},  \{\langle \disrefsub{D0:1ai}{a}{i}, \emptyset \rangle, \langle \disrefsub{D0:1aii}{a}{ii}, \emptyset \rangle\} \rangle, \langle \disref{D0:1b}{b}, \{\langle \disrefsub{D0:1bi}{b}{i}, \emptyset \rangle, \langle \disrefsub{D0:1bii}{b}{ii}, \emptyset \rangle\}\rangle\}\rangle
+\end{align*}
+%
+\noindent
+最終行は，\hyperref[D0]{$\mathcal{D}_0$}が二つの下位探求を行うことで\disref{D0:1}{1}に答える方略を含むことを示している．
+\disrefsub{D0:1ai}{a}{i}と\disrefsub{D0:1aii}{a}{ii}に答えることで\disref{D0:1a}{a}に答えるものと，\disrefsub{D0:1bi}{b}{i}と\disrefsub{D0:1bii}{b}{ii}に答えることで\disref{D0:1b}{b}に答えるものである．
+\setcounter{footnote}{0}
+(\ref{ex:10g})におけるQUDの定義の節(\hyperref[ex:10giii]{iii})により求められる，答えであることの関係\footnote{訳注：疑問$q'$への完全な答えと疑問$q$への部分的答えの間にある文脈的伴立関係．}，さらに(\ref{ex:12})におけるQUDによるStratの定義の仕方から，疑問$q$が疑問$q'$に答えるための方略の一部であるのは，$q$への完全な答えが$q'$への部分的答えを文脈的に伴立する場合のみであることが保証される．
+順序対$\langle q, S \rangle$の二番目の要素の順序付けをしなければ説明できないような，より複雑な種類の方略があるかもしれないが，ここでは検討しない．
+基本的には，合理的な熟慮が，共通基盤で利用可能な情報（従って，どのような種類の文脈的推論が潜在的に導かれ得るのか）と連携し，ある方略が適格かどうかを決定する．
+\renewcommand{\thefootnote}{\arabic{footnote}~}
+\setcounter{footnote}{13}
+
+%p. 19 para 1
+QUDスタックにおけるすべての疑問がスタックにおいてより上にある疑問を伴立するという要件を付けて，(\ref{ex:10g})の節(\hyperref[ex:10giii]{iii})を強めることはしないことに注意されたい．
+これは，次の状況における(\ref{ex:13})のような談話を例にすると分かる．
+%以下のCGの内容を踏まえ
+%
+\[
+	\text{CG}(\ref{ex:13a}) \supseteq \left\{\begin{array}{l}
+			\text{ジョンは貝アレルギーである},\\\text{人は自分がアレルギーを持つものを食べない},\\\text{人はそれを食べない何らかの理由がない限り何かを食べる}
+	\end{array}\right\}
+\]
+
+\begin{exe}
+	\ex\label{ex:13}
+	\begin{xlist}
+		\ex\label{ex:13a}
+		ジョンはどんなシーフードを食べる？
+		\ex\label{ex:13b}
+		ジョンは貝アレルギーだよね？
+	\end{xlist}
+\end{exe}
+
+\noindent
+ここでは，(\ref{ex:13a})は(\ref{ex:13b})への答えを伴立しない．ジョンが貝アレルギーでないとしても，彼が貝を食べない理由はあるだろう．
+例えば，ジョンはユダヤ教の食事規則に従っているのかもしれない．
+もし(\ref{ex:13b})への答えが「はい，貝アレルギーです」ならば，これは談話の共通基盤と連携し，ジョンが貝を食べないということを文脈的に伴立し，(\ref{ex:13a})に部分的答えを与える．
+しかし，(\ref{ex:13b})への答えが「いいえ，貝アレルギーではありません」であっても，それ自体はジョンが実際に貝を食べることを伝えるわけではない．
+一見したところ，これは(\ref{ex:10g})の節(\hyperref[ex:10giii]{iii})での要件それ自体が強すぎるかもしれないことを示唆している．
+\ori{20}
+しかし，(\ref{ex:13b})への答えが(\ref{ex:14})への部分的答えだと見れば，この見かけ上の問題は解決すると思われる．
+
+\begin{exe}
+	\ex\label{ex:14}
+	ジョンには貝を食べないどんな理由がある？
+\end{exe}
+
+\noindent
+翻って，(\ref{ex:14})は，人は食べない理由がないものは何でも食べるという想定の下では，ジョンが貝を食べるかどうかを探る手段である．従って，(\ref{ex:14})への答えは(\ref{ex:13a})への部分的答えを文脈的に伴立する．
+(\ref{ex:13b})は暗示的に(\ref{ex:14})のような橋渡し的疑問を想定し，これにより，結果として生じる談話が(\ref{ex:10g})の節(\hyperref[ex:10giii]{iii})の下で適格なものとなっていると考える．
+
+%p. 20 para 1
+定義上，QUD関数は，連続する一連の疑問を順序付けることはないし，そうすべきでもない．
+任意の時点において，QUDがスタックの「底」にある疑問（すなわち，上位疑問）に関して探求方略の全体を表すとは限らない．
+下位疑問にはすでに答えられているものもあり，つまり，方略の一部は既に実現されているかもしれず，そのため，それらの疑問はスタックにもうないのだ．
+例えば，(\hyperref[D0]{$\mathcal{D}_0$})では，\disrefsub{D0:1ai}{a}{i}と\disrefsub{D0:1aii}{a}{ii}に答えることで\disref{D0:1a}{a}に答えた後，これらの疑問はすべて，\disref{D0:1b}{b}に対処するときには，スタックから取り出されるが，それらは依然として\disref{D0:1}{1}に答えるための方略の一部である．
+また，筆者はQUDを定義する際，疑問は答えが与えられるか，（事実上）答えられないものであると決定された場合，スタックから取り出されると想定した．
+疑問はさらに，スタックの低い位置にある疑問に答えが与えられた場合にも，スタックから取り出される．たとえ，答えを得たその疑問が「より高い」取り出された疑問を直接的には伴立していなくてもである．
+これは，QUDスタックをより大きな方略の断片であると見るならば，納得の行くことである．
+もし各疑問について順番に掛り合うならば，後続する疑問はいずれも，たとえ間接的にだとしても，既にスタックにある疑問に答える助けにならねばならない．
+しかし，我々は実際には方略全体に掛り合うのであり，個別の疑問への掛り合いは，スタックのより下にある先行する疑問への掛り合いに対して相対化される．
+そのため，より下位の疑問$q$に答えると，$\text{Strat}(q)$における，より上位のいかなる疑問にも掛り合う必要がなくなる．
+例えば，(\ref{ex:13})では，もし(\ref{ex:13b})の後に「ジョンはユダヤ教の食事規則に従っている」と続けば，対話者はジョンが貝アレルギーであるかどうかという，答えられていない疑問を取り下げるだろう．
+なぜなら，対話者はより大きな疑問である(\ref{ex:13a})に最も関心があり，それについての部分的答えを今まさに得たからである．
+
+%p. 20 para 2
+疑問がどのように談話を構成するかについて前述の内容を踏まえると，談話におけるすべての疑問でない手，すなわち主張が，受理された疑問に対して少なくとも部分的答えとなること，そして，実際には各主張が発話時点における議論下の疑問に対する（部分的）答えとなることも保証しておきたい．
+これは，情報構造の枠組みにおける\textbf{関連性}の定義のされ方から帰結として得られる．
+手$m$が打たれる時点における（直近の）\textsf{議論下の疑問}が$\text{last}(\text{QUD}(m))$，つまり，順序集合$\text{QUD}(m)$における最後の疑問であると定義するとしよう．
+\ori{21}
+すると，任意の時点における議論下の疑問により\textbf{関連性}の概念と（cf.~\citeauthor{Grice1989}は，関連性の格率を「議論の目的」に対して相対化している），そのような疑問に掛り合うとはどのようなことであるかを特徴付けることができる\footnote{%
+	これと\citet{SperberWilson1986}の\textbf{関連性}の概念を比較しておく必要がある．
+	ここでは詳細な比較はできないが，彼らの概念と(\ref{ex:15})にあるものの間にある二つの重要な違いに言及したい．
+	一つ目は，\citeauthor{SperberWilson1986}の\textbf{関連性}が彼らの還元主義的プログラムを反映していることである．
+	なぜなら，彼らの\textbf{関連性}は（筆者が理解する限りでは）グライスの元々の会話の格率すべての役割を担うことが意図されているのに対し，(\ref{ex:15})は還元主義的ではなく，例えば，量の含意を説明することは意図していない．
+	二つ目は，\citeauthor{SperberWilson1986}は，彼らの概念を対話者の直近の意図や目標に対して相対化しておらず（それどころか，彼らは共通基盤の可能性すら否定している），そのため，処理労力（processing cost）を最小化しながらの情報提供性（informativeness）の最大化が絶対的に計算されることである．
+	しかし，(\ref{ex:15})で定義された\textbf{関連性}は，重要なことに，対話者により，議論下の疑問に相対化される．
+	よって，情報構造における疑問の語用論的機能を考慮すると，対話者の目標に対して相対化される．
+}．
+
+\begin{exe}
+	\ex\label{ex:15} 手$m$が議論下の疑問$q$，すなわち$\text{last}(\text{QUD}(m))$と\textbf{関連する}（Relevant）のは，$m$が$q$への部分的答えを導入するか（$m$は主張），$q$に答えるための方略の一部である（$m$は疑問）とき，そのときに限る．
+\end{exe}
+
+\noindent
+協調的な話者は，ゲームの目標を追求するにあたり，自分の発話を\textbf{関連する}ものにしようと努力する．
+このことから，適切な談話，すなわちきちんとした情報構造を備えた談話における手はいずれも，発話時点の議論下の疑問に\textbf{関連する}ものとなる．
+よって，そのような談話における主張はいずれも，期待通り，議論下の疑問に少なくとも一つの部分的答えを与える．
+さらに，(\ref{ex:15})は，(\ref{ex:10g})のQUDの定義における節(\hyperref[ex:10gi]{i})との関係から，疑問を受理する際に伴う掛り合いを捉える．
+(\hyperref[ex:10gi]{i})により，疑問は，それが答えを与えられているか，答えられないものでない限り，議論下の疑問の集合から取り除くことができない．
+\textbf{関連性}により，疑問は，対話者が既に掛り合っている疑問に答えるのを促進し，それにより，その掛り合いが永続的になものになる場合にのみ受理されることが分かる．
+
+%p. 21 para 1
+上で展開した談話の情報構造の静的な特徴付けの代わりに，文脈変更の観点から情報構造を定義することもできるだろう．筆者は，今後の研究でそのような見方を展開していくつもりである．
+静的な特徴付けの利点の一つは，より包括的な見方を提供することであり，文脈変更の問題はさておいて，情報構造それ自体の性質が論じやすくなる．
+しかし，より動的な見方により，特に疑問における前提投射に関して，他の種の洞察が得られるはずである．
+
+%p. 22 para 1
+\ori{22}
+\subsection{情報構造における疑問の語用論}\label{sec:1.3}
+
+疑問の外延の観点から，疑問を呈することが，その疑問が生起する談話の文脈にどのように影響を与えるかを特徴付けたい．
+上で概略を示した情報構造の理論は，一つの答えを示唆する．
+\citet{Stalnaker1978}による，主張の語用論を思い出されたい．パラフレーズすると(\ref{ex:16})のようになる．
+
+\begin{exe}
+	\ex{\textsf{主張の語用論}}\label{ex:16}
+
+	もし談話において主張が対話者によって受理されれば，その主張は談話のその時点における共通基盤に加えられる．
+	すなわち，情報構造InfoStr$_{\mathcal{D}}$を持つ談話$\mathcal{D}$において，決め手$m_i$と後続の手$m_{i+1}$について，もし$m_i \in Acc_{\mathcal{D}}(m_{m+1})$ならば，$m_i \in \text{CG}_{\mathcal{D}}(m_{i+1})$である．
+\end{exe}
+
+\noindent (\ref{ex:16})の原理は，決め手の語用論である．
+布石の手については，(\ref{ex:16})に対応する(\ref{ex:17})を採用する．
+
+\begin{exe}
+	\ex{\textsf{疑問の語用論}}\label{ex:17}
+
+	\begin{xlist}
+		\item もし談話において疑問が対話者によって受理されれば，その疑問は議論下の疑問の集合に加えられる．
+			すなわち，情報構造InfoStr$_{\mathcal{D}}$を持つ談話$\mathcal{D}$において，疑問の手$m_i$と後続の手$m_{i+1}$について，もし$m_i \in Acc_{\mathcal{D}}(m_{i+1})$ならば，$m_i \in \text{QUD}_{\mathcal{D}}(m_{i+1})$である．
+		\item 談話$\mathcal{D}$における議論下の疑問の集合の要素は，それに答えが与えられるか，あるいはそれが答えられないと決定されたとき，そのときに限り，その集合から取り除かれる．
+			すなわち，情報構造InfoStr$_{\mathcal{D}}$を持つ談話$\mathcal{D}$において，$m_i < m_k < m_{k+1}$および$m_i \in \text{QUD}_{\mathcal{D}}(m_k)$が成り立つ手$m_i$，$m_k$，$m_{k+1}$について，
+%
+		\[
+			m_i \notin \text{QUD}_{\mathcal{D}}(m_{k+1})\ \textit{iff}\ \bigcap (\text{CG}(m_{k+1})) \subseteq \alpha \ \text{または}\ \pi
+		\]
+%
+		ただし，$\alpha$は$m_i$への完全な答え，$\pi$は$m_i$が答えられないという命題である．
+	\end{xlist}
+\end{exe}
+
+\noindent
+QUDスタックへの追加は，疑問に答えることへの強い掛り合を伴立する．
+疑問が対話者によって受理されると，彼らはそれに答えることに掛り合うことになる．
+その疑問は，答えることができないと決定されない限り，答えを与えられるまでスタックに残る．
+QUDを含むInfoStrは共通基盤に反映されるため，この掛り合いの事実もまた共通基盤に反映される．
+最後に，疑問間の伴立関係および答えであることの定義のされ方に基づくと，ある疑問がQUDスタックから取り除かれる場合，その疑問が伴立する疑問もまた，QUDスタックから取り除かれる．
+(\ref{ex:16})と(\ref{ex:17})は疑問と主張の主要な語用論的効果でしかないことに注意されたい．
+その他の効果も存在するのである．
+\ori{23}
+例えば，疑問が尋ねられると，それが受理されるか否かにかかわらず，その疑問が尋ねられたという事実が共通基盤に入る．
+% 原文の文法？
+これは，尋ねることがすべての対話者に完全に知られる状況下で行われる発話行為であり，そのような（非言語的な）共有情報もまた共通基盤に反映されるという事実による．
+そして，もし疑問が受理されると，その疑問の解釈と，その疑問がその時点における議論下の疑問の集合に加えられたという事実も共通基盤の一部になる．これは，変化するInfoStrの特徴が継続的に共通基盤に反映されることに従うものである．
+
+%p. 23 para 1
+ここでは紙幅の都合上，詳細に論じられないが，疑問の語用論には他にも数多くの重要な側面が存在する．
+それらの側面についての議論は，\citet{GroenendijkStokhof1984}と\citet{Ginzburg1995a,Ginzburg1995b}を参照されたい．
+また，本稿の枠組みでの詳しい検討は，\citeauthor{RobertsForthcoming} (準備中)を参照されたい．%bibitemに「準備中」を入れると文字コードエラーになるので，これで対応
+筆者が知る限り，他のどの先行研究でも解決されていないが，それらの側面の一つは本稿における疑問の意味論の定式化の仕方の動機の一部分であり，情報構造の枠組みで仮定される二つの意味，すなわち前提とされる意味と提示される意味の関係に直接関わる．
+これは，疑問において前提がどのように投射するか，特に，どのようにして疑問が\citet{Karttunen1973}のいう前提の穴（hole）となるのか，つまり，どのようにして論理形式$?(\alpha)$の疑問が$\alpha$のすべての前提を持つようになるのか，という問いである．
+\ref{sec:1.1}節で提案した疑問の意味論からすると，$?(\alpha)$のすべてのq-代替要素，すなわち$\alpha$の例化が$\alpha$の前提を持つことは考えられるだろうが，しかし，そのことでなぜ疑問全体がすべての前提を受け継ぐのかは説明できない．
+
+%p. 23 para 2
+% 原文の文法？---I have [the phenomenon \dots ] in mind
+前提に関して，筆者は\citet{Stalnaker1978}や\citet{Heim1992}が記述した現象を想定している．
+$\varphi$の発話について命題$p$が前提となるのは，$\varphi$が任意の文脈$C$で適切であるのが$C$が$p$を伴立する時だけであるとき，そのときに限る．
+文脈が$p$を伴立するためには，文脈集合が$p$の部分集合でなければならない．
+
+%p. 23 para 3
+\citet{Heim1982,Heim1983,Heim1992}にとって，主張に対する前提上の適切性はその主張の潜在的文脈変更力から導かれるものである．
+例えば，否定を伴う主張の文脈変更を計算するためには，まずは発話時点の文脈集合を否定の作用域にある内容で一時的にアップデートし，その後，結果として生じる文脈集合を実際の文脈集合から差し引かなければならない．
+
+\ori{24}
+ \begin{exe}
+	\ex{\citet{Heim1992}の\textsf{否定に関する潜在的文脈変更力}}\label{ex:18}\\
+	$C + \text{not}(\varphi)$は，$C + \varphi$が定義される場合にのみに定義され，その場合，
+	\[
+	C + \text{not}(\varphi) =\ C\ \textbackslash\ (C + \varphi)
+	\]
+ \end{exe}
+
+\noindent
+しかし，文脈のアップデートを決める関数とその関数に依拠する$C + \varphi$は，追加される主張$\varphi$の前提すべてが文脈集合により伴立される場合にのみ定義される．
+そのため，厳密な意味合いにおいて，否定の主張により文脈をアップデートする可能性というのは，否定の作用域にある内容の前提がいずれも満たされることなしには生じ得ない．
+前提投射に関する事実をアップデートの操作と標準的な否定の意味論から導き出すことによって，\citeauthor{Heim1992}は否定の主張の前提投射の性質を説明したと言うことができる．
+疑問の前提の性質についても，この種の説明をしたい．
+このような説明を\citet{vonStechow1991}の意味論に組み入れる方法として，ただその内容を規定として組み入れてしまう以上のものは筆者には考え付かない．
+しかし，情報構造の枠組みの動的なバージョンならばそのような説明が提案できる可能性がある．ただ，今後の研究を待たなければならない．
+
+%p. 24 para 1
+\ref{sec:1.1}節とここに概略を示した説明は，意味論と語用論の間の線引きの仕方を変えることによってだが，\citeauthor{vonStechow1991}の説明と同じ最終的結果を導く．
+構造化された命題は別として，彼の説明の中心的特徴を採用したならば，疑問の意味論は(\ref{ex:19})のようになる．
+
+\begin{exe}
+	\ex{\citealt{vonStechow1991}に従った疑問$?(\alpha)$の解釈}\label{ex:19}
+	\[
+	|?(\alpha)| = \{w: w\ \text{において，すべての}\ p \in \text{q-alt}(\alpha)\ \text{が尋ねられる}\}
+	\]
+\end{exe}
+
+\noindent
+\citeauthor{vonStechow1991}にとって，疑問の外延は命題である．
+その命題は，対応するq-代替要素の集合のすべての命題が尋ねられるような世界の集合である．
+疑問が対話者により受理されれば，これはq-代替要素集合のすべての命題が尋ねられることを意味する．
+(\ref{ex:19})の下では，(\ref{ex:5})の外延は次のようになる．
+%
+\begin{equation*}\begin{split}
+	|?(\text{メアリーは誰を招待した})|%\\
+	 & =  \{w: w\ \text{において，すべての}\ p \in \text{q-alt}(\text{メアリーは誰を招待した})\\ & \quad\quad  \text{が尋ねられる}\}\\
+	& = \{w: w\ \text{において，すべての}\ p \in \{\text{メアリーは$u$を招待した}: u \in D\}\\& \quad\quad \text{が尋ねられる}\}
+\end{split}\end{equation*}
+%
+\noindent
+上と同様に$D = \{\text{メアリー}, \text{アリス}, \text{グレース}\}$とすると，この疑問は(\ref{ex:20})の世界の集合を外延とする（やはり，「招待する」が外延とする関係は非反射的であり，モデル内の個体の結合は考えないものと想定する）．
+
+\ori{25}
+\begin{exe}
+	\ex\label{ex:20}
+	\{$w: w$において，「メアリーがアリスを招待した」と「メアリーがグレースを招待した」がどちらとも尋ねられる\}
+\end{exe}
+
+\noindent
+合理的には，\citeauthor{vonStechow1991}の疑問は，他の命題のように直接的に共通基盤に貢献し，そのため，先行する文脈集合が$\alpha$のq-代替要素すべてが尋ねられるような世界のみを含むものに縮小されると想定できるだろう．
+これには疑問の受理を共通基盤に関連付けるという利点がある．
+しかし，ある世界において命題が「尋ねられる」というのはどういうことなのだろうか？
+\citeauthor{vonStechow1991}は明言していないが，恐らくこういうことである．
+命題が尋ねられると，対話者たちはその真理値を評価しようと試みるのである．
+尋ねるということをこのように考えると，(\ref{ex:19})は(\ref{ex:17})を伴立する．
+もし疑問が受理されると，共通基盤は，その疑問のq-代替要素で真のものがあるのなら，それはどれなのかを決めることに対話者が掛り合うという情報でアップデートされる．
+しかし，これと同様の共通基盤への漸進的な効果は，意味論的ではないものの，(\ref{ex:2})の疑問の意味論，(\ref{ex:3})の答えの定義，\ref{sec:1.2}節で論じた情報構造と共通基盤の間の関係とを組み合わせることで，(\ref{ex:17})の疑問の語用論からも直接導かれることに注意されたい．
+%"until and unless" 「それが答えられるまで，あるいはそれが答えられないと決まらない限り」？
+ひとたび疑問が受理され，(\ref{ex:17})により，(\ref{ex:2})に基づくその疑問のq-代替要素集合が情報構造のQUDスタックに加えられると，対話者たちは（それが答えられないと決まるまで，あるいはそれが答えられないと決まらない限り）その疑問に答えることに掛り合う．
+疑問に答えることは，その疑問のq-代替要素集合にあるすべての命題の評価を与えることを伴立する．
+従って，答えることに掛り合うということは，今定義した意味で，それらの命題一つ一つを尋ねることを含んでいる．
+談話の情報構造はすべての対話者に知られており，それについての命題的情報は実際には共通基盤にあると筆者が想定していることを思い出されたい（(\ref{ex:10f})におけるCGの定義の節(\hyperref[ex:10giii]{iii})を参照）．
+従って，共通基盤は疑問のq-代替要素が尋ねられることも伴立する．
+そのため，本稿の説明は\citeauthor{vonStechow1991}の説明と同じ結果になるものの，談話への疑問の貢献の意味論的側面と語用論的側面を分離している．
+(\ref{ex:19})の意味論によって例証した類いの扱いでは，疑問の持つ提示された内容が直接共通基盤に加えられるものの，疑問の前提投射の性質はそこからは自動的に導かれないことに注意されたい．
+提示された内容自体は，疑問のq-代替要素の一つに間接的に関連するに過ぎない．
+その提示された内容が，それらのq-代替要素の前提を自動的に伝えるものではない．
+なぜなら，彼の意味論には，疑問演算子自体が前提への栓（plug）になるのを阻止し，前提が疑問全体に投射するのを防ぐようなものは何もないからである．
+
+%p. 25 para 1
+疑問は，少なくとも一部の点で命令文と似ており，そして，疑問の意味論についての本稿の提案は，\citeauthor{vonStechow1991}の意味論のように，部分的にはその見方において評価されるべきである．
+\ori{26}
+命令は，受理されれば，対応する主張を真にしようと努めることに聞き手を掛り合わせる．
+つまり，命令は聞き手を特定の領域内目標に掛り合わせる．
+疑問は，受理されれば，その疑問の答えを共通基盤に加えようと努めることに聞き手を掛り合わせる．
+つまり，疑問は聞き手を特定の談話の目標に掛り合わせる．
+疑問の受理に対話者側の掛り合いが関与するということは，命令を受理することを拒否できるように，我々は疑問に拒否で応答することができることを示唆する．
+これは正しいと思われ，(\ref{ex:2})/(\ref{ex:17})および(\ref{ex:19})における扱いの両方と矛盾しない．
+しかし，(\ref{ex:19})にあるように疑問の提示する内容が命題であると言えば，これは，主張の場合と同様に，我々がその命題が真であることを否定することができるということも示唆する．
+けれども，命令に対しては「いや（No）」と答えることができるものの，疑問に対しては「いや，私がその疑問の議論に掛り合っているというのは正しくない」というように，真であることを否定することによってその疑問を拒むことは適切でないように思われる．
+このことは，(\ref{ex:19})や\citealt{vonStechow1991}のより意味論的な説明よりも，(\ref{ex:2})や(\ref{ex:17})といった，これまでに本稿で展開してきた，より語用論的な説明を支持する．
+間接疑問についての事実を注意深く考察すれば，この問題に関係しているということもあり得るだろうが，それについてはまだ不確かである．
+さらに，疑問の語用論についての本稿の扱いは，\citealt{Stalnaker1978}の巧みな主張の扱い方と対応すると同時に，構造化された命題に伴う複雑化を回避している．
+これらの考察をどう見るかにかかわらず，疑問の発話は，他の対話者に受理されると，少なくとも間接的に\citeauthor{vonStechow1991}が主張する効果を持つと筆者は考える．
+%thisが何を指すのか
+疑問とは何か，疑問を受理することはどういうことかを知っているため，対話者はそれが議論下の疑問であると分かるのである．
+
+\section{焦点と情報構造}\label{sec:2}
+
+%p. 26 para 1
+\subsection{英語における韻律的焦点の前提}\label{sec:2.1}
+
+談話において巧みな対話者たちは，いかなる時点においても，共通基盤がどのようになっているかがすべての参与者にとって明白になるように尽力する．それには，彼らが話していること（議論下の疑問）や，彼らが話していることがどのように共通基盤にある残りの情報と関係するか（彼らが従っている探求方略およびその探求方略と談話の情報構造との全般的関係）が含まれる．
+Mike Calcagno（私信）が指摘してくれたように，競争的なゲームでは，プレイヤーは自身の方略を隠すが，協調的なゲームでは自身の方略を明示する．
+言語は，たとえ競争するために用いる時であっても，協調的である．
+\ori{27}
+冗長性は，情報共有における協調が効果的であることを保証する助けとなる
+\footnote{%
+  談話における情報の冗長性の価値と役割に関する画期的な議論としては，\citealt{Walker1993}を参照．
+}．
+
+%p. 27 para 1
+望ましい冗長性を実現するために使う道具の一つは前提であるが，後に見るように，前提は談話に一貫性を与える助けも担う．
+言語表現$\varphi$の発話は，発話の文脈が$\varphi$の前提を伴立する場合にのみ適切であることを思い出されたい．
+これは，発話が前提を持つとき，それは規約的な冗長性であることを意味する．
+前提は，明示的に共通基盤の一部でないとしても，既に少なくとも文脈によって伴立されているのだ．
+しかし，この前提に元々備わった冗長性は，しばしば指摘されてきたように，それまで暗示的に想定されてきただけの情報や，それまで全く登場していなかった情報でさえをも実際に導入するために使うこともできる．
+発話が規約的に表現される前提を持つ場合，その発話が適切であるためには文脈がどのようなものでなければならないかは，たいてい極めて明白である．
+そして，文脈はそのようになっていないものの，聞き手が協調的で，前提とされる情報が真であることに異義がなければ，聞き手はそれを調節する．
+すなわち，聞き手は，文脈がその情報をずっと含んでいたかのように振舞い，ゆえに，その前提を誘発した発話が適切であったかのように振舞う．
+ゴシップで叙実的動詞の使用により，中傷的な情報がお咎めなしに伝えられる例を考えられたい．
+「メアリーが家出したなんてショッキングだよね？」という具合いにである．
+
+%p. 27 para 2
+本稿では，英語のイントネーションによる焦点は前提が関与し，前提を通じて，イントネーションによる焦点を持つ発話が起こる情報構造の種類と，その情報構造における当該発話の役割についての情報を与えるものであると論じる．
+情報構造は原則として共通の情報であるので，イントネーションによる焦点は冗長になる．
+そして，対話者はこの冗長性を用いて，自らが意図する情報構造について間接的に情報を伝えるのである．
+主張は疑問と同じく，規約的に代替要素の集合と関連付けられているが，これらの代替要素は，疑問のq-代替要素のように提示されるものではなく，韻律によって前提とされる，というのが主な考えである．
+焦点の代替要素は，\citet{Rooth1992a}や\citet{vonStechow1991}などの理論で展開されたような方法で，発話における韻律的焦点の位置に基づいて計算される．
+疑問／答えの対において答えの韻律がそれが答えとなり得る疑問を制限することは長く指摘されてきた（例えば，\citealt{Jackendoff1972}を参照）．
+本稿の理論では，今引用した他の理論と同様に，この関係性は，疑問／答えの対におけるそれぞれの要素に関連付けられている代替要素，すなわち，疑問のq-代替要素と答えの焦点代替要素の間の関係性に対する条件に反映される．
+\ori{28}
+また，疑問によって提示される代替要素の集合が部分的にその韻律に依るということは，他の事象との関連（例えば，yes/no疑問と代替疑問を対比して論じた\citealt{vonStechow1991}を参照）において指摘されることがあった．
+このことは，本稿の理論では，韻律が，主張だけでなく疑問の焦点代替要素の集合を決める役割も果たすという想定に反映されている．
+疑問では，これらの代替要素は，探求方略においてその疑問が関連するであろう上位疑問の種類を制限する．
+従って，本稿の理論は韻律的焦点の代替意味論的説明である．
+しかし，onlyやevenといった英語の小辞や，焦点に関する多数の言語学的研究で議論されてきた他の演算子や小辞について，直接的な焦点敏感性を想定しない点で，本稿の理論は同路線の他の近年の説明（\citealt{Rooth1985,vonStechow1991,Krifka1992}）とは異なる．
+本稿の理論はこの点で，異なる仕組みを展開してはいるものの，ある種の焦点の効果を語用論的に導こうとする\citet{Rooth1992a,Schwarzschild1994a,Schwarzschild1994b,vonFintel2004}の近年の研究と同様である．
+
+%p. 28 para 1
+ここでは，英語の韻律的焦点の役割を議論するだけにはっきり留め，ゆえに\textbf{焦点}という普遍的な言語現象に関する主張はしない．
+\citet{Rooth1996}と同様に，筆者もむしろ個別の言語における具体的な規約的要素の仔細な分析をする必要があると主張したい．
+しかし，筆者は情報構造が人間の談話に普遍的なものであると想定してはいる．
+そして，研究者たちが抱く，情報構造の普遍的特徴といったもの（主題，焦点，テーマ／レーマ等）が存在するという根強い直感，そして，焦点と疑問／答えのパラダイムとの根強い関係には説明が必要である．
+もし談話構造が筆者が提案するような機能構造を持つならば，そのような直感の説明をかなり進めることができる．その際，様々な言語において統語的構文や他の規約的要因が多少異なる方法でそれらの機能を果たすのに貢献する可能性を排除することはない．
+
+%p. 28 para 2
+まず，英語の韻律的焦点とは何を意味するのか，簡潔に概略を述べたい．
+その後，前提がどのように生じるか，そして，その内容が何であるかに関するより詳細な提案をする．
+焦点の韻律音韻論について，以下のような，やや単純化された想定をする
+\footnote{%
+  \citet{Selkirk1984}は，これらの点について非常に詳細に探求し，多くの有益な例について議論している．
+  筆者の韻律に関する想定は，断りがない限り，彼女の研究から採用したものである．
+  \citeauthor{Selkirk1984}の研究は一方，ピッチアクセントを含む音調の音韻論に関する\citet{Pierrehumbert1980}の研究に大きく依拠している．\citet{LibermanPierrehumbert1984}も参照されたい．
+}．
+
+\ori{29}
+\setcounter{exx}{21}
+\begin{exe}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{0}
+	\ex{\textsf{焦点の音韻論}\footnotemark} \label{ex:22}
+\footnotetext{訳注：原文において(21)が欠けている．ここの番号が(22)になるのは，そのためである．}
+\renewcommand{\thefootnote}{\arabic{footnote}~}
+\setcounter{footnote}{16}
+	\begin{xlist}
+		\ex 文（あるいは文の断片）である発話一つにつき，少なくとも一つのイントネーション句がある．
+		\ex イントネーション句一つにつき，少なくとも一つの焦点化された下位構成素（真に部分的でなくてもよい）がある．この\term{焦点構成素}{focused constituent}を，以下ではFという素性で標示する．
+		\ex 焦点構成素一つにつき，少なくとも一つのピッチアクセントがあり，それは下位構成素と結びつく．
+		\ex いずれのピッチアクセントも焦点構成素内の要素と結びついていなければならない．\label{ex:22d}
+		\ex イントネーション句一つにつき，一つの句アクセント（H-あるいはL-）と一つの境界音調（H\%あるいはL\%）がある\footnote{%
+			\citealt{LibermanPierrehumbert1984}では，境界音調はそれが結びついたイントネーション句の最後で実現され，句アクセントはイントネーション句中の最後のピッチアクセントと境界音調の間の推移をもたらす．
+			中間イントネーション句を考える多少異なった説明については\citealt{BeckmanAyers1997}も参照されたい．}．
+		\ex 焦点構成素における連なり末尾のピッチアクセントは，イントネーション句中で最も卓立した強勢が付与される（\term{核強勢規則}{Nuclear Stress Rule}）．
+	\end{xlist}
+\end{exe}
+
+%p. 29 para 1
+以下のすべての韻律的要因は，恐らく語用論的に（それゆえに潜在的に意味論の上でも）重要である．
+
+\begin{exe}
+	\ex{\textsf{語用論的に重要な韻律的要因}} \label{ex:23}
+	\begin{xlist}
+		\ex イントネーション句の構成素の選択（当該構成素は常に統語的構成素と相関すると暫定的に想定する） \label{ex:23a}
+    \ex イントネーション句内における
+    \begin{xlist}
+      \ex 焦点構成素の選択
+      \ex ピッチアクセントの位置
+      \ex ピッチアクセント，句アクセント，境界音調の選択
+    \end{xlist}
+    \ex 異なるイントネーション句の発話内および発話間における相対的な卓立 \label{ex:23c}
+	\end{xlist}
+\end{exe}
+
+%p. 29 para 2
+本節では焦点構成素の選択の重要さをもっぱら論じるが，他の要因も，通常\textbf{焦点}という用語の下でまとめられる現象の完全な理解にとって当然重要であり，\ori{30}\ref{sec:2.2.2.2}節では，ある種の例においてイントネーション句の構成素の選択(\ref{ex:23a})とその発話内での相対的な卓立(\ref{ex:23c})が持つ決定的役割を指摘する
+\footnote{%
+  一つの発話に複数のイントネーション句が生じることは重要な点であるが，この問題には触れられない．句アクセントと境界音調の様々な組み合わせの重要性について簡潔に述べるだけに留めておく．
+  ただし，これらの事柄は精査に値するものだということは確実だろう．
+  そして，焦点構成素内でのピッチアクセントの位置について（\citealt{Selkirk1984}を参照）やピッチアクセントの選択について（\citealt{PierrehumbertHirschberg1990}を参照）は，数多くの興味深い問いがあるが，これらも無視しなければならない．
+  より詳細な取り組みが必要なもう一つの問題は，文法のどこで（例えば，どのレベルの表示で）これらの規約的要素が符号化されるべきなのかという問いである．
+  \citeauthor{Selkirk1984}は，ピッチアクセントの位置とF標示の間の関係が統語的に制約されているようであることと，この情報がPF（音声形式 [phonological form]）とLF（論理形式 [logical form]）の両方で利用可能であることを捉えるために，統率束縛理論式の文法におけるSS（表層構造 [surface structure]）においてそれらを符号化している．
+  制約に基づく文法の枠組みにおけるこれらの問題の綿密な探求は，筆者は見たことがない．
+}．
+
+%p. 30 para 1
+上述の想定は，すべての英語の発話において，少なくとも一つの構成素には韻律的焦点（音調的，リズム的卓立）があるという事実を反映している．ただし，その焦点は広いことも狭いこともある（\citealt{Ladd1980}と以下の例を参照）．
+このことと意味の構成性という方法論的原理に従って，筆者が提案する理論では，あらゆる種類の発話にわたり，英語の韻律的焦点の意味を統一的に説明することを目指す．それに対し，たいていの理論はたった一つか二つの使用文脈のみを扱っており，統一的説明は不可能であると主張している研究者すらいる．
+焦点構成素内におけるピッチアクセントと強勢の位置に関する想定により，F素性が発話の表層形式で常にリズム的，音調的卓立によって実現されることになることにも注意されたい．
+焦点の韻律的実現は，焦点の意味論の研究者があまねく想定しているわけではない．
+焦点がそのように実現され\kenten{ない}例については，\citealt{Partee1976}と\citealt{Krifka1992}を参照されたい．
+本稿の英語の分析には，抽象的な焦点はない．
+当面のところ，他のアプローチに対する批判は，本稿のアプローチを展開していく過程で暗に示されるに留まらざるを得ない．
+
+%p. 30 para 2
+すべてのピッチアクセントが焦点構成素内になければならないという想定(\ref{ex:22d})に特に注目されたい（\citet[282]{Selkirk1984}の\term{ピッチアクセントの焦点支配}{Focus Domination of Pitch Accent}を参照）．
+これにより，もし発話がある構成素$x$に単一の狭い（しばしば「対比的」と呼ばれる）焦点を持つならば，その発話の残りの部分は一切イントネーション的卓立を持たず，その高低曲線は母語話者の耳には平坦に聞こえるということになる．
+\citeauthor{Selkirk1984}はピッチアクセントの位置について「旧」情報と「新」情報の観点から語っている．
+発話の強勢を伴わない要素（あるいは少なくとも，通常ならば強勢を持つであろうNPや他の項）は「旧情報」とみなされ，\ori{31}強勢を伴う構成素は「新情報」とみなされるが，\citeauthor{Selkirk1984}はこれらの用語をどのような意味で用いているのかについて正確に述べていない．
+本稿の説明では，それらの用語についてより正確な意味を提示することができる．
+すなわち，旧情報／新情報は議論下の疑問の一部であると考えられる
+\footnote{%
+  \citeauthor{Selkirk1984}は，強勢を伴わないNPは焦点構成素内において句末でも生起することがあるが，それでもやはり，ここで意図する意味での旧情報のようであると指摘している．これは，いくつかの点で焦点の音韻的表示を再考する必要があることを示唆するように思われるが，本稿でそれを掘り下げて考えることはできない．
+}．
+筆者は，「旧」という表現は，「議論下の疑問によって与えられている」と同義であり，（ここで関連する意味での）「新」は，「議論下の疑問によって与えられていない」を意味すると考える．
+
+ある発話に対し，その焦点代替要素は次のように定義される
+\footnote{%
+  \citet{Rooth1985}と\citet{vonStechow1991}は代替要素をこのようには定義していない．
+  その代わり，\citealt{Krifka1992}と同様に，代替要素集合を決める構成素が焦点に敏感な演算子の項であるとき，その代替要素集合は相殺される．
+  これは筆者が本稿で提示する定義では起こらず，本稿の説明と\citeauthor{Rooth1985,vonStechow1991}あるいは\citeauthor{Krifka1992}の説明を比較する際には，その違いに留意されたい．
+  単純な事例については，(\ref{ex:24})は，焦点構成素がLF（論理形式）において繰り上げを受け，そのような繰り上げは島に敏感でないという想定（\citealt{Rooth1992b}を参照）と同じ結果をもたらす．
+  だが，焦点との結びつきは境界がある，つまり，島に敏感であるという議論を\citealt{RochemontCulicover1990}がしているので，参照されたい．
+  焦点代替要素集合を定義する上で，この点が提起する問題にどのように対処すべきかは，筆者にはまだ分からないが，\citeauthor{Rooth1985}や\citeauthor{vonStechow1991}がこのようなデータを考慮に入れていたというようなことはないようである．
+}．
+
+\begin{exe}
+	\ex\label{ex:24} 構成素$\beta$に対応する\term{焦点代替要素}{focus alternative set}\\
+%
+	$||\beta||$は，$\beta$におけるすべてのF標示された（焦点化された）構成素を変項と置換し，その結果を，それらの変項に割り当てる値のみが異なるような割り当て関数すべてから成る集合の各要素に対して解釈することで得られるすべての解釈の集合である
+  \footnote{%
+    置換する変項が\citet{Heim1982}の言う意味で新たなものであるとし，割り当て関数の集合が$\beta$の発話時点におけるファイル／文脈の充足集合にあるもののみを含むように制限した方がよいかもしれない．
+    そうすれば，$\beta$におけるいずれの定の（あるいは，なじみがある）NPも適切に束縛されることが保証されるだろう．
+    しかし，本稿ではこの改良を行わないことにする．
+  }．
+\end{exe}
+
+\noindent
+(\ref{ex:24})により，疑問とその答えである主張の両方が，対応する代替要素集合，すなわち，疑問のq-代替要素と答えの焦点代替要素を持つ．
+この観察が\citet[36]{vonStechow1991}の疑問／答えの合致という概念の基盤であり，(\ref{ex:25})はそれを修正・一般化したものである．
+
+\begin{exe}
+	\ex\label{ex:25}
+  手$\beta$が疑問$?(\alpha)$と\term{合致する}{congruent}のは，その焦点代替要素$||\beta||$が$?(\alpha)$により決定されたq-代替要素であるとき，%そしてその場合のみである．
+  すなわち，$||\beta|| =\ \text{q-alt}(\alpha)$であるとき，そのときに限る．
+\end{exe}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{0}
+\noindent(\ref{ex:24})と(\ref{ex:25})により，(\ref{ex:re:5b})の主張は(\ref{ex:re:5a})の疑問と合致する答えとなる\footnote{訳注：本節では英語という個別言語が議論の対象であるため，例文は英文を示し，必要に応じて括弧内にその日本語訳を付す．}．
+\renewcommand{\thefootnote}{\arabic{footnote}~}
+\setcounter{footnote}{20}
+
+\ori{32}
+\setcounter{exx}{4}
+\begin{exe}
+	\ex\label{ex:re:5}
+	\begin{xlist}
+    \ex\label{ex:re:5a} Who did Mary invite?（メアリーは誰を招待した？）
+    \ex\label{ex:re:5b} Mary invited nobody\textsubscript{F}.（メアリーは誰も\textsubscript{F}招待しなかった．）
+  \end{xlist}
+\end{exe}
+
+\noindent
+(\ref{ex:re:5b})の（この文脈で経験的に正しい焦点に応じた）焦点代替要素の集合は，(\ref{ex:re:5a})のq-代替要素集合と同じである．
+合致するためには，答えが代替要素に対応する集合に含まれる必要はなく（そして，この点において前節で示した「答えであること」の関係のようである），答えと疑問が同じ代替要素の集合を生じさせるだけでよい．
+さらに，この疑問と答えの理論では，(\ref{ex:re:5a})のような疑問に存在前提を与えないことに注意されたい．
+そのq-代替要素集合に含まれる命題はすべて，招待された誰かの存在を伴立するが，これらの命題はただ尋ねられただけであり，主張されてはいない．
+上で定義した疑問／答えの関係では，答えがq-代替要素のうちの一つである必要はない．
+(\ref{ex:re:5b})が伴立するように，q-代替要素はすべて偽であるかもしれず，その場合，存在の含みはない．
+
+%p. 32 para 1
+\citealt{vonStechow1991}と\citealt{Rooth1992a}における疑問／答えの対に対する要件から一般化された，以下の主張の韻律的焦点の前提を考えたい．
+
+\setcounter{exx}{25}
+\begin{exe}
+	\ex\label{ex:26} \textsf{主張$\boldsymbol{\beta}$における韻律的焦点の前提}\\
+%
+	$\beta$は，その発話の時点における議論下の疑問に合致する答えである．
+\end{exe}
+
+\noindent
+(\ref{ex:26})により，主張にある韻律的焦点は，談話の現行の目標が$||\beta||$に含まれる代替要素の中からの選択であることを前提とする．
+（合致の前提により生じる経験的な予測の議論と例については，\citealt[341--343]{Kadmon2001}を参照．）
+
+%p. 32 para 2
+これは，(\ref{ex:re:5a})や(\ref{ex:re:5b})のような疑問／答えの対ではうまく機能する．
+しかし，疑問も韻律的焦点を持つわけで，(\ref{ex:26})よりもさらに一般的な，いかなる法の発話における韻律的焦点の意味にも対応する原理が必要である．
+疑問は論理的に互いに関連し合うことがあること，そして効果的な探求方略においては一般にそうなっていることを思い出されたい．
+このことを経験的な根拠に基づいて動機付けるために，多重wh疑問(\ref{ex:27a})と単一wh疑問(\ref{ex:27b})を考えたい．
+
+\begin{exe}
+	\ex\label{ex:27}
+	\begin{xlist}
+    \ex\label{ex:27a} Who invited whom?（誰が誰を招待した？）
+    \ex\label{ex:27b} Who did [Mary]\textsubscript{F} invite?（[メアリーは]\textsubscript{F}誰を招待した？）
+  \end{xlist}
+\end{exe}
+
+\noindent
+(\ref{ex:27b})は(\ref{ex:27a})のほぼすぐ後に尋ねることが可能であり，$\langle(\text{\ref{ex:27a}}), \{\langle(\text{\ref{ex:27b}}), \emptyset\}\rangle$は適切な探求方略のようである．
+この適切性には，(\ref{ex:27b})の韻律が重要であるようだ．
+例えば，同じ連なりでも，invite（招待する）に焦点があったとしたら，それは不適切になるだろう．
+このことを捉えるために，\ori{33}疑問における韻律的焦点の前提について何かしら述べておく必要がある．
+
+%p. 33 para 1
+下の(\ref{ex:28})のように，検討中の二種類の発話行為の韻律的焦点の前提に関して一般化することが望ましいだろう．
+発話はそれぞれ法演算子を含む論理形式を持つと想定しよう．
+$\ast\beta$は，疑問演算子と主張演算子$\{?, \cdot\}$に対する法の変項$\ast$を伴う$\beta$の発話である．
+
+\begin{exe}
+	\ex\label{ex:28} \textsf{発話$\boldsymbol{\ast\beta}$における韻律的焦点の前提}\\
+%
+  $\beta$は発話時における議論下の疑問と合致する．
+\end{exe}
+
+\noindent
+(\ref{ex:28})は(\ref{ex:26})の下位一般化を伴立する．
+しかし，(\ref{ex:25})の合致の定義と，とりわけ，(\ref{ex:24})の焦点代替要素集合の定義によると，(\ref{ex:28})は$\langle(\text{\ref{ex:27a}}), (\text{\ref{ex:27b}})\rangle$の適切性を説明することができない．(\ref{ex:27b})ではwh語であるwho（誰）が韻律的に焦点化されていないためである（who（誰）がはっきりと焦点化されているWHO did Mary invite?（\textbf{誰}がメアリーを招待した？）という問い返し疑問と比較されたい）．
+しかし，(\ref{ex:24})を修正し，集合が$\beta$においてF標示された構成素だけでなく，いかなるwh要素にも及ぶようにすれば，一般化は成り立つ．
+そうすると，(\ref{ex:29})が得られる
+\footnote{%
+  (\ref{ex:29})は，間接疑問を含む発話について正しい結果が得られるものではないだろう．
+}．
+
+\begin{exe}
+	\ex\label{ex:29} 構成素$\beta$に対応する\term{焦点代替要素}{focus alternative set}（改訂版）\\
+%
+	$||\beta||$は，$\beta$におけるすべてのF標示された（焦点化された）構成素とwh構成素を変項と置換し，その結果を，それらの変項に割り当てる値のみが異なるような割り当て関数すべてから成る集合の各要素に対して解釈することで得られるすべての解釈の集合である．
+\end{exe}
+
+\noindent
+ここで，(\ref{ex:25})，(\ref{ex:28})，(\ref{ex:29})での分析を(\ref{ex:27})の発話の連続の分析に適用する．
+\ref{sec:1.2}節の疑問の意味論により，当該の解釈は(\ref{ex:27a'}a$'$)および(\ref{ex:27b'}b$'$)となる．%a', b'が\ref{ex:27a'}では出ないので，手打ちした
+
+\setcounter{exx}{26}
+\begin{exe}
+  \ex\label{ex:27'}
+	\begin{xlist}
+		\exi{a$'$.}\label{ex:27a'} $|?(\text{Who invited whom})| =\ \{u\text{ invited }u': u, u' \in D\}$
+%		\exi{a$^\prime$.}\label{ex:27a'} $|?(\text{誰が誰を招待した})| =\ \{u\text{が}u^\prime\text{を招待した}: u, u^\prime \in D\}$
+  \end{xlist}
+\end{exe}
+
+\noindent
+そのため，もし$D =\ \{\text{Mary}, \text{Alice}, \text{Grace}\}$だとすれば，当該の疑問は次のq-代替要素集合を持つ（やはり結合的な項の可能性は考えない）．
+%そのため，もし$D =\ \{\text{メアリー}, \text{アリス}, \text{グレース}\}$だとすれば，疑問は次のq-代替要素集合を持つ（やはり集合的な項の可能性は無視する）：
+
+\[
+	\left\{
+  \begin{array}{l}
+			\text{Mary invited Alice}, \text{Mary invited Grace}, \text{Alice invited Grace},\\
+      \text{Alice invited Mary}, \text{Grace invited Mary}, \text{Grace invited Alice}
+%			\text{メアリーがアリスを招待した}, \text{メアリーがグレースを招待した}, \text{アリスがグレースを招待した},\\
+%      \text{アリスがメアリーを招待した}, \text{グレースがメアリーを招待した}, \text{グレースがアリスを招待した}
+	\end{array}
+  \right\}
+\]
+
+%p. 34 para 1
+\ori{34}
+同じモデルにおいて，(\ref{ex:6})に示したこの例の派生により，以下が成り立つ．
+
+\setcounter{exx}{26}
+\begin{exe}
+  \ex\label{ex:27''}
+	\begin{xlist}
+		\exi{b$'$.}\label{ex:27b'} $|?(\text{who did [Mary]\textsubscript{F} invite})| =\
+%		\exi{b$^\prime$.}\label{ex:27b'} $|?(\text{[メアリーは]\textsubscript{F}誰を招待した})| =\
+    \left\{
+    \begin{array}{l}
+	\text{Mary invited Alice},\\
+	\text{Mary invited Grace}
+%	\text{メアリーはアリスを招待した},\\
+%	\text{メアリーはグレースを招待した}
+  	\end{array}
+    \right\}$
+  \end{xlist}
+\end{exe}
+
+\noindent
+明らかに，Who did Mary\textsubscript{F} invite?（メアリーは\textsubscript{F}誰を招待した？）のq-代替要素集合は，Who invited whom?（誰が誰を招待した？）のq-代替要素集合の部分集合である．
+従って，(\ref{ex:27a})に対する完全な答えは(\ref{ex:27b})のすべての代替要素に関しても評価を与えるため，(\ref{ex:27a})は(\ref{ex:27b})を伴立する．(\ref{ex:27b})は(\ref{ex:27a})の下位疑問であり，(\ref{ex:27})は適切な探求方略となる．
+
+%p. 34 para 2
+(\ref{ex:27b})の焦点前提を(\ref{ex:29})のように計算すると，$||(\text{\ref{ex:27b}})|| =\ \{u\text{ invited }u': u, u' \in D\}$となる．
+だが，これは単に(\ref{ex:27a})のq-代替要素である命題の集合である．
+つまり，$||(\text{\ref{ex:27b}})|| =\ \text{q-alt}(\text{\ref{ex:27a}}) =\ \{u\text{ invited }u': u, u' \in D\}$である．
+そのため，(\ref{ex:28})は満たされる．
+
+%p. 34 para 3
+(\ref{ex:27a})が広い焦点を持つ場合，それが合致する疑問は自明なもの，すなわち単に大疑問になることに注意されたい．
+しかし，合致する疑問が大疑問であるとするのは，この例では誤解を与えるものであると思われる．
+たいていの場合，invite（招待する）は動作主と被動者だけでなく，着点，すなわち被動者が招待されるイベントも取る．
+(\ref{ex:27a})では着点が与えられていないため，省略が起きていると考えられ，この省略により，この疑問と何らかのイベントに関するそれ以前から続く議論との間の関係が示唆される．
+この点について，ここではこれ以上は述べないが，省略は，焦点構成素内での強勢除去／アクセント除去と同様に，疑問あるいは主張の発話が合致することが前提とされる疑問の決定に影響を与えるかもしれないという点についてだけは述べておきたい．
+省略と「前方照応的強勢除去」の関係についての議論は，\citealt{Rooth1992b}を参照されたい．
+
+%p. 34 para 4
+%次の文はソースコードが長く，テキストエディタの関係上扱いにくいので，複数行に分けている．
+(\ref{ex:28})の原理は，以下に再掲した$\langle(\text{\ref{ex:re:re:5a}}), (\text{\ref{ex:re:re:5b}})\rangle$および$\langle(\text{\ref{ex:re:27a}}),
+ (\text{\ref{ex:re:27b}})\rangle$における談話の適切性を説明するだけでなく，$\langle(\text{\ref{ex:re:re:5a}}), (\text{\ref{ex:re:re:5c}})\rangle$，$\langle(\text{\ref{ex:re:re:5a}}),
+ (\text{\ref{ex:re:re:5d}})\rangle$そして$\langle(\text{\ref{ex:re:27a}}), (\text{\ref{ex:re:27c}})\rangle$，$\langle(\text{\ref{ex:re:27a}}),
+ (\text{\ref{ex:re:27d}})\rangle$のような連続の不適切性も説明する．
+これは，後半の四つの事例のいずれでも，二番目の要素の焦点代替集合が，議論下の疑問である一番目のq-代替要素集合と等しくなることがないからである．
+
+\setcounter{exx}{4}
+\begin{exe}
+	\ex\label{ex:re:re:5}
+	\begin{xlist}
+    \ex\label{ex:re:re:5a} Who did Mary invite?（メアリーは誰を招待した？）
+    \ex\label{ex:re:re:5b} Mary invited [nobody]\textsubscript{F}.（メアリーは[誰も]\textsubscript{F}招待しなかった．）
+    \ex\label{ex:re:re:5c} Mary [invited]\textsubscript{F} nobody.（メアリーは誰も[招待]\textsubscript{F}しなかった．）
+    \ex\label{ex:re:re:5d} [Mary]\textsubscript{F} invited nobody.（[メアリーは]\textsubscript{F}誰も招待しなかった．）
+  \end{xlist}
+\end{exe}
+
+\setcounter{exx}{26}
+\begin{exe}
+	\ex\label{ex:re:27}
+	\begin{xlist}
+    \ex\label{ex:re:27a} Who invited whom?（誰が誰を招待した？）
+    \ex\label{ex:re:27b} Who did [Mary]\textsubscript{F} invite?（[メアリーは]\textsubscript{F}誰を招待した？）
+    \ex\label{ex:re:27c} Who did Mary [invite]\textsubscript{F}?（メアリーは誰を[招待]\textsubscript{F}した？）
+    \ex\label{ex:re:27d} [Who]\textsubscript{F} did Mary invite?（メアリーは[誰を]\textsubscript{F}招待した？）
+  \end{xlist}
+\end{exe}
+
+%p. 35 para 1
+\ori{35}
+韻律的焦点の働き方についてこのように捉えると，\citealt{KadmonRoberts1986}に従えば，韻律的焦点は前提の誘発子にはなるが，発話が適合／合致せねばらない代替要素の集合の性質を一意に決定するものではないことに注意されたい．
+演算子作用域の潜在的曖昧性のため，多くの例において，議論下の疑問が実際に何であるか，そしてそのため，間接的に，発話自体の真理条件が何でなければならないかを決定するためには，先行する談話の構造に関する極めて豊かな情報が必要である．
+\citealt{KadmonRoberts1986}からの例を考えたい．
+選択肢となる作用域を可能な議論下の疑問により，例の下に示した．$\delta$はタイプ$\langle \langle e, t\rangle, \langle \langle e, t \rangle, t \rangle \rangle$の変項で，$\Delta$は限定詞の外延の集合である
+\footnote{%
+  \citet{KadmonRoberts1986}は，この例の完全な韻律曲線の分析をしているが，そこにはピッチアクセント，ピッチアクセントの位置，句・境界音調が含まれる．
+  ここに示した読みのどちらについてもそのような分析を行っている．
+  また，彼女らはこれらの読みのそれぞれが生じる文脈の種類についても仔細に説明している．
+  詳細については，彼女らの論文を参照されたい．
+}．
+
+\setcounter{exx}{29}
+\begin{exe}
+	\ex\label{ex:30} He doesn't like [most]\textsubscript{F} of the songs.（彼はそれらの曲の[ほとんど]\textsubscript{F}が好きではない．）
+%
+	\begin{xlist}
+		\ex\label{ex:30a} $\text{most}(\neg): \text{q-alt}(\ref{ex:30}) =\ \{|\ \delta\ \text{songs}(\lambda x .\, \neg \text{likes}(\text{he}, x)) | : |\ \delta\ |\ \in \Delta\}$
+%		\ex\label{ex:30a} $\text{ほとんど}(\neg): \text{q-alt}(\ref{ex:30}) =\ \{|\ \delta\ \text{歌}(\lambda x .\, \neg \text{好きだ}(\text{彼}, x)) | : |\ \delta\ |\ \in \Delta\}$
+		\ex\label{ex:30b} $\neg(\text{most}): \text{q-alt}(\ref{ex:30}) =\ \{|\ \neg\delta\ \text{songs}(\lambda x .\, \text{likes}(\text{he}, x)) | : |\ \delta\ |\ \in \Delta\}$
+%		\ex\label{ex:30b} $\neg(\text{ほとんど}): \text{q-alt}(\ref{ex:30}) =\ \{|\ \neg\delta\ \text{歌}(\lambda x .\, \text{好きだ}(\text{彼}, x)) | : |\ \delta\ |\ \in \Delta\}$
+  \end{xlist}
+\end{exe}
+
+\noindent
+これらの代替要素の集合は，異なる疑問に対応する．
+(\ref{ex:30a})に関しては，疑問は，大まかに言って，What is the proportion of songs that he doesn't like?（彼が好きではない曲の割合はどのくらいか？）である．
+(\ref{ex:30b})に関しては，疑問は，What is the proportion of songs that I deny that he likes?（彼が好きであることを私が否認する曲の割合はどのくらいか？）である．
+上の発話における焦点では，発話は原理的にはいずれの疑問にも合致し，そのため，発話がその前提に関して曖昧になる．
+一般に，曖昧性は発話の実際の文脈により解消される．
+もし解消されない場合，すなわち，適切な文脈のない状態で聞き手がそのような発話に直面した場合，\citet{KadmonRoberts1986}が論じたように，喚起可能な最も単純な文脈は，デフォルトの想定ということになる．
+ここでは，それはmost（ほとんど）が広い作用域を持つ，非否認文脈だろう．
+可能性として存在するもう一つの読みを出すには，主張とその否認，そして修正という，より複雑な文脈が関与するため，何の前触れもなく発話を聞いたときにこの読みを得ることは起こりにくい．
+
+%p. 35 para 2
+要約すると，発話にある韻律的焦点は，その発話が主張であれ疑問であれ，その発話が議論下の疑問と合致するという前提を生じさせる．
+そのような仕組みは，明らかに，談話に一貫性を与え，関連性を保証する助けとなる．
+そして，それは少なくとも一定程度は冗長である．
+例えば，疑問／主張という連続において，もし話し手が正しく言語ゲームを行っていれば，つまり，とりわけ\textbf{関連性}を遵守し，\ori{36}議論下の疑問によって表される目標に取り組む責務に従っているならば，主張は先行する疑問への答えになるはずである．
+主張の韻律もこの役割を担うことを前提とするのなら，これは主張の役割を冗長に追認していることになり，ゆえに，間接的に，模索中の疑問を冗長に追認していることになる．
+しかし，もちろん，ゲームのルールが設定されれば，我々は往々にして，より効果的にプレーするための方略を生み出すものである．
+主張の場合，もし韻律がその主張が対処する疑問の種類を前提とするなら，実際に疑問を明示的に尋ねる必要はないかもしれない．特に，疑問が進行中の探求方略と関連性を持つことが明らかな場合にはそうである．
+従って，聞き手は，話し手の想定している情報構造の一部分を調節するために英語の韻律構造の前提を使うことができる．
+
+%p. 36 para 1
+ここから，この提案に照らして，焦点についての先行研究から，いくつかのタイプの例を簡潔に検討していく．
+
+%p. 36 para 2
+\subsection{英語の焦点現象}\label{sec:2.2}
+
+\ref{sec:2.2.1}節では，英語で最も議論されてきた焦点が関わる現象の一つ，すなわち焦点との結びつきへの\ref{sec:2.1}節の理論の適用について説明する．
+その後，\ref{sec:2.2.2}節では，対比的主題，対比的な焦点化された対および代替要素として解釈されるyes/no疑問における焦点の用法を扱うための拡張について，簡潔に考察する．そのような焦点はしばしば\term{対比的}{contrastive}と呼ばれる．
+
+%p. 36 para 3
+\subsubsection[会話の含意としての焦点との結びつき]{会話の含意としての焦点との結びつき%
+\footnote{%
+	以前の草稿への思慮深い助言をしてくれた\textmd{Nirit Kadmon}と\textmd{Paul Portner}に感謝したい．おかげで，この節は相当に改善された（と筆者は思いたい）．%heading内だと欧文がboldfaceになってしまうので，\textmdで標準の太さに戻す
+  ただ，二人がここで提案する見方に必ず同意するものだとは考えないで欲しい．
+}
+}\label{sec:2.2.1}
+
+過去十年間の焦点に関する形式主義的な先行研究における最も興味深い研究に\citet{Jackendoff1972}が\term{焦点との結びつき}{association with focus}と呼ぶものを扱った研究がある．
+これは，否定，only，even，モーダル，量化副詞をはじめとする，ある種の演算子の解釈が，その演算子が生起する発話の韻律的焦点構造に部分的に依存するという傾向のことである．
+\citet{Rooth1985}は，この焦点への敏感性は，彼が検討した演算子の語彙的意味の一部であり，当該演算子の領域制限の決定に関係があると主張した．
+\citeauthor{Rooth1985}の基本的主張によれば，領域は焦点により決定される代替要素集合（の部分集合）であり，この集合は論理形式において演算子の作用域である構成素に対応する．そして，このことはonlyのような演算子の語彙的意味の一部として指定されている．
+より最近では，（とりわけ）\citealt{vonStechow1991}と\ori{37}\citealt{Krifka1992}が，構造化された命題の枠組みの中で同様のアプローチを採用している．
+彼らの研究では，構造化された意味は関連する発話の焦点構造を反映する．
+それは順序対であり，発話の意味を焦点と背景に分割する．
+焦点に敏感な演算子のうちの一つの持つ語彙的意味は，その作用域にある構成素の構造化された意味の両方の側面を参照する．
+これらのアプローチはいずれも焦点に敏感な演算子が関与するが，結果として生じる意味理論の設計において焦点に重責を担わせている．
+焦点との結びつきは，それ自体が，言語の意味論をかなり複雑化することを許す動機となると考えられている（関連する議論については\citealt{Rooth1996}を参照）．
+さらに，焦点がこれらの演算子の作用域を完全には決定しないことは明らかである．
+他の文脈的要因および演算子の作用域内の構成素の前提もその決定において重要な役割を担う（\citealt{Roberts1995}を参照）．
+このような作用域決定の様々な方法の間の関係について何か述べておいた方がよいのだが，焦点に対する敏感性のアプローチは，基本的に意味論的であるため，意味論的な焦点に対する敏感性と明らかに語用論的な要因の両方を含んだ一般化をすることができない．
+単に焦点に対する敏感性を，関連する演算子の語彙的意味の一部にするだけでは，なぜこの現象が領域制限においてそんなにも幅をきかせているのかという問題を捉え損なう．
+しかし，焦点がこれらの演算子を含む発話の解釈において，規則的で重要な役割を担っていることは自明であるようにも思える．
+我々は，この役割について説明する必要がある．それは，\citet{Vallduvi1993}や\citet{VallduviZacharski1994}が体系的に行えていないことである．
+
+%p. 37 para 1
+\citet{Rooth1992a}，\citet{vonFintel1994,vonFintel2004}，\citet{Schwarzschild1994a,Schwarzschild1994b}は近年，様々な焦点との結びつきの現象について，より語用論的な説明を試みている．
+\citeauthor{Rooth1992a}と\citeauthor{vonFintel1994}の研究は前方照応的な説明であり，\citeauthor{Schwarzschild1994a}の研究は焦点を対比としての解釈する原理からの伴立を用いる説明である．
+ここで提示する情報構造の枠組みでは，焦点との結びつきに関して別の種類の語用論的効果を提唱する．
+それは，本稿の以前の節で定義した独立に動機付けられた原理から，追加的な規定をする必要なく，そのまま結果として生じるものである．
+この説明では，焦点との結びつきは本質的には，韻律的焦点が演算子の領域制限に影響する際の影響の仕方に関する事実であると想定する．その点で，\citealt{Rooth1985}における初期の説明と同様である．
+しかし，筆者は関連する演算子に特別な語彙的意味を一切想定しない．
+そして，\citeauthor{vonFintel1994}や\citeauthor{Krifka1992}とは異なり，発話の焦点構造は，その意味に関して独立した分割を指定する必要なしに，韻律構造によって透明な形で与えられると論じたい．
+本節では，onlyの領域を制限する際に韻律的焦点が果たす役割が，\ori{38}\ref{sec:1}節の情報構造の枠組みと前節での韻律的焦点に関する想定により，どのように説明されるかについて概略を述べる．
+量化副詞における領域制限の関連した見方については，\citealt{Calcagno1996}を参照されたい．
+
+%p. 38 para 1
+% 原文において，$x VPs$と$x$ VPsという表記で揺れがある．
+$x$ only VPs（$x$はVPするだけだ）という，onlyがVP修飾語である構文の発話について，理論家たちはしばしば$x$ VPs（$x$はVPする）を前提とするものであるとみなすが，$x$ only VPsは$x$ VPsを伴立するだけであると想定されることもある．
+筆者は前提の見方を想定するが，このことによりこれから提示する説明に違いが出るわけではない．
+もし$x$ VPsが前提とされるならば，議論下の疑問を前提とする際に，その議論下の疑問を導入するために韻律的焦点を用いることができるのと同様に，$x$ VPsという前提を導入するためにonlyを用いられることができる．それは，たとえ$x$ VPsという前提が対話者にまだ知られていない場合にでもである．
+これら二つの事例は，いずれも前提が極めて明示的であるという点で同様であり，文脈を修復するために何が調節されなければならないかが明らかである．
+反対する根拠がない限り，協調的な対話者はこれらの前提を必要なものとして調節するだろう．
+
+%p. 38 para 2
+VP付加詞onlyの意味は(\ref{ex:31})のようであるとしよう．
+
+\pagebreak
+\begin{exe}
+	\ex\label{ex:31}  VP付加詞onlyの解釈\\
+	\textsf{前提となる内容}：主語はVPが外延とする特性を持つ．\\
+	\textsf{提示される内容}：主語はVPが外延とする特性以外の特性を持たない．
+\end{exe}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{0}
+\noindent
+これにより，焦点との結びつきの分析には，\citeauthor{Rooth1985}に従えば，onlyの提示される内容における演算子no\footnote{訳注：この演算子noは，(\ref{ex:31})の「提示される内容」にある「～以外の特性を持たない」という規定による．主語が「～以外の特性を持たない」ということは，「～以外の特性を持つ」主語が存在しないということである．}の意図された量化の領域がどの部類の特性であるのかに関する決定が含まれる．
+\renewcommand{\thefootnote}{\arabic{footnote}~}
+\setcounter{footnote}{24}
+\citealt{Roberts1995}では，これは韻律的焦点に基づいたアルゴリズムだけに基づいては決められず，談話のその時点での文脈において関連する特性の集合でなければならないと主張した．
+それが何を意味するのかについては，より正確に述べることができる．
+その答えは，(\ref{ex:15})で定義した\textbf{関連性}の要件と(\ref{ex:28})にある韻律的焦点の前提から導かれることを，これから見ていく．ここにそれらを（(\ref{ex:25})とともに）再掲する．
+
+\setcounter{exx}{14}
+\begin{exe}
+	\ex\label{ex:re:15} 手$m$が議論下の疑問$q$，すなわち$\text{last}(\text{QUD}(m))$と\textbf{関連する}（Relevant）のは，$m$が$q$への部分的答えを導入するか（$m$は主張），$q$に答えるための方略の一部である（$m$は疑問）とき，そのときに限る．
+\end{exe}
+
+\setcounter{exx}{24}
+\begin{exe}
+	\ex\label{ex:re:25}
+  手$\beta$が疑問$?(\alpha)$と\term{合致する}{congruent}のは，その焦点代替要素$||\beta||$が$?(\alpha)$により決定されたq-代替要素である場合，
+  すなわち，$||\beta|| =\ \text{q-alt}(\alpha)$であるとき，そのときに限る．
+\end{exe}
+
+\ori{39}
+\setcounter{exx}{27}
+\begin{exe}
+	\ex\label{ex:re:28} \textsf{発話$\boldsymbol{\ast\beta}$における韻律的焦点の前提}\\
+%
+  $\beta$は発話時における議論下の疑問と合致する．
+\end{exe}
+
+\noindent
+この領域制限がどのように働くかを見るために，(\ref{ex:32})の例を考えたい．
+
+\setcounter{exx}{31}
+\begin{exe}
+	\ex\label{ex:32} Mary only invited [Lyn]\textsubscript{F} for dinner. （メアリーは夕食に[リン]\textsubscript{F}を招待しただけだ．）
+\end{exe}
+
+\noindent
+(\ref{ex:28})より，(\ref{ex:32})は(\ref{ex:33})の疑問を前提とする．
+
+\begin{exe}
+	\ex\label{ex:33} メアリーが夕食にその個体を招待したという特性以外の特性を持たないのはどの個体か？
+\end{exe}
+
+\noindent
+(\ref{ex:32})を発話することによって話し手が何を意図しているのかを理解するためには，onlyの意図された領域を決定しなければならない．
+発話とそれが前提とする疑問が，先行する文脈に\textbf{関連する}，すなわち，それらが議論下の疑問を扱うものでなければならないという，独立した要件があることを我々は既に知っている．
+もし(\ref{ex:32})が何の前触れもなく発話されれば，それは前提の疑問(\ref{ex:33})が大疑問に答えるための方略の一部を成すということにならざるを得ないだろう．
+そのような場合には，メアリーの特性のすべてが\textbf{関連する}ことになるだろう．なぜなら，メアリーがそれらの特性を持つか否かに関する情報は何であれ，大疑問を扱うものであろうからだ．
+しかし，メアリーが存在するという想定の下では，メアリーはリンを夕食に招待したという特性に加え，当然，最低でも自己同一性という特性（そして恐らく多くの他の特性）を持つ．そのため，(\ref{ex:32})は，何の前触れもなく発話されれば，どのような合理的なモデルであっても偽になるだろう．
+従って，(\ref{ex:32})の話し手が十分な能力を持ち，グライスの質の格率を守っている，つまり，真である事柄を主張しようとしているという想定の下では，(\ref{ex:32})の意図された発話の文脈として，何の前触れもないということはあり得ない．
+筆者が他で論じたように（\citealt{Roberts1995,Roberts1996a}），領域制限は常に協調性による制約を受ける．
+協調的な聞き手は，話し手もまた協調的である（そして十分な能力がある）と想定し，これに基づいて，貢献が最終的には協調的になるように領域を制限することで，グライスの質の格率や\textbf{関連性}の格率が満たされない，前提の失敗が起こるなどといった，協調性の見かけ上の欠如を解消しようとする．%ここのRelevanceはグライスの格率を大文字で始めるために大文字になっていると考え，\langle\rangleを付けなかった．---最終的には太字にした
+
+%p. 39 para 1
+ここで，(\ref{ex:32})が何の前触れもなしにではなく，(\ref{ex:34})に続いて発話されたと想像してみよう．
+
+\begin{exe}
+	\ex\label{ex:34} Who did Mary invite for dinner?（メアリーは誰を夕食に招待した？）
+\end{exe}
+
+\setcounter{exx}{31}
+\begin{exe}
+	\ex\label{ex:re:32} Mary only invited [Lyn]\textsubscript{F} for dinner. （メアリーは夕食に[リン]\textsubscript{F}を招待しただけだ．）
+\end{exe}
+
+\noindent
+もちろん，既に見たように，(\ref{ex:32})は韻律的に議論下の疑問が(\ref{ex:33})であることを前提とし，それは明示的な疑問(\ref{ex:34})と同じ疑問ではない．
+\ori{40}
+前提とされる(\ref{ex:33})を適切に調節できるのは，新たに調節される疑問自体が受理された疑問(\ref{ex:34})と\textbf{関連し}，そのため二つの疑問が適切な探求方略を形成し，ゆえに結果として生じる情報構造が適格である場合のみである．
+この要件は，onlyの意図した領域が，\citet{Rooth1985}/\citet{vonStechow1991}/\citet{Krifka1992}の理論において(\ref{ex:32})のonlyの領域として規約的に決定される特性の集合（の非真部分集合の可能性もある）であると想定した場合にのみ，すんなりと満たされる．
+これは，疑問の意味論により，この領域制限の場合にのみ，(\ref{ex:33})への答えすべてが(\ref{ex:34})への答えにもなり，(\ref{ex:33})が(\ref{ex:34})と\textbf{関連する}ことになるためである．
+その理由はこうである．
+
+%p. 40 para 1
+(\ref{ex:34})に対処する唯一の方法は，$| m \text{ invited } \alpha |$という形の命題の真偽を決めることである．ただし，$\alpha$はモデルにおける個体を外延とする固定指示詞であるか，あるいはnobodyである
+\footnote{%
+やはり，メアリーが二人以上の個体を招待した可能性は考えないことにする．そのような可能性を考慮に入れた場合，$|$ Mary invited few of the students（メアリーは学生のごく一部しか招待しなかった）$|$のような命題が部分的答えとして\textbf{関連する}ことなる．
+  これは単に簡潔さのためであり，筆者が行う議論に不可欠なものではない．
+}．
+しかし，その場合，\textbf{関連する}特性の集合は単に，メアリーについて叙述された時に$| m \text{ invited } \alpha |$という形の命題の一つを与える集合，すなわち$| \text{invited } \alpha |$（$\alpha$はモデルにおける個体を外延とする固定指示詞あるいはnobody）という形の特性の集合ということになる．
+この特性の集合は，そうすると，それが(\ref{ex:34})と\textbf{関連する}，つまり，(\ref{ex:34})に対処するための探求方略の一部を成さんとする場合，(\ref{ex:33})においてonlyの領域を制限していなければならない集合である．
+しかし，これは他の説明なら，例えば\citealt{Rooth1985}での説明なら，(\ref{ex:32})におけるVPのp-集合の計算によって引き出される代替特性の集合に過ぎない．
+そのような説明では，当該のp-集合はonlyの語彙的意味によって参照される．
+しかし，本稿の説明では，onlyの語彙的意味に基づく計算は必要ない．
+
+%p. 40 para 2
+(\ref{ex:32})におけるonlyの領域（関係のある特性の集合）が，誰かしらを夕食に招待するという特性の集合だとすると，(\ref{ex:33})は論理的に(\ref{ex:35})と同等になる．
+
+\setcounter{exx}{34}
+\begin{exe}
+	\ex\label{ex:35} 誰かしらを夕食に招待するという特性すべてのうち，メアリーが夕食にその個体$x$を招待するという特性以外の特性を持たないのはどの個体$x$か？
+  つまり，メアリーがその個体以外は誰も夕食に招待しなかったのはどの個体か？
+\end{exe}
+
+\noindent
+(\ref{ex:34})と(\ref{ex:35})は，意味が非常に近い．ただ，全く同じではない．
+それらのq-代替要素集合は異なる．
+違いは，(\ref{ex:35})への直接的な答えがすべて完全であり，それぞれが(\ref{ex:34})への完全な答えでもあるという事実にも反映されている．
+もし(\ref{ex:35})に「アリスとガートルード」と答えれば，これはグレースを含め，他の人は誰も招待されなかったことを伴立する．
+しかし，(\ref{ex:34})は，完全ではない，部分的に直接的な答えを持つため，\ori{41}メアリーがグレースも招待したことを排除することなしに，「アリスとガートルード」と答えることができる．
+しかしながら，これらの二つの発話は同じ疑問を外延とすることはないが，いかなるモデルにおいても，(\ref{ex:34})への完全な答えは(\ref{ex:35})への完全な答えであり，さらにその逆も成り立ち，二つの発話は\cite{GroenendijkStokhof1984}が定義した意味において論理的に互いに伴立し合う
+\footnote{%
+  疑問と答えは，意味的構成物であり，その疑問と答えを外延とする発話と混同してはならないことを思い出されたい．
+  もし(\ref{ex:34})への完全な答えがnobody（誰も）という返答により示唆されるものならば，これは(\ref{ex:35})への答えが，モデル内に人がいるならeveryone（全員）という返答，モデル内に人が誰もいないならnobody（誰も）という返答が外延とするものでなければならないことを伴立する．
+  その逆の伴立も成り立つ．
+  everyone（全員）が外延とする(\ref{ex:34})への完全な答えとall the people（すべての人々）という返答により与えられる(\ref{ex:35})への完全な答えとは，同様の相関関係にある．
+  さほど極端でない事例では，二つの疑問への完全な答えは同一の表現になり得る．(\ref{ex:34})に対するAlice, Gertrude and Grace（アリスとガートルードとグレース）という返答は，(\ref{ex:33})に対する同じ返答が外延とする答えを伴立し，またそれによって伴立される，などである．
+}．
+(\ref{ex:34})と(\ref{ex:35})は，完全な答えの集合が同じであるため，ある発話時点における文脈集合に対して同じ分割を設ける．
+そのため，(\ref{ex:35})のように領域が固定されると，前提とされる疑問(\ref{ex:33})は，(\ref{ex:15})で定義された厳密な意味で，(\ref{ex:34})と\textbf{関連する}．
+しかし，その場合，(\ref{ex:33})/(\ref{ex:35})と\textbf{関連する}には，そしてゆえに間接的に(\ref{ex:34})と\textbf{関連する}には，(\ref{ex:32})におけるonlyの領域は，同じように定められなければならない．
+
+%p. 41 para 2
+Paul Portner（私信）が指摘してくれたように，これは領域が\citeauthor{Rooth1985}の特性の真の部分集合でないことを保証するものではない．
+%「彼のp-集合の計算と焦点に敏感な「only」の語彙的な意味論」あるいは「彼のp-集合と焦点に敏感な「only」の語彙的な意味論の計算」？
+しかし，\citeauthor{Rooth1985}ももちろん，文脈によりonlyの領域がさらに制限される可能性を認めており，それは彼の提案するp-集合の規約的計算法と焦点に敏感なonlyの語彙的意味により与えられる．
+これは，$\langle(\ref{ex:34}), (\ref{ex:32})\rangle$のような談話により動機付けられる．
+メアリーが夕食に仕事仲間の来客を招待しており，彼女の学科の誰か他の人にも一緒に来てもらいたいと思っているということを対話者たちが既に知っているというシナリオを考えてみよう．
+その場合，特性の代替要素集合には，彼女の学科の残りすべての人が関与するはずである．リンはそこに含まれるが，仕事仲間の来客は含まれない．
+そうすると，その文脈で(\ref{ex:32})を発話しても，メアリーがその世界においてリン以外の人を誰も夕食に招待しなかったということは伴立されず，話し手も招待されているということにも矛盾しないことになる．
+
+%p. 41 para 3
+しかし，(\ref{ex:32})が\textbf{関連する}形で対処する疑問には他にどのような種類のものがあるだろうか？
+その種類は極めて限定されており，部分的に文脈に依存することが分かる．
+韻律的に前提とされる疑問(\ref{ex:33})は文脈集合に対して分割を設ける．
+疑問への可能な完全な答えであるセルは，唯一招待された人物が誰かという点において互いに異なる．
+上で考慮した関連する特性は\citeauthor{Rooth1985}の分析におけるVPのp-集合に対応するが，それに加えてメアリーが他に持ち得る特性はどれも以下の二つのタイプのいずれかになる．それら二つのタイプを筆者は\term{文脈的に伴立される制限}{contextually entailed restriction}および\term{論理的に独立した特性}{logically independent property}と呼ぶ．
+\ori{42}
+伴立される制限は，対話者によってメアリーの特性であると知られているため，文脈集合により伴立される．
+これには，述べられた文脈において来客を招待するという特性が含まれる．
+文脈集合においてメアリーがそれらの特性をすべて持たない世界は存在しないため，伴立される制限はonlyの領域を暗示的に否定的な方法で制限する役割を果たす．
+%「随伴的」->「共格的」？---後者
+そのため，述べられた状況において，(\ref{ex:32})のVPに対し，暗示的な共格的制限「来客とともに」がかかる．
+しかし，伴立される制限は，(\ref{ex:34})により設けられた分割においてセル間を区別しないため，\textbf{関連する}ことは決してない．
+
+%p. 42 para 1
+p-集合に対応する特性以外の特性のもう一方のタイプは，対話者が知る限りにおいて，メアリーについて成り立つかもしれないし，成り立たないかもしれないようなものであり，従って，基本的には議論下の疑問とは完全に独立したものである．
+例えば，もし(\ref{ex:32})がDid Mary brush her teeth this morning?（メアリーは今朝歯を磨いたか？）のような疑問の後に続いて発せられれば，たいていの文脈ではその疑問とは無関係となるだろう．
+誰かと夕食を食べることは普通，歯を磨いたかどうかという疑問とは\textbf{関連}しない．このことを反映し，いかなる合理的に現実的なモデルにおいても，歯磨きするという論理的に独立した特性をメアリーが持つか否かという疑問は，(\ref{ex:34})の設ける分割とは異なる分割を設ける．
+そのような独立した特性に基づいた疑問は，議論下の疑問(\ref{ex:33})の設けた分割においてセルを横に断つため，議論下の疑問(\ref{ex:33})に対する（部分的）答えの選択に影響しない．
+メアリーがそれらの特性の一つを持つか否かを決めることは，従って，分割からのセルの除去に繋がらない．
+談話はそのような理由だけによっても頓挫するわけで，そのような文脈においてonlyの領域が前触れなしの発話のようになるだろうことは言うまでもない．
+しかし，ここで，メアリーが一人あるいはそれ以上の友人とともに夕食を食べる予定であることが文脈により伴立されると仮定しよう．
+さらに，メアリーの友人であるリンは彼女の歯科医でもあり，二人きりの時に限ってだが，いつもメアリーに歯科衛生に気を付けるようにうるさく言うと想定しよう．
+最後に，リンのメアリーへの注意はたいてい効を奏し，もしメアリーが友人たちの中からリンだけを選んで一緒に夕食を食べたら，（リンがうるさく言うため）メアリーは翌朝忘れずに歯を磨くものだと仮定しよう．
+このような場合，(\ref{ex:32})が前提とする疑問である(\ref{ex:33})は，彼女がともに夕食を食べようと考えていた唯一の人物は前述の友人たちであるという伴立された制限の下では，彼女が歯を磨いたかどうかという疑問に答えるための合理的な方略の一部になる\kenten{だろう}．(\ref{ex:32})が文脈的にその疑問に対する答えを伴立するであろうからだ．
+\textbf{関連性}は，本質的に文脈依存的なのである．
+%「no」->「いいえ」？---noのままでok. only「しか～ない」
+しかし，それでも，(\ref{ex:32})がDid Mary brush her teeth?（メアリーは歯を磨いたか？）に対する答えを伴立し得るのは，onlyの解釈に含まれるnoの解釈を制限するのに正しい領域，すなわち文脈的に際立ったメアリーの友人のグループが選択されたという想定の下でだけである．
+\ori{43}
+そのため，論理的に独立した特性は時として\textbf{関連する}が，これは完全に文脈に依存する．
+
+%p. 43 para 1
+\citet{Rooth1985}の焦点との結びつきの理論とその後の\citet{vonStechow1991}と\citet{Krifka1992}の理論では，onlyの領域はその作用域における韻律的焦点に直接基づいて計算されるべきものであることが，onlyの語彙的意味の一部として規定された．
+\citet{Vallduvi1990,Partee1976,vonFintel1994}および\citet{Roberts1995}が指摘したように，そのような理論が体系的に誤った予測をするような種類の文脈がある．
+本稿の理論では，彼らの例を用いて，韻律は，意図した文脈，ゆえに意図した領域制限の決定に規則的で規約的（なぜなら前提が関与するため）な貢献をするものの，それだけではonlyの意図した領域制限を与えることができないということを示す．
+Nirit Kadmon（私信）は，(\ref{ex:32})の例について，この点を次のように説明する．
+我々がだめだとすることで，メアリーが今日それを行うのではないかと我々が恐れていたようなことについて話し合っているとしよう．
+そのようなことには，メアリーが(\ref{ex:36})に挙げる特性を持つことが含まれていた．
+
+\begin{exe}
+	\ex\label{ex:36}
+  \begin{xlist}
+    \ex\label{ex:36a} リンを夕食に招待すること
+    \ex\label{ex:36b} ビルを夕食に招待すること
+    \ex\label{ex:36c} 昼食でテーブルクロスを汚すこと
+    \ex\label{ex:36d} 夕食の前に喫煙すること
+  \end{xlist}
+\end{exe}
+
+\noindent
+この文脈において，(\ref{ex:37})を考慮されたい．
+
+\begin{exe}
+	\ex\label{ex:37}
+  \begin{xlist}
+	  \ex\label{ex:37a} Mary wasn't so bad after all.  Of all the things we were afraid she might do, she only [invited Bill for dinner]\textsubscript{F}.
+	  （結局のところ，メアリーはそこまで酷くはなかった．彼女が行うのではないかと我々が恐れていたすべてのことのうち，彼女は[ビルを夕食に招待した]\textsubscript{F}だけだ．）
+	  \ex\label{ex:37b} You got the person wrong.  She only invited [Lyn]\textsubscript{F} for dinner.  But it's true that she did only one of those terrible things she could have done.
+	  （君は人を間違えているよ．彼女は[リン]\textsubscript{F}を夕食に招待しただけだ．でも，彼女がやりかねなかったであろう酷いことの一つだけしか彼女が行わなかったことは事実だけど．）
+  \end{xlist}
+\end{exe}
+
+\noindent
+この場合，onlyの領域は(\ref{ex:36})にある特性の集合であって欲しく，夕食に誰かしらを招待するという特性の集合であっては欲しくない．だが，例えば\citet{Rooth1985}によって構成的に与えられる集合は後者だろう．
+規約的に領域を固定すると，誤った真理条件になってしまう．
+
+%p. 43 para 2
+(\ref{ex:28})の韻律的焦点の前提により，情報構造の枠組みではそのような例を以下のように説明できる．
+(\ref{ex:37a})は疑問(\ref{ex:38})を前提とする．
+
+\begin{exe}
+	\ex\label{ex:38} (\ref{ex:36})のすべての特性の中で，メアリーがその特性以外の他の特性を持たないような特性はどの特性か？
+\end{exe}
+
+\noindent
+\ori{44}
+onlyの領域制限は明示的であり，第一の議論下の疑問，つまりメアリーが(\ref{ex:36})の特性のどれを持つかを問う．
+そして，(\ref{ex:37a})は，メアリーが(\ref{ex:36})にあるすべての\textbf{関連する}特性のうち，ビルを夕食に招待したという特性だけを持つという特性を持つことを主張する．
+(\ref{ex:37b})が前提とする疑問は，(\ref{ex:32})と同様に，(\ref{ex:33})である．
+しかし，ここでは，(\ref{ex:37b})の発話が\textbf{関連}せねばならない文脈が異なるため，\textbf{関連する}特性は異なることになる．
+(\ref{ex:37b})は，(\ref{ex:37a})に対する修正の提示を行っていることが明確になっている．
+たとえ修正提示が明確になっていなかったとしても，(\ref{ex:37b})とその直前の発話(\ref{ex:37a})が対処する疑問(\ref{ex:38})との\textbf{関連性}を説明するためには，特に両者が同様の形式を持ちつつも韻律的焦点においては対比的であることを考慮すると，(\ref{ex:37b})は(\ref{ex:37a})の行う主張に対する修正を提示していると想定することになろう．
+修正が一般的にそうであるように，(\ref{ex:37b})において修正者は，修正を受けた対話者が(\ref{ex:37a})において対処したのとは異なる疑問に対処している．これは，(\ref{ex:37a})で別個の韻律パターンが用いられていることに見てとれる．
+しかし，それでも，修正する発話である(\ref{ex:37b})は，修正という行為の何たるかゆえに，事実上，修正された(\ref{ex:37a})が対処する疑問に対して異なる代替的答えを与える．
+修正的な発話が対処する疑問はメタ疑問である．
+ここでは，(\ref{ex:33})は以下と論理的に等価である．
+
+\begin{exe}
+	\ex\label{ex:39} (\ref{ex:36})のすべての特性のうち，メアリーが夕食にその人物を招待したこと以外の特性を持たないのはどの人物か？
+\end{exe}
+
+\noindent
+もちろん，これは(\ref{ex:35})と同じ疑問ではない．
+修正をしている(\ref{ex:37b})は，(\ref{ex:36})のすべての\textbf{関連する}特性のうち，メアリーが夕食にその人を招待するという特性のみを持つような人物はリンであると主張する．
+これは正しい解釈であり，実は(\ref{ex:37a})が対処した疑問である(\ref{ex:38})への完全な答えも与えており，文脈的に\textbf{関連}してもいる．
+
+%p. 44 para 1
+同様の例として，\citet{Partee1991}は韻律的な反映のない埋め込み焦点があると主張した．
+本稿の説明は，表層的反映を持たない抽象的な焦点を想定せずに済むという点で，彼女の主張に対する改良となるだろう．
+\citet{Vallduvi1990}は，類似の例を用いて\citeauthor{Rooth1985}のアプローチの概略に疑念を投げかけたが，焦点との結びつきの効果に関して一般的な説明は提示していない．
+焦点の貢献は，\citealt{Rooth1985}では提示されるものであるとされたのに対し，本稿の枠組みでは前提が関与するものとするが，規約的なものであることに変わりはない．そのため，我々は，古典的な焦点との結びつきの例を説明でき，かつ(\ref{ex:37})のような例も考慮に入れることができる．
+
+%p. 44 para 2
+本稿の説明のもう一つの利点は，主張だけでなく，疑問における焦点との結びつきの効果も説明できるということである．
+(\ref{ex:40})と(\ref{ex:41})を考えたい．
+
+\ori{45}
+\begin{exe}
+	\ex\label{ex:40} Did Mary only invite [Lyn]\textsubscript{F}? （メアリーは[リン]\textsubscript{F}を招待しただけか？）
+\end{exe}
+
+\begin{exe}
+	\ex\label{ex:41} [Did Mary only invite Lyn]\textsubscript{F}? （[メアリーはリンを招待しただけか]\textsubscript{F}？）
+\end{exe}
+
+\noindent
+(\ref{ex:28})により，(\ref{ex:40})は疑問(\ref{ex:42})に対処することが前提とされる．
+
+\begin{exe}
+	\ex\label{ex:42} Who did Mary only invite? （メアリーは誰を招待しただけか？）
+\end{exe}
+
+\noindent
+(\ref{ex:42})が意味する所は，(\ref{ex:40})のための発話の文脈，すなわち，QUDスタックとそのQUDスタックが（部分的に）体現する方略を考慮してのみ得られる．
+一つの可能性は，上で議論した疑問(\ref{ex:35})と同じであるということである．
+その場合，\textbf{関連性}を持ち，それゆえに(\ref{ex:35})/(\ref{ex:42})に対処するためには，(\ref{ex:40})は(\ref{ex:35})に答えるための方略の一部でなければならない．
+しかし，(\ref{ex:35})により設けられる分割はメアリーの特性のうちのある種のものしか\textbf{関連}しないような分割であることをすでに見た．
+%原文 pertain to which ...: whichの指示対象？
+(\ref{ex:35})に対処する方略の一部を形成するには，(\ref{ex:40})に答えることは，(\ref{ex:35})に対して少なくとも部分的な答えを伴立しなければならず，従って，メアリーが\textbf{関連する}特性のうちどれを持つのかという点に関わるものでなければならない．
+これにより，(\ref{ex:32})の場合と同様に，(\ref{ex:40})のonlyについて，正しい領域制限が生じる．
+(\ref{ex:41})は広い焦点を持つため，大疑問のみを前提とする．それに対する答えは，当然，大疑問に答えるための方略の一部になる．%which = the Big Question, its = (41)と理解
+しかし，大疑問はonlyの領域制限に関して何の手がかりも与えない．
+ここでは，追加的な文脈的要因のみが助けになり，そのことは適切であるように思える．
+前の例で見たように，韻律的焦点は常に関連する演算子について意図した領域制限を与えるわけではないのである．
+
+%p. 45 para 1
+最後に，本稿の説明では，意図したonlyの領域の選択は純粋に語用論的なもの，すなわち会話の含意になるということに注目されたい．
+正しい領域が想定された場合にのみ，発話は\textbf{関連する}ものになるのである．
+話し手が協調的であると想定するなら，我々はその領域が意図されていると想定しなければならない．
+領域選択の問題に対するこの種のアプローチは，焦点との結びつきに関する確固たる事実を説明するには弱すぎると異議を唱えられるかもしれない．
+例えば，含意の取り消しはどうなのか，
+この含意的な説明は焦点との結びつきが取り消し可能であると予測しないのか，といった異議である．
+ここではこの点について詳細に論じることはできないが，この異議に対して簡潔に反論したい．
+筆者は\citet{Welker1994}に従い，含意の取り消しは一般に誤解されていると考える．
+具体的な文脈においては，（\citealt{KarttunenPeters1979}の意味での）規約的含意，すなわち前提の取り消しができないように，会話の含意の取り消しもできない．
+含意の取り消しの古典的な事例（例えば，\citealt{Grice1989}の含意に関する論文や\citealt{Levinson1983}の第三章を参照）で起きていることは，話し手が発話の意図した文脈を明らかにすることである．そしてしばしば，特に対処中の疑問および／あるいは探求方略におけるその疑問の役割についての誤解を正すということも起きている．
+そのため，「含意の取り消し」というのは，「意図した文脈の事後での（話し手による）明確化と（聞き手による）改訂」と呼ぶのがより適当だろう．
+%原文 by breeches of---breachesと理解
+\ori{46}
+場合によっては，これは会話能力の崩壊のために必然的に生じるが，実は話し手が意図的に含意を設定し，その後急いで，その含意に対する責任を免れるためにそれが意図したものではない振りをする場合もある（前提でのゴシップの事例に対応する会話の含意の事例）．
+本稿の枠組みでは，取り消しは問題とならない．
+情報構造の理論は，発話の「文脈」が何であるかと，その文脈において発話が\textbf{関連する}ためには何が求められるかの両方を正確なものとし，そのため，予測は明快で曖昧さのないものになる．
+「取り消し」は，ミスコミュニケーションの一種であり，理論内の概念ではない．
+
+%p. 46 para 1
+これは，ここで提案した語用論的分析のような枠組みの提供する方法論的利点を例示するものである．
+ある例の発話の文脈について語ることは一般的であるが，この枠組みと特に疑問との合致という韻律的前提により，我々は必然的に発話の文脈の具体的な側面を見て，それらの側面が発話の解釈に与える直接的影響がどのようなものかについて予測を立てることになる．
+もし，疑問と答えの役割と両者の間の関係がきちんと定義されているInfoStrのようなものを想定すれば，議論下の疑問の決定を通じて，何が\textbf{関連する}のかに関する情報が得られ，領域制限のような解釈の論理的側面に制約がかかる．文脈が解釈に影響を与える方法は今までいささか謎めいていたが，InfoStrの想定により，それが解明され始めるだろう．
+これにより，これらの解釈の語用論的側面に関して反証可能な予測を立てることが可能になり（\citealt{KadmonRoberts1986}も参照），理論の意味論的設計を精緻化する代わりとして，語用論的な説明を用いることが正当化されるだろう．
+焦点との結びつきに関しては，onlyのような演算子の領域は，(\ref{ex:15})，(\ref{ex:25})，(\ref{ex:28})の独立して動機付けられた原理だけを想定し，語用論的に与えられる．
+語彙意味論について追加的想定を行う必要はないし，構造化された命題も必要でないし，焦点と結びついた特別な前方照応的要素を想定して表層構造に注釈を付ける必要もない．
+情報構造が語用論的説明のための一般的な枠組みとして独立して動機付けられている限り，説明に追加のコストはかからないのである．
+
+\pagebreak
+\ori{47}
+%p. 47 para 1
+\subsubsection{対比と代替要素}\label{sec:2.2.2}
+
+\paragraph{対比的主題を伴う発話における焦点の前提}\label{sec:2.2.2.1}
+\ \newline\indent
+\citet{Jackendoff1972}は，単一の発話内における複数の焦点が二つの別個のイントネーション曲線を持ち得るという興味深い現象について議論し，それらを\term{A曲線}{A-contour}，\term{B曲線}{B-contour}と呼んだ．
+\citet{Pierrehumbert1980}とその共同研究者らが展開してきたような高低曲線の分析の用語を使うならば，\citeauthor{Jackendoff1972}の高低曲線はいずれもイントネーション句全体が関与し，
+焦点化された下位構成素へのL+H*\,ピッチアクセント
+\footnote{%
+	これは筆者には単純なH*\,ピッチアクセントのように聞こえることがあるが，\citet{PierrehumbertHirschberg1990}に従い，L+H*\,であると考える．
+}，L--\,句アクセント，そしてそれとは別個の境界音調，すなわちA曲線にはL\%，B曲線にはH\%\,を伴うということになろう．
+（少なくとも母語話者は，以下の疑問／答えの対とそれが答えの韻律にもたらす結果に基づいて，これがどのような音調であるか再現することができるはずである．）
+\citeauthor{Jackendoff1972}はB曲線の句における焦点構成素を\term{独立焦点}{independent focus}，A曲線の句の焦点構成素を\term{依存焦点}{dependent focus}と呼び，これらのアクセントの使用がある種の疑問／答えの対とどのように相関するかを示した．
+加えて，B曲線は一般に単独では使われず，A曲線も存在することが想定される．
+例えば，\citeauthor{Jackendoff1972}の(\ref{ex:43a})と(\ref{ex:43b})を考えたい．
+
+\begin{exe}
+	\ex\label{ex:43}
+  \begin{xlist}
+    \ex\label{ex:43a} [John]\textsubscript{B} ate [beans]\textsubscript{A} %（ジョンは豆を食べた．）
+    \ex\label{ex:43b} [John]\textsubscript{A} ate [beans]\textsubscript{B} %（ジョンが豆は食べた．）
+  \end{xlist}
+\end{exe}
+
+\noindent
+\citealt{PierrehumbertHirschberg1990}における同様の例の分析に沿うと，これらの例は(\ref{ex:44})のように表示されるだろう．
+
+\begin{exe}
+	\ex\label{ex:44}
+  \begin{xlist}
+    \ex\label{ex:44a}
+    \begin{tabular}[t]{r@{ }r}{}[John]\textsubscript{F} & [ate beans]\textsubscript{F}\\ %（ジョンは豆を食べた．）
+    L--H\% & L--L\%\\\end{tabular}
+    \ex\label{ex:44b}
+    \begin{tabular}[t]{r@{ }r}{}[John]\textsubscript{F} & [ate beans]\textsubscript{F}\\ %（ジョンが豆は食べた．）
+    L--L\% & L--H\%\\\end{tabular}
+  \end{xlist}
+\end{exe}
+
+\noindent
+これらはいずれも二つのイントネーション句，すなわち，句アクセント・境界音調の連続で注釈を付けた括弧内の構成素を持ち，それぞれが焦点構成素を含む（(\ref{ex:22})の焦点の音韻論の原理を参照）．
+以下では，筆者は簡潔さのためにAアクセントとBアクセントの表記を用いることがあるが，(\ref{ex:44})のようなものがより正確な転写であると考えている．
+
+%p. 47 para 2
+\citeauthor{Jackendoff1972}は，(\ref{ex:43a})はWhat about John---what did he eat?（ジョンについては？\ddash{}彼は何を食べたの？）のような疑問に答えるのに対し，(\ref{ex:43b})はWhat about beans?---who ate them?（豆については？\ddash{}誰が豆を食べたの？）のような疑問に答えるだろうことを指摘した．
+しかし，疑問／答えの組み合わせを逆にすることはできない．
+(\ref{ex:43a})はWhat about beans?---who ate them?（豆については？\ddash{}誰が豆を食べたの？）に答えることができないのである．
+\ori{48}
+本稿の枠組みでは，これらの高低曲線とその分布を以下のように説明することを提案する．
+この説明は，Nirit Kadmonとの未出版の共同研究に基づく（しかしながら，この説明を展開している本稿の枠組みには彼女は同意しないかもしれない）．
+
+%p. 48 para 1
+イントネーション句形成を考慮しなければ，(\ref{ex:43a})と(\ref{ex:43b})はともに，議論下の疑問が次のようであることを前提とする．
+
+\begin{exe}
+	\ex\label{ex:45} $\{u \text{が} u' \text{を食べた}: u, u' \in D\}$，すなわち，「誰が何を食べた？」
+\end{exe}
+
+\noindent
+しかしながら，直感的には，(\ref{ex:43a})と(\ref{ex:43b})は(\ref{ex:45})に対する直接的な答えではなく，むしろ，異なる下位疑問(\ref{ex:46a})と(\ref{ex:46b})に答えるものである．
+
+\begin{exe}
+	\ex\label{ex:46}
+  \begin{xlist}
+    \ex\label{ex:46a}
+    What did [John]\textsubscript{F} eat?（[ジョン]\textsubscript{F}は何を食べた？）\\
+    cf. What about John---what did he eat?（ジョンについては？\ddash{}彼は何を食べたの？）
+    \ex\label{ex:46b}
+    Who ate [beans]\textsubscript{F}?（誰が[豆]\textsubscript{F}を食べた？）\\
+    cf. What about beans?---who ate them?（豆については？\ddash{}誰が豆を食べたの？）
+  \end{xlist}
+\end{exe}
+
+\noindent
+(\ref{ex:43a})と(\ref{ex:43b})が，(\ref{ex:45})および下位疑問(\ref{ex:46a})または(\ref{ex:46b})のいずれかを前提とすることは，以下のタイプの対話で起こっていることと関係がある．以下の対話では，少なくとも関連した話題については，先行する談話が何もない．
+
+\begin{exe}
+	\ex\label{ex:47}
+  \begin{xlist}
+    \ex\label{ex:47a}
+    [When are you going to China]\textsubscript{F}?（[あなたはいつ中国に行くのですか]\textsubscript{F}？）
+    \ex\label{ex:47b}
+    Well, I'm going to [China]\textsubscript{B} in [April]\textsubscript{A}.（ええと，私は[中国]\textsubscript{B}には[四月]\textsubscript{A}に行きます．）
+  \end{xlist}
+\end{exe}
+
+\noindent
+(\ref{ex:47b})は(\ref{ex:47a})の疑問に答えるが，それ以上のこともしている．
+その韻律的焦点構造により，議論下の疑問が(\ref{ex:47a})ではなく，(\ref{ex:48})の上位疑問であることが前提とされる．
+
+\begin{exe}
+	\ex\label{ex:48}
+  あなたはいつ，どの場所に行きますか？ （When are you going to which place?）\\
+  すなわち，$\{\text{あなたは} t \text{において} u \text{に行く}: u \text{は場所},\, t\text{は時間}\}$
+\end{exe}
+
+\noindent
+代替要素の集合は，演算子の領域がそうであるように，単集合でも空でもないと一般に考えられている．
+そうすると，この疑問は，(\ref{ex:47b})の話し手が訪れる予定の場所が二か所以上あることを含意する．
+もちろん，この文脈では，上位疑問はまだ(\ref{ex:47a})の話し手によって受理されていない．
+しかし，その話し手は好奇心からそれを調節し，(\ref{ex:49})を尋ねるだろう．
+つまり，前提とされる上位疑問への(\ref{ex:47b})の答えを補完するだろう残りの情報について尋ねるのである．
+
+\begin{exe}
+	\ex\label{ex:49}
+  Oh? Where else are you going, and when?（え？あなたは他にどこに，いつ行くのですか？）
+\end{exe}
+
+\noindent
+この場合，探求方略全体は，$\langle(\ref{ex:48}), \{\langle(\text{\ref{ex:47a}}), \emptyset\rangle,\langle(\ref{ex:49}), \emptyset\rangle\}\rangle$であり，上位疑問(\ref{ex:48})は調節されている．
+
+%p. 49 para 1
+\ori{49}
+同様に，(\ref{ex:43})におけるBアクセントにより，上位疑問(\ref{ex:45})が議論下にあり，他にも議論下に(\ref{ex:46a})あるいは(\ref{ex:46b})の形式のいずれかの下位疑問があり，さらに(\ref{ex:43a})は(\ref{ex:46a})にのみ答えられる一方，(\ref{ex:43b})は(\ref{ex:46b})にのみ答えられるということが分かる．
+(\ref{ex:43a})は探求方略$\langle(\ref{ex:45}), \{\langle(\text{\ref{ex:46a}}), \emptyset\rangle\}\rangle$を前提とする一方，(\ref{ex:43b})は方略$\langle(\ref{ex:45}), \{\langle(\text{\ref{ex:46b}}), \emptyset\rangle\}\rangle$を前提とすると言えよう．(\ref{ex:43a})は方略$\langle(\ref{ex:45}), \{\langle(\text{\ref{ex:46b}}),\emptyset\rangle\}\rangle$への返答として不適切な手である一方，(\ref{ex:43b})は$\langle(\ref{ex:45}), \{\langle(\text{\ref{ex:46a}}),\emptyset\rangle\}\rangle$への返答として不適切である．
+もちろん，下位疑問は(\ref{ex:45})と同じく明示的に尋ねられる必要はないが，この理論において前提とされる疑問が持つ意味論的性格と，談話の情報構造の抽象的性質ゆえに，そのことは問題にならない．
+(\ref{ex:43})の例により前提とされる目標と想定は，これらの相関する方略によって正しく捉えられているだろう．
+
+%p. 49 para 2
+これらの事実を捉えるために，AアクセントとBアクセントの名詞句は両方とも焦点であると想定すると，(\ref{ex:45})の疑問が前提とされるようになる．
+これは(\ref{ex:43})の発話に対するF標示から得られる
+\footnote{%
+  \citeauthor{Vallduvi1990}は，対比的主題に\citeauthor{Jackendoff1972}の挙げたような例でのBアクセントの要素を含めているとみられるが，対比的主題が焦点であるとは想定していない．
+  しかし，筆者が見る限り，彼はこの想定ゆえに，ここで議論している類いの事実を説明できなくなっている．
+}．
+それでは，どのようにして(\ref{ex:45})の直近の下位疑問の想定が生じるのだろうか？
+これらの例における二種類のアクセントの重大な違いは，H\%という境界音調（あるいは，一般的にその句＋境界音調が形態的な単位を形成するのであれば，L--H\%という連続）であると思われる．
+B曲線のイントネーション句における(L--)H\%アクセントは，(\ref{ex:45})に対応する抽象への独立した項として，その焦点構成素を標示する．
+それはすなわち，はじめに選ばれる項であり，それが選択されることで，もう一方の，A曲線の焦点に対応する集合からの代替要素の選択が決定される．あるいは，それが選択されることで，少なくとも代替要素の選択の幅が狭められる．（そのため，\citeauthor{Jackendoff1972}は\term{依存焦点}{dependent focus}という用語を用いる）．
+「(L--)H\%」は「答えはまだ途中である\ddash{}埋めなければならない他の焦点がある」ということを意味し，これにより(L--)H\%がなぜ単独では生起しない（が，どこかにA曲線の焦点がある限りにおいて繰り返し生起し得る）のかが説明される．
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{0}
+(\ref{ex:45})の疑問に関連付けられた代替要素の集合の一つからこの独立した項を選ぶと，前提とされる議論下の疑問は，(\ref{ex:50a})あるいは(\ref{ex:50b})のいずれかになる\footnote{訳注：(\ref{ex:50})--(\ref{ex:51})は，原文では動詞がlikesとなっているが，(\ref{ex:45})では動詞はateなので，これは誤植であると考えられる．}．
+
+\begin{exe}
+	\ex\label{ex:50}
+  \begin{xlist}
+    \ex\label{ex:50a}
+    $\{u \text{が} u' \text{を食べた}: u, u' \in D \wedge u =\ \text{ジョン}\}$
+    \ex\label{ex:50b}
+    $\{u \text{が} u' \text{を食べた}: u, u' \in D \wedge u' =\ \text{豆}\}$
+  \end{xlist}
+\end{exe}
+
+\noindent
+しかし，(\ref{ex:50a})は(\ref{ex:46a})の解釈である(\ref{ex:51a})と等価であり，(\ref{ex:50b})は(\ref{ex:46b})の解釈である(\ref{ex:51b})と等価である．
+
+\ori{50}
+\begin{exe}
+	\ex\label{ex:51}
+  \begin{xlist}
+    \ex\label{ex:51a}
+    $\{j \text{が} u' \text{を食べた}: u' \in D, j =\ |\text{ジョン}|\}$
+    \ex\label{ex:51b}
+    $\{u \text{が豆を食べた}: u \in D\}$
+  \end{xlist}
+\end{exe}
+
+\noindent
+そのため，(\ref{ex:43a})と(\ref{ex:43b})は，韻律的焦点が同一の位置に置かれるために，両方とも(\ref{ex:45})を前提とする．
+しかし，L--H\%という境界の連続の位置は，焦点に関わる対比集合からの一連の選択を示すため，韻律的に前提とされる疑問に対する下位疑問を前提とする．
+この境界の連続が(\ref{ex:43a})と(\ref{ex:43b})では異なって位置するため，両者は異なる下位疑問を前提とする．
+(\ref{ex:43a})では，前提とされる疑問(\ref{ex:45})および(\ref{ex:46a})が疑問／下位疑問の方略を形成するということは，(\ref{ex:43a})自体がそのような方略を前提とするということを意味する．
+(\ref{ex:43b})についても同様で，方略$\langle(\ref{ex:45}), \{\langle(\text{\ref{ex:46b}}), \emptyset\rangle\}\rangle$を前提とする．
+従って，本稿の説明では，独立焦点と依存焦点の両方を含む発話は，議論下の疑問だけでなく，場合によっては複雑にもなり得る疑問の方略をも前提とする．
+
+%p. 50 para 1
+もちろん，これがL--H\%という境界の連続がもたらす効果全般に対する妥当な説明であるかどうかは，その生起に関するより多くのデータを見なければ分からないだろう．
+そのため，現時点では，これは(\ref{ex:43})のような例の扱いに対する暫定的な提案でしかあり得ない．
+しかし，Bアクセント句における境界音調の連続は，疑問のイントネーションにおける連続と同じではないことに注意されたい．後者にはH--H\%の句＋境界音調の連続が関与する．
+筆者が略式的に検討したL--H\%を含む他の種類の例においては，L--H\%が行うとされる意味への貢献は，本稿で明白に担うとする役割と少なくとも矛盾はしない．
+
+%p. 50 para 2
+例えば$\langle(\ref{ex:45}), (\text{\ref{ex:46a}}), (\text{\ref{ex:43a}})\rangle$のような，調節を通じて豊かになった談話では，その答え\ddash{}ここでは(\ref{ex:43a})\ddash{}が，直近の議論下の疑問(\ref{ex:46a})と上位疑問(\ref{ex:45})の両方に合致することに注意されたい．
+しかし，全体の方略$\langle(\ref{ex:45}), \{\langle(\text{\ref{ex:46b}}), \emptyset\rangle\}\rangle$が前提とされることは，このことだけからでは分からない．
+恐らく，全体の方略が前提とされることは，Bアクセントの選択と結びついた前提から導かれるものであろう．
+\setcounter{footnote}{0}
+これは，(\ref{ex:28})における焦点の前提の定式化が，英語の文の韻律的焦点\footnote{訳注：原文ではprosodic structure（韻律構造）となっているが，文脈からprosodic focus（韻律的焦点）に変更した．}の前提すべてを捉えるための必要条件ではあるものの，十分条件にはまだなっていないことを示している．
+\renewcommand{\thefootnote}{\arabic{footnote}~}
+\setcounter{footnote}{29}
+\setcounter{exx}{27}
+\begin{exe}
+	\ex \textsf{発話$\boldsymbol{\ast\beta}$における韻律的焦点の前提}\\
+%
+  $\beta$は発話時における議論下の疑問と合致する．
+\end{exe}
+\setcounter{exx}{49}
+\noindent
+完全に妥当な説明をするには，焦点構成素の選択を見るだけでなく，イントネーション句の切り分け方と，選択されたイントネーション句と結びついた句アクセントそして境界音調の種類の両方を見る必要があるだろう．（さらに加えて，選択される具体的なピッチアクセントも見る必要があるはずである．）
+\ori{51}
+韻律構造の複雑さと豊かさは焦点の意味論的・語用論的な研究で見落とされることがあまりにも多く，これによりある種の例で重大な誤分析が生じることがある．
+次節ではそのうちの一つを見る．
+
+%p. 51 para 1
+\paragraph{発話内の対比的焦点}\label{sec:2.2.2.2}
+\ \newline\indent
+しばしば\term{対比的焦点}{contrastive focus}と呼ばれてきたものの例には，本稿の提案する枠組みや原理からごく自然に導かれると思われる類いの例が数多く存在する．
+はじめに，下の(\ref{ex:52})のような文境界（あるいは節境界）を超える例に関わるものを考えたい
+\footnote{%
+  \citet{Rooth1992b}は同様の例を議論している．
+  この種の例はGeorge Lakoffが初めて指摘したとそれとなく聞いたことがあるが，それがどこでなのかは分からない．
+%文法・訳
+  読者の方々から何かしら関連文献に関してご教示いただければ幸いである．
+}．
+
+\setcounter{exx}{51}
+\begin{exe}
+	\ex\label{ex:52} Mary called Sue a Republican, and then [she]\textsubscript{B} insulted [her]\textsubscript{A}. （メアリーはスーを共和党員と呼び，そして [彼女は]\textsubscript{B}[彼女を]\textsubscript{A}侮辱した．）
+\end{exe}
+
+\noindent
+二番目の節におけるsheにはBアクセントがあることに注目されたい．
+
+%p. 51 para 2
+(\ref{ex:52})における二番目の節の意図された解釈を説明するのに，単に(\ref{ex:53})への答えを提示するのだと言うだけでは十分でない．
+
+\begin{exe}
+	\ex\label{ex:53} Who insulted whom?（誰が誰を侮辱した？）
+\end{exe}
+
+\noindent
+これは(\ref{ex:52})が前提をさらにもう二つ持つと思われるからである．
+
+\begin{exe}
+	\ex\label{ex:54}
+  \begin{xlist}
+    \ex\label{ex:54a}
+    一番目の節も侮辱を述べている．
+    \ex\label{ex:54b}
+    侮辱する者と侮辱される者の役割が，二番目の節では一番目の節における役割に対して反転している．
+  \end{xlist}
+\end{exe}
+
+\noindent
+しかし，これらの前提は本節の前の方で概略を述べた韻律的焦点の見地からかなり自然に導かれるため，この種の例がとりわけ対比的焦点の解釈に関してさらなる原理を動機付けることはないと主張したい．
+
+%p. 51 para 3
+まず，(\ref{ex:52})を発話する際，insultedが「アクセント除去」（\citealt{Ladd1980}参照）されていることに注目したい．
+\citet{Selkirk1984}は，当該の韻律的現象に対して\term{アクセント除去}{deaccenting}という用語を用いることに反対している．アクセント除去という用語は，対象となる構成素が当初はアクセントを持っていたものの，後にそのアクセントを失ったということを示唆するためである．
+特にその構成素が動詞である時，それが「通常は」韻律的に卓立していること，まして核強勢を受けるということは明らかでない．
+しかし(\ref{ex:52})では，insultedの発音のされ方は，What happened next?（その後に何が起こった？）に続く発話Mary insulted Sueにおけるinsultedの発音のされ方と比べ，著しく平坦になる．そのような著しい平坦さは，(\ref{ex:52})の二番目の節が，共和党員と呼ばれることが侮辱的であるという含意が意図されずに発話される場合のinsultedの発音のされ方と比べてもなお観察される．
+\ori{52}
+この種のアクセント除去は，(\ref{ex:53})が議論下の疑問である場合にそうなるのと同様に，侮辱の関係が既に議論下にあるということを前提とする．
+筆者は，等位接続構造は一般に，単一の疑問に対する複合的な（部分的）答えとして提示されると主張する．
+これは\ref{sec:1}節の情報構造の理論，とりわけ任意の手は\textbf{関連する}ものであり，ゆえに議論下の疑問に対処するものでなければならないという要件から導かれるだろう
+\footnote{%
+  もちろん，この主張を支持するにはより多くのことを言わなければならないが，そうするとここでは本題からかけ離れてしまうことになるだろう．
+  これは究極的には複合的な節構造が担う修辞的役割に関する問題である．
+  情報構造の理論がどのように修辞と関連するかに関する示唆については\ref{sec:3}節を参照されたい．
+}．
+(\ref{ex:52})の二番目の等位項のinsultedにおける強勢除去は，疑問が(\ref{ex:53})であることを前提とする．
+もし一番目の等位項がこの疑問に対する答えの一部になるとしたら，それも侮辱について述べなければならず，(\ref{ex:54a})の含意が生じる．
+
+%p. 52 para 1
+前提(\ref{ex:54b})が生じるのは，(\ref{ex:54a})が成り立ち，かつ二つの代名詞がMaryとSueを先行詞として取るが，それでいて二番目の節が情報提供の点で有益である唯一の方法が，侮辱する者／侮辱される者の役割の反転であるためである．
+sheのBアクセントにより，その節が(\ref{ex:53})に対処するだけでなく，下位疑問にも対処していることが伝わる．その下位疑問は，sheを文脈上際立っている女性の一人で置き換えた結果生じる二つの疑問，Who (of Mary and Sue) did Mary insult?（［メアリーとスーのうち］メアリーは誰を侮辱したか？）あるいはWho (of Mary and Sue) did Sue insult?（［メアリーとスーのうち］スーは誰を侮辱したか？）のいずれかである．
+しかし，一番目の等位項は既にメアリーがスーを侮辱したことを伝えているため，she insulted her（彼女が彼女を侮辱した）が冗長になることなく対処できる唯一の下位疑問は二番目，つまり，Who (of Mary and Sue) did Sue insult?（［メアリーとスーのうち］スーは誰を侮辱したか？）となる．
+そして，非再帰代名詞の目的語はスーではなく，メアリーを外延とせねばならない
+\footnote{%
+	誰かを共和党員と呼ぶことが侮辱的であるという含意を保ちつつ，スーがスーを侮辱するようにするには，二番目の等位項をand then SHE insulted HERSELF（そして彼女は彼女自身を侮辱した）に置き換えればよい．
+}．
+従って，前提とされる疑問は，答えにおける役割の反転を前提とするように文脈的に制約される．
+NPのペアの間の対比関係に関する特別な規定は必要ない．
+
+%p. 52 para 2
+\citealt{Schwarzschild1994a}からの(\ref{ex:55})のような例についても，同様の説明が可能である．
+
+\begin{exe}
+	\ex\label{ex:55}
+  \begin{xlist}
+    \ex\label{ex:55a}
+    John was a victim of suicide(, but) （ジョンは自殺で亡くなった［が，しかし］）
+    \ex\label{ex:55b}
+    THE MOB killed SAM. （暴徒がサムを殺した．）
+  \end{xlist}
+\end{exe}
+
+\noindent
+(\ref{ex:55b})における動詞のアクセント除去は，当該動詞が議論下の疑問の一部であることを前提とする．
+(\ref{ex:55b})が(\ref{ex:55a})と等位接続されたとしても，あるいは単純に(\ref{ex:55a})の後に続いたとしても，二つの発話の内容と(\ref{ex:55b})に示した韻律により，\ori{53}両方ともWho killed whom?（誰が誰を殺したか？）という同じ疑問への部分的答えであることが示唆される．
+(\ref{ex:55b})においてアクセント除去された述部は，(\ref{ex:re:55c})における述部とはアクセントの実現のされ方が異なることに注目されたい．
+
+\setcounter{exx}{54}
+\begin{exe}
+	\ex\label{ex:re:55}
+  \begin{xlist}
+    \exi{c.}\label{ex:re:55c}
+    The mob poisoned Sam. （暴徒がサムを毒殺した．）
+  \end{xlist}
+\end{exe}
+
+\noindent
+筆者にとっては，(\ref{ex:re:55c}c)が(\ref{ex:55a})に続く時，mob，Sam，poisonedはすべてアクセントを持つ．
+NPはどちらもBアクセント，動詞はAアクセントを持ち，それは議論下の疑問がHow was who killed by whom?（誰が誰によってどのように殺されたか？）であることを示唆していると考えられる．
+$\langle(\text{\ref{ex:55a}}), (\text{\ref{ex:55b}})\rangle$と$\langle(\text{\ref{ex:55a}}), (\text{\ref{ex:re:55c}c})\rangle$の違いは，(\ref{ex:55a})においてジョンが自殺をしたことは，彼自身によってではあるものの，彼が殺されたことを伴立する一方で，毒殺されたことは伴立しないということのようである．
+従って，(\ref{ex:55b})における殺害は\kenten{旧}情報であるのに対し，(\ref{ex:re:55c}c)における毒殺はそうではない．
+
+%p. 53 para 1
+このような例を説明するために\citeauthor{Schwarzschild1994a}が提案する原理は，本稿が提案する理論から導かれる．
+
+\setcounter{exx}{55}
+\begin{exe}
+	\ex\label{ex:56} 対比の制約（\citealt{Schwarzschild1994a}）\\
+%
+  BがAと対比して発話されるならば，
+  \begin{xlist}
+    \ex\label{ex:56a}
+    AはBと意味的に同一ではない．
+    \ex\label{ex:56b}
+    Aの意味は，Bの焦点化された要素を同じ意味タイプの要素と置き換え，その結果生じる表現の意味を計算することで得られる．
+  \end{xlist}
+\end{exe}
+
+\noindent
+しかしながら，この原理は，本稿の説明と一般的なグライスの原理から導かれることを示すことが可能である．
+%% 「plus congruence」の訳--> 単に「および」とした [N]
+意味における非同一性(\ref{ex:56a})は，（できる限り）情報提供の点で有益でなければならないとする\citeauthor{Grice1989}の量の格率1から生じ，置換の条項(\ref{ex:56b})は，これらの例における二つの節が両方とも同じ疑問に対処しているという想定および疑問／答えの合致から生じる．
+
+%p. 53 para 2
+しかし，節内部の対比が関与するタイプの例があり，これは本稿で提案する説明にとって一見すると問題になる．
+\citealt{Rooth1992a}からの以下の例を考えたい．
+
+\begin{exe}
+	\ex\label{ex:57} An [American]\textsubscript{F} farmer was talking to a [Canadian]\textsubscript{F} farmer... （[アメリカ人]\textsubscript{F}の農家が[カナダ人]\textsubscript{F})の農家に話していた……）
+\end{exe}
+
+\noindent
+\citeauthor{Rooth1992a}が転写するように，筆者の説明では(\ref{ex:57})は(\ref{ex:58a})や(\ref{ex:58b})のような議論下の疑問を前提とすると予測される．
+
+\begin{exe}
+	\ex\label{ex:58}
+  \begin{xlist}
+    \ex\label{ex:58a}
+    どのような農家がどのような農家に話していたか？
+    \ex\label{ex:58b}
+    どのような農家たちが（お互いに）話し合っていたか？
+  \end{xlist}
+\end{exe}
+
+\ori{54}
+\noindent
+しかし，どうもこれは完全に正しいようには思えない．
+筆者がこの例について議論した英語の母語話者の言語学者たちは，(\ref{ex:59})は何の前触れもなく発話されても適切となるということに大方同意している．
+
+\begin{exe}
+	\ex\label{ex:59} An AMERICAN farmer was talking to a CANADIAN farmer. （アメリカ人の農家がカナダ人の農家に話していた．）
+\end{exe}
+
+\noindent
+(\ref{ex:59})はかなり粗い印象に基づいた転写であり，発話中で第一アクセントを持つ要素のみしか表記していない．
+もし\citeauthor{Rooth1992a}が(\ref{ex:59})を(\ref{ex:57})として正しく分析していたなら，本稿で提案する韻律的焦点の理論は誤った予測をし，(\ref{ex:59})における対比について何の説明も提示していないことになる．
+対比が節内部であるため，対比された構成素によって単一の議論下の疑問に対する（部分的）答えの代替案が示唆されると主張しても，この対比に対処することはできない．
+
+%p. 54 para 1
+しかし，(\ref{ex:57})が印象に基づいて転写された(\ref{ex:59})の正しい分析であるかどうか疑ってみるだけの理由がある．
+音韻論的原理(\ref{ex:re:22d})（以下に再掲）を思い出されたい．
+
+\setcounter{exx}{21}
+\begin{exe}
+	\ex{焦点の音韻論} \label{ex:re:22}
+	\begin{xlist}
+		\ex 文（あるいは文の断片）である発話一つにつき，少なくとも一つのイントネーション句がある．
+    \ex イントネーション句一つにつき，少なくとも一つの焦点化された下位構成素（真に部分的でなくてもよい）がある．この\term{焦点構成素}{focused constituent}を，以下ではFという素性で標示する．
+    \ex 焦点構成素一つにつき，少なくとも一つのピッチアクセントがあり，それは下位構成素と結びつく．
+    \ex いずれのピッチアクセントも焦点構成素内の要素と結びついていなければならない．
+\label{ex:re:22d}
+    \ex イントネーション句一つにつき，一つの句アクセント（H-あるいはL-）と一つの境界音調（H\%あるいはL\%）がある．
+    \ex 焦点構成素における連なり末尾のピッチアクセントには，イントネーション句中で最も卓立した強勢が付与される（核強勢規則）．
+	\end{xlist}
+\end{exe}
+\setcounter{exx}{59}
+\noindent
+これにより，(\ref{ex:57})/(\ref{ex:59})では二つの形容詞を除くすべての要素がアクセント除去されるはずであると予測される．
+しかし，これが(\ref{ex:59})にとって適切な韻律曲線であるのは，(\ref{ex:58})にある疑問のいずれかに対する答えである時だけであり，何の前触れもなく発話された時は適切でない．
+後者の何の前触れもないタイプの文脈では，一番目の名詞farmerと動詞talkingは，どちらも核強勢は持たないが，アクセントを付される．
+平坦で，アクセント除去された高低曲線にはならない．
+しかし，どのようにすれば(\ref{ex:57})の転写とその転写から生じる，発話の他の要素にはピッチアクセントがないという誤った予測を回避しつつ，同時にAmericanとCanadianが(\ref{ex:59})で主に対比される要素であるという直感を反映させることができるだろうか？
+\ori{55}
+一つの可能性は，下の(\ref{ex:60})に示したものである．
+(\ref{ex:60})では，中間のイントネーション句（\citealt{BeckmanPierrehumbert1986}を参照）は「--」，完全なイントネーション句は「\%」で標示されている．
+英語のToBI転写システムにおいて標準的であるように（\citealt{BeckmanAyers1997}を参照），アスタリスクが付された音調はピッチアクセントであり（統語的構成素と揃う），T--（Tは高[H]あるいは低[L]音調）は句標識（中間句と揃う）であり，T\%は境界音調である（完全なイントネーション句と揃う）．
+
+\begin{exe}
+	\ex\label{ex:60}
+	\begin{tabular}[t]{l@{}l@{}r@{ }l@{ }r@{}r@{ }l@{}l@{}r@{ }l@{}l@{ }r}
+		{}[[ An Am & \multicolumn{2}{@{}l}{erican ]}              & [ & far & mer ]] & [[ was t & alk & ing ] & [ to a Can & adian & farmer ]]\\
+                           & \scriptsize{H*} & \scriptsize{L--} &   & \scriptsize{H*} & \scriptsize{L-L\%} & & \scriptsize{H*} & \scriptsize{L--} & & \scriptsize{H*} & \scriptsize{L-L\%} \\\end{tabular}
+\end{exe}
+
+\noindent
+二つの完全なイントネーション句の存在は，一番目の最後，farmerの後のわずかな休止と延伸，そして下降調の句アクセントと境界音調によって示されている．
+加えて，それぞれの完全なイントネーション句は二つの中間句を含んでおり，その中間句の境界はAmericanとfarmerの間，そしてtalkingとtoの間にある．
+この構造では，それぞれの中間句が焦点化されている（つまり，それぞれが最大限に広い焦点を持っている）と主張できるかもしれない．
+これはピッチアクセントの位置と矛盾せず，最初の三つの中間句では最後の要素，すなわちAmerican，farmer，talkingにピッチアクセントが落ちている．
+(\ref{ex:59})のインフォーマントたちによる実現に矛盾せず，そして\citeauthor{Rooth1992a}の(\ref{ex:57})の実現とは異なり，この連なりにおける唯一のアクセント除去された要素はfarmerの二番目のトークンである．
+このようにアクセントがなくなるのは，\citet{Ladd1980}と\citet{Selkirk1984}が詳細に議論している前方照応的なアクセント除去として説明できるかもしれない．(\ref{ex:59})/(\ref{ex:60})における先行詞は当該名詞の一番目のトークンである．
+従って，アクセント除去された最後の要素は，最後の中間イントネーション句が広い焦点を持つと想定することと矛盾はしない．
+
+%p. 55 para 1
+(\ref{ex:60})の発話は次の疑問と合致するだろう．
+
+\begin{exe}
+	\ex\label{ex:61}
+	誰が何をしていた？% Who was doing what?
+\end{exe}
+
+\noindent
+(\ref{ex:59})の発話がごく一般的な疑問への対処を意味するものであるとすれば，(\ref{ex:61})は，(\ref{ex:58})の疑問とは異なり，(\ref{ex:59})が何の前触れもなく発話されるという直感と整合する．
+
+%p. 55 para 2
+しかし，これが正しかったとして，形容詞に第一アクセントが置かれることについては何が言えるだろうか？
+これは明らかに形容詞の値の間に意図された対比によって動機付けられているように思われる．
+David Dowty（私信）は関連する例を指摘してくれた．この例は，\citet{Horn1985,Horn1989}による先例に発想を得たものである\ori{56}
+\footnote{%
+  \citeauthor{Horn1985}は対比的焦点とメタ言語否定が組み合わさった例を出している．
+  彼は\citet{Bolinger1961}と\citet{Carlson1982}がその類いの先例を指摘していると述べている（\citealt[434--435]{Horn1989}）．
+}．
+
+\begin{exe}
+	\ex\label{ex:62}
+  A PROactive farmer was talking to a REactive farmer. （主体的な農家が受け身的な農家に話していた．）
+\end{exe}
+
+\noindent
+(\ref{ex:62})の例も何の前触れもないような感じで発話されるだろう．
+そのような発話における韻律に関する事実\ddash{}一番目の形容詞の語幹，名詞，動詞へのアクセント除去の欠如\ddash{}は(\ref{ex:59})と同様である．
+これは(\ref{ex:62})の焦点の構造が(\ref{ex:57})の構造よりも，(\ref{ex:60})の構造のようであるということを示唆する．
+実は，この種の例は，焦点が統語的構成素と相関するとみなされる限りにおいて，対比されている接頭辞への狭い焦点を持つと理解することはできそうにない．
+そのような狭い焦点は，どのような議論下の疑問により示すことができるだろうか？What kind of -active farmer was talking to what kind of -active farmer? （どのような-的な農家がどのような-的な農家に話していた？）だろうか？
+reactiveの接頭辞re-は現代英語において生産的でないため，そのような狭い焦点は下位語彙的であるだけでなく，下位形態的にもなるだろうし，このことは確実にそのような疑問が不適切であることと関係がある．
+UNinterestedやDISinterestedのような，他のいくつかの形容詞の対も同様に機能するだろうから，この現象はかなり一般的である．
+
+%p. 56 para 1
+(\ref{ex:60})の分析の下での(\ref{ex:59})のように，(\ref{ex:62})のような例では，対比は，何もなければ広く焦点化される韻律構造の上に覆いかぶさるようである．
+(\ref{ex:60})に関しては，知覚される相対的な強勢がどのような物理的計測値と実際に相関するにせよ，それらの計測値に関して，(\ref{ex:re:22})にある英語の韻律の音韻論の原理はいずれも，複数のイントネーション句や中間イントネーション句の相対的値に影響を与えないことに注意されたい．
+もちろん，実際には，最後の句がこの点において発話中の先の句よりも常に強いわけではないことが分かっている．
+節内の挿入的要素や余談のためにしばしば小声が用いられることを鑑みれば，このことは十分に頷けよう．
+従って，(\ref{ex:60})が示唆すると筆者が考えるのは，複数の中間句の相対的な重さを決めるための仕組みがあり，それは(\ref{ex:re:22})にあるようなイントネーション句の形成やアクセント・焦点の配置のための規則を超えるようなものであるということである．
+
+%p. 56 para 2
+もちろん，(\ref{ex:60})が実際に(\ref{ex:59})の何の前触れもない発話の正しい分析であるかを決めるには，音声学的分析が必要であろうが，筆者はそれに着手する準備はできていない．
+焦点の配置とアクセント除去との関係の仕方やアクセント除去の示唆するところからして，(\ref{ex:57})が正しい分析\kenten{でない}ことは明らかであると考える．
+% 「primary stress」: 上記での「primary accent」と区別している？---よく分からないが，別の単語を使っているので，別の訳語にした[N]
+きっと，そこから得るべき明らかな教訓は，第一強勢や対比の印象よりももっと考慮すべき多くのことがあるため，我々は発話の焦点構造に関して主張する事柄についてより注意深くならなければならないということである．
+加えて，この議論は，韻律の語用論に関する他の重要な問題を提起する．特に問題となるのは，イントネーション句形成の機能で，対比を伝える際に同時に役割を担うと思われる．
+\ori{57}
+このような例においては対比に韻律のメタ言語的な使用が関与するという筆者の疑いは，部分的には，\citeauthor{Horn1985}のメタ言語否定や，いわゆる\term{代替疑問}{alternative questions}において焦点が担う役割から発想を得て，強化されたものである．代替疑問の現象については，これから論じる．
+
+%p. 57 para 1
+\paragraph{yes/no疑問vs.~代替疑問}\label{sec:2.2.2.3}
+\ \newline\indent
+(\ref{ex:63})は，\citeauthor{vonStechow1991}が指摘するように，yes/no疑問の読みと代替疑問の読みの間で曖昧である．
+彼は韻律について議論していないが，これらの読みはそれぞれ(\ref{ex:63a})と(\ref{ex:63b})に大まかに示した異なる実現に対応すると考えられる．
+（ここではピッチアクセントは無視し，句アクセント，焦点，境界音調のみを示す）．
+
+\pagebreak
+\begin{exe}
+	\ex\label{ex:63} Do you want coffee or tea?（あなたはコーヒーかお茶が欲しいですか？／\\
+	\hfill あなたはコーヒーかお茶，どちらが欲しいですか？）
+  \begin{xlist}
+    \ex\label{ex:63a}
+    \begin{tabular}[t]{r@{}l}{}[ Do you want coffee or tea ]\textsubscript{F} & ?\\
+    \scriptsize{H-H\%} & \end{tabular}
+    \ex\label{ex:63b}
+    \begin{tabular}[t]{r@{ }r@{ }l}{}[ Do you want [ coffee ]\textsubscript{F} ] & [ or [ tea ]\textsubscript{F} ] & ?\\
+    \scriptsize{H-H\%} & \scriptsize{L-L\%} & \end{tabular}
+  \end{xlist}
+\end{exe}
+
+\noindent
+これらは，(\ref{ex:64})に示した解釈を持つはずである．
+ただし，coffee $\vee$ teaは$|\,\text{coffee}\,|$と$|\,\text{tea}\,|$の交わりとする．
+
+\begin{exe}
+	\ex\label{ex:64}
+  \begin{xlist}
+    \ex\label{ex:64a}
+    \{you want coffee $\vee$ tea\}
+    \ex\label{ex:64b}
+    \{you want $u$: $u \in$ \{coffee, tea\}\} = \{you want coffee, you want tea\}
+  \end{xlist}
+\end{exe}
+
+\noindent
+(\ref{ex:64a})に示した(\ref{ex:63a})の解釈は何のことなしに得られる．
+単純なyes/no疑問は，文脈集合に対して二つのセル，すなわち，一つは集合(\ref{ex:64a})の単一の命題が真である世界を含むセル，もう一つはそれが偽である世界を含むセルのみを持つ分割を設ける．
+問題は，(\ref{ex:64b})の解釈にどのように至るかである．
+これは等位接続されたDo you want coffee and do you want tea?（あなたはコーヒーが欲しいですか，そして，あなたはお茶が欲しいですか？）が外延とする疑問と同等であることに注目されたい．
+従って，(\ref{ex:64b})に示した(\ref{ex:63})の解釈には，対象言語の選言をメタ言語の連言に転換する，等位構造縮約の意味論版が関与する．
+\citeauthor{vonStechow1991}は，疑問におけるorは一般的に集合の和として振る舞うと提案している．
+orは，内容のレベルでは世界の集合を結合するが，代替的なレベルでは命題の集合を結合する．
+彼の理論では，(\ref{ex:64b})が何のことなしに得られる読みであり，(\ref{ex:64a})は追加的な仕組みによって説明されなければならない（彼は基本的に量化子投入を用いている）．%quantifying in = 不透明文脈内の要素の量化 cf. Quine (1963) https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/modality-and-quantification
+\ori{58}
+この説明は韻律と解釈の相関関係について何も語っていない．
+
+%p. 58 para 1
+筆者は，orは通常（疑問においてであっても）標準的なブール論理の解釈を持つと提案する．そのため，(\ref{ex:63a})/(\ref{ex:64a})は極めて何の変哲もないものである．
+しかし，orは時にメタ言語的な用法を持ち，その機能は独立して焦点化された選言肢により表現される対比的な代替要素を示すことである．
+やはり一般に修正あるいは取り消しを受ける構成素に対する狭い焦点を伴う\citet{Horn1985,Horn1989}のメタ言語否定と比較されたい．
+\citet[379ff]{Horn1989}は，orをはじめとする他の演算子もメタ言語的解釈を持つと論じ，(\ref{ex:65})のような例を提示している．
+
+\begin{exe}
+	\ex\label{ex:65}
+  Is the conductor Bernst[\'i\textsuperscript{\textit{y}}]n or Bernst[\'a\textsuperscript{\textit{y}}]n?\\（指揮者はバーンスティンそれともバーンスタイン？）
+\end{exe}
+
+\noindent
+これは指揮者の名前の発音に関する疑問であるため，明らかにメタ言語的である．
+
+%p. 58 para 2
+筆者は，メタ言語的な使用において，orは\citeauthor{vonStechow1991}が示唆したように機能すると主張したい．すなわち，orは選言肢によって与えられた代替要素の和集合を生み出し，そしてその集合が，問題になっている発話における単一の焦点化された項に対して代替的な値を与える．
+従って，(\ref{ex:63b})は，議論下の疑問がWhat do you want?（あなたは何が欲しい？），$\{\text{you want }u: u \in D\}$であるということを前提とする．
+与えられる具体的な代替要素は，$D$を制限すると考えられる自然類の存在を示唆し，それは少なくともコーヒーとお茶を含まなければならない．
+(\ref{ex:63b})におけるデフォルトの最終句／境界音調の連続はL--L\%であり，これは最終性，
+すなわち，与えられた代替要素が完全な集合であることを示唆する．
+そのため，$\{\text{you want }u: u \in D \text{かつ} u \in \{\text{coffee, tea}\}\}$という疑問に辿り着く．
+これは(\ref{ex:64b})にあるwant(you, coffee)とwant(you, tea)という命題の集合であり，望み通り，二つの等位接続されたyes/no疑問を尋ねることと同等である．
+（選言の排他的な感覚は会話の含意から生じるとする．
+この想定は今では関連文献においてかなり標準的なものである．）
+句末にはH--H\%という連続も可能であり（coffeeを含むイントネーション句の最後に一般に見られるH--H\%のように），これは他の飲み物も存在することを示唆する
+\footnote{%
+	つまり，代替疑問(\ref{ex:64b})は(i)の焦点構造をもって尋ねられることもある．%\ref{ex:fn33:1}, \ref{ex:fn33:2}はうまく行かないので，手打ちにした
+
+  \begin{exe}
+	  \exi{(i)}\label{ex:fn33:1}
+    \begin{tabular}[t]{r@{ }r@{ }l}{}Do you want [ coffee ]\textsubscript{F} & or [ tea ]\textsubscript{F} & ?\\
+    \scriptsize{H-H\%} & \scriptsize{H-H\%} & \end{tabular}
+  \end{exe}
+
+  \noindent
+  (\ref{ex:63b})のように，(i)における韻律は，聞き手が何かを欲しがっているということを含意する．
+  これは，(i)がWhat do you want?という疑問に答えるための方略の一部であることを前提としていることに起因する．
+  (ii)も同様に(\ref{ex:64b})を外延とするが，そのような上位疑問は前提としない．
+
+  \begin{exe}
+  	\exi{(ii)}\label{ex:fn33:2}
+    \begin{tabular}[t]{r@{ }r@{ }l}{}[ Do you want coffee ]\textsubscript{F} & or [ tea ]\textsubscript{F} & ?\\
+    \scriptsize{H-H\%} & \scriptsize{H-H\%} & \end{tabular}
+  \end{exe}
+
+  \noindent
+  (i)と(ii)はどちらも明らかに二つのyes/no疑問を尋ねており，各疑問はH--句アクセントとH\%境界音調で標示されている．
+  もちろん，これらすべてについて，さらなる研究が必要である．
+  関連した議論に関しては，\citealt[302ff]{PierrehumbertHirschberg1990}を参照されたい．
+}．
+メタ言語的選言を用いると，望む結果は等位構造縮約なしに得られ，(\ref{ex:63a})は必要以上に複雑にはならない．
+
+%p. 59 para 1
+\ori{59}
+メタ言語的選言の働きに関するこの見方は，\citeauthor{Horn1989}の(\ref{ex:65})のような例を説明するのにも拡張できそうである．
+我々は確かにIs the conductor Bernst[\'i\textsuperscript{\textit{y}}]n?のような疑問を「彼の名前はこのように発音されるか？」という意味で尋ねるが，本稿の見方では(\ref{ex:65})はそのような疑問二つの連言を外延とすることになろう．
+これは安心感は与えるものの，無論，筆者がここで示唆したことが当該の現象の理論となるということを意味するものではない．
+このような現象が，本節で概略を述べた韻律の前提の理論と矛盾しないと主張したまでである．
+
+\section{情報構造の理論のさらなる適用}\label{sec:3}
+
+%p. 59 para 2
+\ref{sec:1}節および\ref{sec:2}節で概略を示した理論は，特別な前方照応の仕組みや焦点に対する敏感性なしに，\citet{Rooth1992a}が主唱する類いの代替意味論にとって本質的な事柄を捉えているようである．
+さらに，\citet{Rooth1992a,Roberts1995,Calcagno1996}そして\citet{vonFintel2004}が概略を示した線で，自然言語における演算子の領域制限に関して，前提に基づく一般的な理論に到達できる見込みもある．
+しかし，筆者はさらに広い適用が可能であると考える．
+ここでは，様々な問題に関して，この理論と（いろいろな分野からの）語用論の研究の間に見られる関連性のいくつかについて簡潔に概略を述べる．
+それらを繋ぐ糸は計画や意図の概念である．
+恐らく，計画や意図の概念を，談話における目標あるいは議論下の疑問に読み替えることには，筆者がここで言及する研究を行った者の全員が満足するわけではないだろう．そのような読み替えにおいては，情報構造の中で目標は共通基盤に反映された役割を担う．
+しかし，もし我々がそのような読み替えを受け入れるならば，情報構造は語用論の理論の中心的側面となり，数多くの見かけ上異なる問題を統一し，興味深い可能性を切り拓くことになるだろう．
+それら様々な語用論的現象すべての分析は一般的に想定されるよりも豊かな文脈の概念，\ref{sec:1}節で概略を述べた類いのものが必要になるというのが中心的主張である．
+そうすると，問題となる語用論的現象の多くは発話の文脈の構造，すなわち，その情報構造に関する前提として見ることができる．一方，その他の現象は，ある発話のその情報構造に対する適合の仕方に対する制約によって部分的に惹起される推論の生成を伴うことになる．
+\ori{60}
+談話における情報の流れの構成についてより明瞭な概念があれば，それらの前提の分析や，それらの推論のなされ方の決定といったタスクは相当に容易になる．
+
+%p. 60 para 1
+\citet{Thomason1990}は共通基盤，（人工知能のプランニング理論で展開されてきたような）計画および調節は，語用論の理論の中心的な構成要素であるべきだと主張している．
+彼は，対話者の談話の計画，共通基盤にある情報，そして計画の推論が，話し手がグライスの会話の含意を計算する際にいかに重要な役割を担うかについて，概略を示している．
+これは\citeauthor{Grice1989}自身が一貫して含意（そして実際のところ，非自然的な意味そのもの）を話し手の意図に対して相対化していることとかなり一致する
+\footnote{%
+  \citeauthor{Thomason1990}の学生である\citet{McCafferty1987}は会話の含意に対して同様のアプローチを取っていると思うが，筆者は彼の研究をじかには把握していない．
+}．
+さらに，計画と会話の含意はともに調節されて共通基盤に入る．
+本稿の提案は\term{目標}{goal}と\term{計画}{plan}の概念を捉えるために意味論的疑問と探求方略を用いており，ある意味では，\citeauthor{Thomason1990}の語用論理論の見方の拡張とみなせるかもしれない．
+\citet{SperberWilson1986}が詳細に論じているように，グライスのアプローチの現在までの問題として，彼の会話の格率の定義が漠然としたものであること，そしてそのためにその適用可能性に不確定さが生じることがある．
+関係の格率に加え，\citeauthor{Grice1989}は量の格率の両方を「会話の目的」に対して相対化された形で定義した．
+それらの意味や，さらにしばしば引き合いに出されることだが，対立する要件の間のバランスの取り方の決定の問題も，情報構造に基づいた枠組みにおけるそれらの役割を探ることを通じて明らかになると期待するのは，非合理的なことではないだろう．
+\citet{Welker1994}は\citealt{Thomason1990}で概略が示された基本的な発想を取り上げ，共通基盤における計画の理論を展開している．そこでは会話の含意が，文脈情報（対話者たちの計画に関する既に利用可能な情報も含む）と発話そのものの内容に対して，計画推論規則を適用することによって生成されるとしている．
+そして，他の文脈的伴立と同様に，含意は調節されて共通基盤に入る．
+彼女のアプローチは，あまり体系的でないアプローチでは概して見落とされているいくつかの含意のタイプについて探究し，会話の含意と他の類いの文脈的伴立との密接な関係を明らかにしている．
+\citeauthor{Thomason1990}や\citeauthor{Welker1994}の研究に鑑み，筆者は，談話の計画を探求方略の観点から特徴付け，本稿では焦点がその動機となっている構造と同じ構造を会話の含意の生成において用いることができると推察する．
+\ori{61}
+\citet{Roberts1996c}はこれがどのようになされるかについて，最初の概略を示したものである．
+
+%p. 61 para 1
+プランニング理論（\citealt{Perrault1990}とその中の参考文献を参照）の枠組みで研究する者たちの一部は，談話における様々な種類の発話行為の特徴を説明したり動機付けたりする際に，プランニング理論が有用であることを認識している．その特徴とは，この理論を用いなければ単に規定されるのみであったり，原始的であると主張されているものである．
+これらの理論では，\citet{Searle1969}などが提唱するのとは違い，発話行為のタイプは発話の規約的内容の一部である必要はなく，話し手がどの発話行為を意図したかに関する結論を導くのに計画推論の仕組みが用いられる．
+本稿の理論の観点では，これは発話行為の情報（それは脅しか，約束か，主張か，警告か？）が，部分的にはある発話とその発話が役割を担う探求方略との関係から，また部分的にはその探求方略とその探求方略が寄与する領域の計画との関係から推論可能であることを示唆する．
+
+%p. 61 para 2
+談話の一貫性と談話の分割，そして照応と推論における後者の役割については多くの研究があり，それらは本稿で展開してきた見方と関連し得ると考えられる．
+一つの例として，彼らが談話の意図構造と呼ぶものの談話分割同定のための使用に関する\citet{GroszSidner1986}の研究があるが，彼らの主張では，談話の分割はさらに談話における照応の可能性に関して制約をかける役割を担う．
+\citet{SperberWilson1986}は，グライスの会話の格率を合理的行動の原理と人間の認知的処理の限界についての事実から派生する伴立に還元しようと試みている\footnote{%
+  \citeauthor{SperberWilson1986}はグライスの格率すべてを\textbf{関連性}という単一の格率に還元することも試みている．
+  しかし，筆者には彼らの議論のこの側面はそれほど成功しているとは思われない．
+}．
+認知的処理に関する事実からは，\textbf{関連性}のような一貫性の制約が生じ（彼らはこれに上述の(\ref{ex:15})とはかなり異なる定義を与えている），合理的行動の原理からは，自分の目的を達成するための合理的方略の発達が生じる．
+彼らは，\textbf{関連性}が共通基盤にはあるものの，目下の問題には関係ないような情報へのアクセスを限定することによって，談話における推論のための領域を制限する役割をいかに担うかについて論じてもいる．
+後者の関係性は特に有望で，我々が展開する方略が，共通基盤に基づき，我々がアクセス可能な情報から行う可能性のある推論の種類を制限することを示唆する．
+
+%p. 61 para 2
+もう一つ必要なのは，情報構造に基づいて，主題と主題化（統語的な前置）の理論を発展させることであろう．
+\ref{sec:2.2.2}節での議論は情報構造の観点から対比的主題の機能にアプローチする方法を示唆しており，これは\citet{Buring1999}のものと関連するアプローチである．
+しかし，主題は，たとえ主題化されたとしても，\ori{62}すべてが必ず対比的であるわけではない．
+例えば，\citet{Jackendoff1972}のBアクセントを持たないこともある（主題化された構成素で対比的でないものの多くの例については\citet{Ward1985}を参照）．
+さらに，大多数の研究者が定義する主題は必ずしもすべて前置されているわけではないため，主題であることの機能と主題化の機能には，恐らく関連してはいるであろうが，独立した説明を与えることが望ましいだろう．
+筆者が知る限りでは，主題であることに対しても主題化に対しても一連の必要十分条件を提案した者はまだおらず，主題であることがどのような概念なのか，主題化の機能的役割はどのようなものか，両者の関係性はどのようなものかは完全には明らかでない．
+%大文字のTopicは「トピック」にしたほうが良いかも？---太字にした
+さらに悪いことには，\textbf{主題}あるいは\citet{Vallduvi1993}のリンクのような普遍的な機能があるのか，主題化／前置の統一的な語用論的機能があるのかということに関してさえも懐疑的になる理由があると思われる．
+英語のような言語には，対比的主題を除いて，主題やリンクであることを一貫して規約的に示すものは存在しないのである．
+英語の前置には複数の機能があるという示唆については\citealt{CulicoverRochemont1983}を，「主題」の意味する所を定義する上での問題に関する議論については\citet{McNally1998}を参照されたい．
+焦点前置も焦点の理論に含まれるが，もちろん，それだけでは焦点が前置されることを説明できないだろう．
+主題と主題化の理論の発展に対する本稿の理論の有用性に関して見込みがあることとして，\citet{Ward1985}が主題化によって前提とされるとする際立ちのある半順序集合の文脈的な出所が説明できる可能性がある（ただし，彼はなぜ主題化がそのような半順序集合を前提とするのかということや，一般的な事例においてそれがどのように導入されるのかということは説明していない）\footnote{%
+\citealt{Ward1985}におけるこの提案は，尺度含意も際立ちのある半順序集合を必要とするという\citealt{Hirschberg1985}における想定と密接に関連している．この要件は，\citealt{Rooth1992a}が指摘する含意と韻律的焦点の関係の下では，本稿のアプローチでも生じるはずである．
+}．
+事前調査によれば実際にそのようであるのだが，もし主題化された構成素が韻律的に焦点化されるならば，これらの半順序集合はそれら構成素の対応する代替要素の集合であり，それらの構文が起こる探求方略や何が\textbf{関連する}のかを決める共通基盤を調べることで，それらの半順序集合を引き出すことができると予期されよう．
+
+%p. 62 para 1
+近年，\citet{MannThompson1987}の研究に従い，談話の構造化のために修辞関係を利用することに多くの関心が集まってきている．
+（どこにおいてかは定かでないが）アリストテレスは論理学が修辞の科学の基礎であると主張していたと思う．
+%with
+一連の談話に対する修辞関係のタイプは方略のタイプとして特徴付けられ，これは，修辞構造と本稿で立てた情報構造との関係を探究する上で興味深い出発点となるだろう．
+%at least
+\ori{63}
+修辞関係は普通，少なくとも，疑問と答えの観点から特徴付けられる．
+例えば，「なぜ」の疑問文とそれに対する答えを用いて，説明の修辞関係を特徴付けるなどである．
+しかし，これらの関係は普通，もう一つの点において，目標あるいは議論下の疑問に寄与するのではないかと思われる．
+談話の目標としては，より多くの情報を提示することはその一部に過ぎず，加えて，与えられた情報の価値について合意を形成することが別の一部としてある．
+そのため，修辞構造には主として，提示された情報に共通基盤に加えるだけの価値があるということを聞き手に納得させることを意図するものがある．例えば，その情報が他の既知の事実からどのように生じるかとか，その情報により他の既知の事実がどのように説明されるかとかということを示すことによってである．
+このようなことを研究するにより，情報構造や，とりわけ議論下の疑問に対処するとはどういうことかという点について，緻密な理解に繋がるだろう．
+
+%p. 63 para 1
+最後に，もしこれらすべての関係を築くことができるならば，このアプローチの利点の一つは，百科事典的な意味ネットワークと，事実対デフォルトの想定あるいは明示的に導入された情報対含意されるに過ぎない情報といった，ある種の二元的区分の他に，談話における情報に対しては原始的な構造を一つ設けるだけでよいということである
+\footnote{%
+	Louise McNally（私信）は，\term{図と地の関係}{figure/ground relation}とも呼ばれる類いの情報の関係は情報構造には含まれないだろうと指摘した．それは，フレーム副詞の使用，等位接続する節と従属する節の区別などに時折反映されているような関係である．
+  筆者はこの関係も前提が関与するとみなせるのではないかと思うが，関与する前提の種類が韻律的焦点に関わるものとは興味深い点で異なるのかもしれない．
+}．
+このような望みが本論文の副題「語用論の統合形式理論をめざして」の基にはある．
+もし語用論的な説明が理論的に信頼のおけるものになろうものなら，それは十分に明示的であるために修正・棄却が容易にでき，守備範囲が十分に広いために様々な種類の語用論的とされる現象の間の関係について何かしら述べられるような語用論の理論に基づいた形で述べられなければならない．
+%noteの訳
+\ref{sec:1}節の理論はそのような明示性を目指しており，本節に手短に記した事柄にはその潜在的な守備範囲の広さを示唆することが意図されている．
+本稿の提案する焦点の分析への適用は，そのような理論が意味論の理論から，そして究極的には統語論の理論からもだろうが，いかにその負荷のいくらかを取り除くことができるかを示唆することを意図しており，それは経験的により優れた説明を与える一方で，全体としてより単純な解釈の理論に繋がる．
+語用論的な説明を提示することを称するいかなる理論も，ある特定の言語的現象それのみに対処するための主張だけに基づかず，そのような包括的な要件を基準にして評価されるべきである．
+
+\ori{64}
+
+\currentpdfbookmark{参考文献}{参考文献}
+%\bibliography{References}
+%unified.bstが整形してくれるが，日本語を中心に適宜修正が必要．
+
+\begin{thebibliography}{74}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{#1}
+\providecommand{\urlprefix}{}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: \discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi: \discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem[{Ba\"{u}erle et~al.(1979)Ba\"{u}erle, Egli \& von
+  Stechow}]{BauerleEgliVonStechow1979}
+Ba\"{u}erle, Rainer, Urs Egli \& Arnim von Stechow (eds.). 1979.
+\newblock \emph{Semantics from different points of view} (Springer
+Series in Language and Communication 6).
+\newblock Berlin, Germany: Springer-Verlag.
+
+\bibitem[{Beckman \& Ayers(1997)}]{BeckmanAyers1997}
+Beckman, Mary E. \& Gayle Ayers. 1997.
+\newblock Guidelines for {ToBI} labelling. version 3.0.
+\newblock
+  \urlprefix\url{http://www.ling.ohio-state.edu/~tobi/ame_tobi/labelling_guide_v3.pdf}.
+
+\bibitem[{Beckman \& Pierrehumbert(1986)}]{BeckmanPierrehumbert1986}
+Beckman, Mary E. \& Janet B.~Pierrehumbert. 1986.
+\newblock Intonational structure in {J}apanese and {E}nglish.
+\newblock \emph{Phonology Yearbook} 3. 255--309.
+\newblock \urlprefix\url{http://www.jstor.org/stable/4615401}.
+
+\bibitem[{Bolinger(1961)}]{Bolinger1961}
+Bolinger, Dwight. 1961.
+\newblock Contrastive accent and contrastive stress.
+\newblock \emph{Language} 37(1). 83--96.
+\newblock \doi{10.2307/411252}.
+
+\bibitem[{B{\"u}ring(1999)}]{Buring1999}
+B{\"u}ring, Daniel. 1999.
+\newblock Topic.
+\newblock In Peter Bosch \& Rob van~der Sandt (eds.), \emph{Focus: linguistic,
+  cognitive, and computational perspectives} (Studies in Natural Language
+  Processing), 142--165. Cambridge, UK: Cambridge University Press.
+
+\bibitem[{Calcagno(1996)}]{Calcagno1996}
+Calcagno, Mike. 1996.
+\newblock Presupposition, congruence, and adverbs of quantification.
+\newblock In Jae-Hak Yoon \& Andreas Kathol (eds.), \emph{Papers in semantics}
+  (Working Papers in Linguistics 49), The Ohio State University.
+\newblock
+  \urlprefix\url{https://linguistics.osu.edu/files/linguistics/workingpapers/osu_wpl_49.pdf}.
+
+\bibitem[{Carlson(1982)}]{Carlson1982}
+Carlson, Lauri. 1982.
+\newblock \emph{Dialogue games: an approach to discourse analysis} (Synthese
+  Language Library 17).
+\newblock Dordrecht, The Netherlands: D.~Reidel.
+
+\bibitem[{Culicover \& Rochemont(1983)}]{CulicoverRochemont1983}
+Culicover, Peter W. \& Michael Rochemont. 1983.
+\newblock Stress and focus in {E}nglish.
+\newblock \emph{Language} 59(1). 123--165.
+\newblock \doi{10.2307/414063}.
+
+\bibitem[{von Fintel(1994)}]{vonFintel1994}
+von Fintel, Kai. 1994.
+\newblock \emph{Restrictions on quantifier domains}.
+\newblock Amherst, MA: University of Massachusetts Amherst 博士論文.
+\newblock
+  \urlprefix\url{http://www.semanticsarchive.net/Archive/jA3N2IwN/fintel-1994-thesis.pdf}.
+
+\bibitem[{von Fintel(2004)}]{vonFintel2004}
+von Fintel, Kai. 2004.
+\newblock A minimal theory of adverbial quantification.
+\newblock In Hans Kamp \& Barbara H.~Partee (eds.), \emph{Context-dependence in
+  the analysis of linguistic meaning} (Current Research in the
+  Semantics/Pragmatics Interface 11), 137--175. Amsterdam, The Netherlands:
+  Elsevier.
+
+\bibitem[{Ginzburg(1994)}]{Ginzburg1994}
+Ginzburg, Jonathan. 1994.
+\newblock An update semantics for dialogue.
+\newblock In \emph{First {I}nternational {W}orkshop on {C}omputational
+  {S}emantics ({IWCS} 1)}, 111--120.
+
+\bibitem[{Ginzburg(1995{\natexlab{a}})}]{Ginzburg1995a}
+Ginzburg, Jonathan. 1995{\natexlab{a}}.
+\newblock Resolving questions, {I}.
+\newblock \emph{Linguistics and Philosophy} 18(5). 459--527.
+\newblock \doi{10.1007/bf00985365}.
+
+\bibitem[{Ginzburg(1995{\natexlab{b}})}]{Ginzburg1995b}
+Ginzburg, Jonathan. 1995{\natexlab{b}}.
+\newblock Resolving questions, {II}.
+\newblock \emph{Linguistics and Philosophy} 18(6). 567--609.
+\newblock \doi{10.1007/bf00983299}.
+
+\ori{65}
+
+\bibitem[{Ginzburg(1996)}]{Ginzburg1996}
+Ginzburg, Jonathan. 1996.
+\newblock Dynamics and the semantics of dialogue.
+\newblock In Jerry Seligman \& Dag Westerst\r{a}hl (eds.), \emph{Logic,
+  language and computation, vol.~1}, ({CSLI} Lecture Notes 58), 221--237.
+  Stanford, CA: Center for the Study of Language \&\ Information {CSLI},
+  Stanford University.
+
+\bibitem[{Grice(1989)}]{Grice1989}
+Grice, Herbert~Paul. 1989.
+\newblock \emph{Studies in the way of words}.
+\newblock Cambridge, MA: Harvard University Press.
+
+\bibitem[{Groenendijk \& Stokhof(1984)}]{GroenendijkStokhof1984}
+Groenendijk, Jeroen \& Martin Stokhof. 1984.
+\newblock \emph{Studies on the semantics of questions and the pragmatics of
+answers}. Amsterdam, The Netherlands: Institute for Logic, Language \&\ Computation (ILLC), University of
+Amsterdam 博士論文.
+\newblock \urlprefix\url{http://dare.uval.nl/record/123669}.
+
+\bibitem[{Grosz \& Sidner(1986)}]{GroszSidner1986}
+	Grosz, Barbara~J. \& Candace L.~Sidner. 1986.
+\newblock Attention, intentions, and the structure of discourse.
+\newblock \emph{Computational Linguistics} 12(3). 175--204.
+\newblock
+  \urlprefix\url{http://www.aclweb.org/anthology-new/J/J86/J86-3001.pdf}.
+
+\bibitem[{Halliday(1967)}]{Halliday1967}
+Halliday, Michael Alexander~Kirkwood. 1967.
+\newblock Notes on transitivity and theme in {E}nglish: part 2.
+\newblock \emph{Journal of Linguistics} 3(2). 199--244.
+\newblock \doi{10.1017/S0022226700016613}.
+
+\bibitem[{Hamblin(1973)}]{Hamblin1973}
+Hamblin, Charles~Leonard. 1973.
+\newblock Questions in {M}ontague {E}nglish.
+\newblock \emph{Foundations of Language: International Journal of Language and
+  Philosophy} 10(1). 41--53.
+\newblock \citet[247--259]{Partee1976}として再掲.
+
+\bibitem[{Heim(1982)}]{Heim1982}
+Heim, Irene. 1982.
+\newblock \emph{The semantics of definite and indefinite noun phrases}.
+\newblock Amherst, MA: University of Massachusetts Amherst 博士論文.
+\newblock \urlprefix\url{http://semanticsarchive.net/Archive/jA2YTJmN/}.
+
+\bibitem[{Heim(1983)}]{Heim1983}
+Heim, Irene. 1983.
+\newblock On the projection problem for presuppositions.
+\newblock \emph{Second West Coast Conference on Formal Linguistics (WCCFL
+  2)}. 114--125.
+
+\bibitem[{Heim(1992)}]{Heim1992}
+Heim, Irene. 1992.
+\newblock Presupposition projection and the semantics of attitude verbs.
+\newblock \emph{Journal of Semantics} 9(3). 183--221.
+\newblock \doi{10.1093/jos/9.3.183}.
+
+\bibitem[{Higginbotham(1996)}]{Higginbotham1996}
+Higginbotham, James. 1996.
+\newblock The semantics of questions.
+\newblock In Shalon Lappin (ed.), \emph{The handbook of contemporary semantic
+  theory}, 361--383. Oxford, UK: Blackwell.
+
+\bibitem[{Hintikka(1972)}]{Hintikka1972}
+Hintikka, Jaakko. 1972.
+\newblock \emph{Logic, language-games and information: {K}antian themes in the
+  philosophy of logic}.
+\newblock Oxford, UK: Oxford University Press.
+
+\bibitem[{Hintikka(1981)}]{Hintikka1981}
+Hintikka, Jaakko. 1981.
+\newblock On the logic of an interrogative model of scientific inquiry.
+\newblock \emph{Synthese} 47(1). 69--83.
+\newblock \doi{10.1007/bf01064266}.
+
+\bibitem[{Hintikka \& Saarinen(1979)}]{HintikkaSaarinen1979}
+Hintikka, Jaakko \& Esa Saarinen. 1979.
+\newblock Information-seeking dialogues: some of their logical properties.
+\newblock \emph{Studia Logica: An International Journal for Symbolic Logic} 38(4). 355--363.
+\newblock \doi{10.1007/bf00370473}.
+
+\ori{66}
+
+\bibitem[{Hirschberg(1985)}]{Hirschberg1985}
+Hirschberg, Julia. 1985.
+\newblock \emph{A theory of scalar implicature}.
+\newblock Philadelphia, PA: University of Pennsylvania 博士論文.
+\newblock
+  \urlprefix\url{http://repository.upenn.edu/desssertations/AAI8603648}.
+
+\bibitem[{Horn(1985)}]{Horn1985}
+Horn, Laurence R. 1985.
+\newblock Metalinguistic negation and pragmatic ambiguity.
+\newblock \emph{Language} 61(1). 121--174.
+\newblock \doi{10.2307/413423}.
+
+\bibitem[{Horn(1989)}]{Horn1989}
+Horn, Laurence R. 1989.
+\newblock \emph{A natural history of negation}.
+\newblock Stanford, CA: Center for the Study of Language \& Information (CSLI),
+  Stanford University.
+
+\bibitem[{Jackendoff(1972)}]{Jackendoff1972}
+Jackendoff, Ray. 1972.
+\newblock \emph{Semantic interpretation in generative grammar} (Current Studies
+  in Linguistics 2).
+\newblock Cambridge, MA: The MIT Press.
+
+\bibitem[{Jacobson(1995)}]{Jacobson1995}
+Jacobson, Pauline. 1995.
+\newblock On the quantificational force of {E}nglish free relatives.
+\newblock In Emmon Bach, Eloise Jelinek, Angelika Kratzer \& Barbara H.~Partee
+  (eds.), \emph{Quantification in natural languages}, vol.~2 (Studies in
+  Linguistics and Philosophy 54), 451--486. Dordrecht, The Netherlands: Kluwer
+  Academic Publishers.
+
+\bibitem[{Kadmon(2001)}]{Kadmon2001}
+Kadmon, Nirit. 2001.
+\newblock \emph{Formal pragmatics: semantics, pragmatics, presupposition, and
+  focus}.
+\newblock Oxford, UK: Blackwell.
+
+\bibitem[{Kadmon \& Roberts(1986)}]{KadmonRoberts1986}
+Kadmon, Nirit \& Craige Roberts. 1986.
+\newblock Prosody and scope: the role of discourse structure.
+\newblock In Peter T.~Farley, Ann M.~Farley \& Karl-Erik McCullough (eds.),
+\emph{Chicago {L}inguistics {S}ociety (CLS) 22(2): papers from the parasession
+  on pragmatics and grammatical theory}, 16--28. Chicago, IL: University of
+  Chicago.
+
+\bibitem[{Karttunen(1973)}]{Karttunen1973}
+Karttunen, Lauri. 1973.
+\newblock Presuppositions of compound sentences.
+\newblock \emph{Linguistic Inquiry} 4(2). 169--193.
+\newblock \urlprefix\url{http://www.jstor.org/stable/4177763}.
+
+\bibitem[{Karttunen \& Peters(1979)}]{KarttunenPeters1979}
+Karttunen, Lauri \& Stanley Peters. 1979.
+\newblock Conventional implicature.
+\newblock In \emph{Syntax and semantics Volume 11: Presupposition}, 1--56.
+
+\bibitem[{Krifka(1992)}]{Krifka1992}
+Krifka, Manfred. 1992.
+\newblock A compositional semantics for multiple focus constructions.
+\newblock \emph{Semantics and Linguistic Theory (SALT) I} (10), 127--158.
+\newblock
+  \urlprefix\url{http://elanguage.net/journals/salt/article/view/1.127/1558}.
+
+\bibitem[{Ladd(1980)}]{Ladd1980}
+	Ladd, D.~ Robert, Jr. 1980.
+\newblock \emph{The structure of intonational meaning: evidence from
+  {E}nglish}.
+\newblock Bloomington, IN: Indiana University Press.
+
+\bibitem[{Levinson(1983)}]{Levinson1983}
+Levinson, Stephen C. 1983.
+\newblock \emph{Pragmatics} (Cambridge Textbooks in Linguistics).
+\newblock Cambridge, UK: Cambridge University Press.
+
+\bibitem[{Lewis(1969)}]{Lewis1969}
+Lewis, David. 1969.
+\newblock \emph{Convention: a philosophical study}.
+\newblock Cambridge, MA: Harvard University Press.
+
+\bibitem[{Lewis(1979)}]{Lewis1979}
+Lewis, David. 1979.
+\newblock Scorekeeping in a language game.
+\newblock \emph{Journal of Philosophical Logic} 8(1). 339--359.
+\newblock \doi{10.1007/BF00258436}.
+\newblock \citet[172--187]{BauerleEgliVonStechow1979}として再掲.
+
+\ori{67}
+
+\bibitem[{Liberman \& Pierrehumbert(1984)}]{LibermanPierrehumbert1984}
+Liberman, Mark \& Janet Pierrehumbert. 1984.
+\newblock Intonational invariance under changes in pitch range and length.
+\newblock In Mark Aronoff, Richard Oehrle, Frances Kelly \& Bonnie Wilker
+  Stephens (eds.), \emph{Language sound structure}, 157--233. Cambridge, MA:
+  The MIT Press.
+
+\pagebreak
+\bibitem[{Mann \& Thompson(1987)}]{MannThompson1987}
+Mann, William C. \& Sandra A.~Thompson. 1987.
+\newblock \emph{Rhetorical structure theory: a theory of text organization}
+  (Information Science Institute Research Report 87--190).
+\newblock Marina del Rey, CA: Information Sciences Institute.
+
+\bibitem[{McCafferty(1987)}]{McCafferty1987}
+McCafferty, Andrew S. 1987.
+\newblock \emph{Reasoning about implicature: a plan-based approach}.
+\newblock Pittsburgh, PA: University of Pittsburgh 博士論文.
+
+\bibitem[{McNally(1998)}]{McNally1998}
+McNally, Louise. 1998.
+\newblock On recent formal analyses of topic.
+\newblock In \emph{The Tbilisi Symposium on Language, Logic, and Computation:
+Selected Papers} (14). 147--160.
+\newblock
+  \urlprefix\url{http://www.upf.edu/pdi/louise-mcnally/_pdf/publications/tbilisi.pdf}.
+
+\bibitem[{Partee(1976)}]{Partee1976}
+Partee, Barbara H. (ed.). 1976.
+\newblock \emph{Montague {G}rammar}.
+\newblock New York, NY: Academic Press.
+
+\bibitem[{Partee(1991)}]{Partee1991}
+Partee, Barbara H. 1991.
+\newblock Topic, focus, and quantification.
+\newblock \emph{Semantics and Linguistic Theory (SALT) I} (10), 159--188.
+\newblock
+  \urlprefix\url{http://elanguage.net/journals/index.php/salt/article/view/1.159/1557}.
+
+\bibitem[{Perrault(1990)}]{Perrault1990}
+Perrault, Raymond C. 1990.
+\newblock An application of default logic to speech act theory.
+\newblock In Cohen R.~Philip, Jerry Morgan \& Martha E.~Pollack (eds.),
+  \emph{Intentions in communication} (System Development Foundation Benchmark
+  Series), 161--185. Cambridge, MA: A Bradford Book, The MIT Press.
+
+\bibitem[{Pierrehumbert(1980)}]{Pierrehumbert1980}
+Pierrehumbert, Janet. 1980.
+\newblock \emph{The phonology and phonetics of {E}nglish intonation}.
+\newblock Cambridge, MA: Massachusetts Institute of Technology 博士論文.
+\newblock \urlprefix\url{http://dspace.mit.edu/handle/1721.1/16065}.
+
+\bibitem[{Pierrehumbert \& Hirschberg(1990)}]{PierrehumbertHirschberg1990}
+Pierrehumbert, Janet \& Julia Hirschberg. 1990.
+\newblock The meaning of intonational contours in the interpretation of
+  discourse.
+\newblock In Cohen R.~Philip, Jerry Morgan \& Martha E.~Pollack (eds.),
+  \emph{Intentions in communication} (System Development Foundation Benchmark
+  Series), 271--311. Cambridge, MA: A Bradford Book, The MIT Press.
+
+\bibitem[{Roberts(1995)}]{Roberts1995}
+Roberts, Craige. 1995.
+\newblock Domain restriction in dynamic semantics.
+\newblock In Emmon Bach, Eloise Jelinek, Angelika Kratzer \& Barbara H.~Partee
+  (eds.), \emph{Quantification in natural languages}, vol.~2 (Studies in
+  Linguistics and Philosophy 54), 661--700. Dordrecht, The Netherlands: Kluwer
+  Academic Publishers.
+
+\bibitem[{Roberts(1996{\natexlab{a}})}]{Roberts1996a}
+Roberts, Craige. 1996{\natexlab{a}}.
+\newblock Anaphora in intensional contexts.
+\newblock In Shalom Lappin (ed.), \emph{Handbook of contemporary semantic
+  theory}, 215--246. Oxford, UK: Blackwell.
+
+\bibitem[{Roberts(1996{\natexlab{b}})}]{Roberts1996b}
+Roberts, Craige. 1996{\natexlab{b}}.
+\newblock Information structure in discourse: towards an integrated formal
+  theory of pragmatics.
+  \newblock In Jae-Hak Yoon \& Andreas Kathol (eds.), \ori{68} \emph{Papers in semantics}
+  (Working Papers in Linguistics 49). The Ohio State University.
+\newblock
+  \urlprefix\url{htt://linguistics.osu.edu/files/linguistics/workingpapers/osu_wpl_49.pdf}.
+
+\bibitem[{Roberts(1996{\natexlab{c}})}]{Roberts1996c}
+Roberts, Craige. 1996{\natexlab{c}}.
+\newblock Information structure, plans, and implicature.
+\newblock Paper presented at the Association for the Advancement of Artificial
+  Intelligence (AAAI) Spring Symposium on Computational Implicature:
+  Computational Approaches to Interpreting and Generating Conversational
+  Implicature. Standford, CA: Stanford University.
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{0}
+\bibitem[{Roberts(forthcoming)}]{RobertsForthcoming}
+Roberts, Craige. 準備中.
+\newblock The information structure of discourse.
+\newblock The Ohio State University.
+\footnote{訳注：この文献がその後出版されたのかは不明．}
+
+\bibitem[{Rochemont \& Culicover(1990)}]{RochemontCulicover1990}
+Rochemont, Michael S. \& Peter W.~Culicover. 1990.
+\newblock \emph{English focus constructions and the theory of grammar}
+  (Cambridge Studies in Linguistics 52).
+\newblock Cambridge, UK: Cambridge University Press.
+
+\bibitem[{Rooth(1985)}]{Rooth1985}
+Rooth, Mats. 1985.
+\newblock \emph{Association with focus}.
+\newblock Amherst, MA: University of Massachusetts Amherst 博士論文.
+\newblock
+  \urlprefix\url{http://scholarworks.umass.edu/dissertations/AAI8509599}.
+
+\bibitem[{Rooth(1992{\natexlab{a}})}]{Rooth1992a}
+Rooth, Mats. 1992{\natexlab{a}}.
+\newblock A theory of focus interpretation.
+\newblock \emph{Natural Language Semantics} 1(1). 75--116.
+\newblock \doi{10.1007/bf02342617}.
+
+\bibitem[{Rooth(1992{\natexlab{b}})}]{Rooth1992b}
+Rooth, Mats. 1992{\natexlab{b}}.
+\newblock Ellipsis redundancy and reduction redundancy.
+\newblock \emph{Stuttgart Ellipsis Workshop} (Arbeitspapiere 29).
+
+\bibitem[{Rooth(1996)}]{Rooth1996}
+Rooth, Mats. 1996.
+\newblock Focus.
+\newblock In Shalom Lappin (ed.), \emph{The handbook of contemporary semantic
+  theory}, 271--297. Oxford, UK: Blackwell.
+
+\bibitem[{Schwarzschild(1994{\natexlab{a}})}]{Schwarzschild1994a}
+Schwarzschild, Roger. 1994{\natexlab{a}}.
+\newblock Association with focus: semantics or pragmatics.
+\newblock The Hebrew University of Jerusalem.
+\newblock 草稿.
+
+\bibitem[{Schwarzschild(1994{\natexlab{b}})}]{Schwarzschild1994b}
+Schwarzschild, Roger. 1994{\natexlab{b}}.
+\newblock The contrastiveness of associated foci.
+\newblock The Hebrew University of Jerusalem.
+\newblock 草稿.
+
+\bibitem[{Searle(1969)}]{Searle1969}
+John, Searle R. 1969.
+\newblock \emph{Speech acts: an essay in the philosophy of language}.
+\newblock Cambridge, UK: Cambridge University Press.
+
+\bibitem[{Selkirk(1984)}]{Selkirk1984}
+Selkirk, Elisabeth O. 1984.
+\newblock \emph{Phonology and syntax: the relation between sound and structure}
+  (Current Studies in Linguistics 10).
+\newblock Cambridge, MA: The MIT Press.
+
+\bibitem[{Sperber \& Wilson(1986)}]{SperberWilson1986}
+Sperber, Dan \& Deirdre Wilson. 1986.
+\newblock \emph{Relevance: communication and cognition} (The Language and
+Thought Series).
+\newblock Cambridge, MA: Harvard University Press.
+
+\bibitem[{Stalnaker(1978)}]{Stalnaker1978}
+Stalnaker, Robert. 1978.
+\newblock Assertion.
+\newblock In Peter Cole (ed.), \emph{Pragmatics} (Syntax and Semantics 9),
+  315--332. New York, NY: Academic Press.
+
+\bibitem[{von Stechow(1991)}]{vonStechow1991}
+von Stechow, Arnim. 1991.
+\newblock Focusing and backgrounding operators.
+\newblock In Werner Abraham (ed.), \emph{Discourse particles: descriprtive and
+	theoretical investigations \ori{69} on the logical and pragmatic properties of
+  discourse particles in German} (Pragmatics \& Beyond: New Series 12), 37--84.
+  Amsterdam, The Netherlands: John Benjamins Publishing Company.
+
+\bibitem[{Thomason(1990)}]{Thomason1990}
+Thomason, Richmond H. 1990.
+\newblock Accommodation, meaning, and implicature: interdisciplinary
+  foundations for pragmatics.
+\newblock In Philip R.~Cohen, Jerry Morgan \& Martha E.~Pollack (eds.),
+  \emph{Intentions in communication} (System Development Foundation Benchmark
+  Series), 325--363. Cambridge, MA: A Bradford Book, The MIT Press.
+
+\bibitem[{Vallduv{\'\i}(1990)}]{Vallduvi1990}
+Vallduv{\'\i}, Enric. 1990.
+\newblock \emph{The informational component}.
+\newblock Philadelphia, PA: University of Pennsylvania 博士論文.
+
+\bibitem[{Vallduv{\'\i}(1993)}]{Vallduvi1993}
+Vallduv{\'\i}, Enric. 1993.
+\newblock Information packaging: A survey.
+\newblock Prepared for the \textit{Word Order, Prosody, and Information
+  Structure (WOPIS)} initiative.
+\newblock \urlprefix\url{http://groups.inf.ed.ac.uk/hcrc_publications/}.
+
+\bibitem[{Vallduv{\'\i} \& Zacharski(1994)}]{VallduviZacharski1994}
+Vallduv{\'\i}, Enric \& Ron Zacharski. 1994.
+\newblock Accenting phenomena, association with focus, and the recursiveness of
+  focus-ground.
+\newblock In \emph{Ninth Amsterdam Colloquium}, 683--702.
+
+\bibitem[{Walker(1993)}]{Walker1993}
+Walker, Marilyn A. 1993.
+\newblock \emph{Informational redundancy and resource bounds in dialogue}.
+\newblock Philadelphia, PA: University of Pennsylvania 博士論文.
+
+\bibitem[{Ward(1985)}]{Ward1985}
+Ward, Gregory. 1985.
+\newblock \emph{The semantics and pragmatics of preposing}.
+\newblock Philadelphia, PA: University of Pennsylvania 博士論文.
+\newblock \urlprefix\url{http://repository.upenn.edu/dissertations/AAI8523465}.
+
+\bibitem[{Welker(1994)}]{Welker1994}
+Welker, Katherine. 1994.
+\newblock \emph{Plans in the common ground: toward a generative account of
+  conversational implicature}.
+\newblock Columbus, OH: Ohio State University 博士論文.
+\newblock
+  \urlprefix\url{http://linguistics.osu.edu/research/publications/dissertations/welker1994}.
+
+\bibitem[{Wittgenstein(1953)}]{Wittgenstein1953}
+Wittgenstein, Ludwig. 1953.
+\newblock \emph{Philosophical investigations}.
+\newblock New York, NY: Macmillan.
+
+\end{thebibliography}
+\metainfo
+\end{document}
