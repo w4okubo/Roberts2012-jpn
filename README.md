@@ -6,4 +6,4 @@ clsファイルは、[https://github.com/matbahasa/goken](https://github.com/mat
 
 <a name="FN1">1</a>: Roberts, Craige. (2012) Information Structure: Towards an integrated formal theory of pragmatics. *Semantics and Pragmatics* 5(6). 1–69.
 
-<a name="FN2">2</a>: クレイグ・ロバーツ. 「談話における情報構造: 語用論の統合形式理論をめざして.」 (大久保弥・野元裕樹 共訳)  『語学研究所論集』 25. 79–133.
+<a name="FN2">2</a>: クレイグ・ロバーツ. 「談話における情報構造: 語用論の統合形式理論をめざして」 (大久保弥・野元裕樹 共訳)  『語学研究所論集』 25. 79–133.
